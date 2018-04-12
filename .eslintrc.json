@@ -1,0 +1,6 @@
+{
+  "extends": "@quase/eslint-config-quase",
+  "rules": {
+    "no-console": "off"
+  }
+}

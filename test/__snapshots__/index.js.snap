@@ -1,0 +1,2022 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mungo examples: ast test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
+Object {
+  "name": "BobProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Connect",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "GreetAlice",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Connect",
+      "type": "State",
+    },
+    Object {
+      "_name": "GreetAlice",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendHelloToAlice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "GreetCarol",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "GreetAlice",
+      "type": "State",
+    },
+    Object {
+      "_name": "GreetCarol",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendHelloToCarol",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "MakeChoice",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "GreetCarol",
+      "type": "State",
+    },
+    Object {
+      "_name": "MakeChoice",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToAlice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:1",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvTimeFromAlice",
+                "returnType": Object {
+                  "name": "int",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "EndProtocol",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToCarol",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:2",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvTimeFromCarol",
+                "returnType": Object {
+                  "name": "int",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "EndProtocol",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "MakeChoice",
+      "type": "State",
+    },
+    Object {
+      "_name": "EndProtocol",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:3",
+            "methods": Array [],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "EndProtocol",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/ThreeParties/FriendProtocol.protocol 1`] = `
+Object {
+  "name": "FriendProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:1",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvHelloFromBob",
+                "returnType": Object {
+                  "name": "String",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "ReceiveChoice",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "ReceiveChoice",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "recvChoiceFromBob",
+          "returnType": Object {
+            "name": "BobChoice",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "TIME",
+                  "type": "Type",
+                },
+                "SendTime",
+              ],
+              Array [
+                Object {
+                  "name": "END",
+                  "type": "Type",
+                },
+                "EndProtocol",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "ReceiveChoice",
+      "type": "State",
+    },
+    Object {
+      "_name": "SendTime",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "sendTimeToBob",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "EndProtocol",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "SendTime",
+      "type": "State",
+    },
+    Object {
+      "_name": "EndProtocol",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "EndProtocol",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/TwoParties/AliceProtocol.protocol 1`] = `
+Object {
+  "name": "AliceProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:1",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvStringFromBob",
+                "returnType": Object {
+                  "name": "String",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "ReceiveChoice",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "ReceiveChoice",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "choiceFromBob",
+          "returnType": Object {
+            "name": "BobChoice",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "TIME",
+                  "type": "Type",
+                },
+                "SendTime",
+              ],
+              Array [
+                Object {
+                  "name": "GREET",
+                  "type": "Type",
+                },
+                "HowAreYou",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "ReceiveChoice",
+      "type": "State",
+    },
+    Object {
+      "_name": "SendTime",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "sendTimeToBob",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "EndProtocol",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "SendTime",
+      "type": "State",
+    },
+    Object {
+      "_name": "HowAreYou",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendGreetToBob",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "EndProtocol",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "HowAreYou",
+      "type": "State",
+    },
+    Object {
+      "_name": "EndProtocol",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "EndProtocol",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/TwoParties/BobProtocol.protocol 1`] = `
+Object {
+  "name": "BobProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:1",
+            "methods": Array [
+              Object {
+                "arguments": Array [
+                  Object {
+                    "name": "String",
+                    "type": "Type",
+                  },
+                ],
+                "name": "sendStringToAlice",
+                "returnType": Object {
+                  "name": "void",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "SendChoice",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "SendChoice",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToAlice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:2",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvTimeFromAlice",
+                "returnType": Object {
+                  "name": "int",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "EndProtocol",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "sendGreetingChoiceToAlice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:3",
+            "methods": Array [
+              Object {
+                "arguments": Array [],
+                "name": "recvGreetingFromAlice",
+                "returnType": Object {
+                  "name": "String",
+                  "type": "Type",
+                },
+                "transition": Object {
+                  "name": "EndProtocol",
+                  "type": "Identifier",
+                },
+                "type": "Method",
+              },
+            ],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "SendChoice",
+      "type": "State",
+    },
+    Object {
+      "_name": "EndProtocol",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "unknown:4",
+            "methods": Array [],
+            "name": null,
+            "type": "State",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "EndProtocol",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/collection/CollectionProtocol.protocol 1`] = `
+Object {
+  "name": "CollectionProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "initialise",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Empty",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "Empty",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "NonEmpty",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Empty",
+      "type": "State",
+    },
+    Object {
+      "_name": "NonEmpty",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "NonEmpty",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "get",
+          "returnType": Object {
+            "name": "Node",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Unknown",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "NonEmpty",
+      "type": "State",
+    },
+    Object {
+      "_name": "Unknown",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "NonEmpty",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "isEmpty",
+          "returnType": Object {
+            "name": "BooleanChoice",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "TRUE",
+                  "type": "Type",
+                },
+                "Empty",
+              ],
+              Array [
+                Object {
+                  "name": "FALSE",
+                  "type": "Type",
+                },
+                "NonEmpty",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Unknown",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/collection/StackUser/StackUserProtocol.protocol 1`] = `
+Object {
+  "name": "StackUserProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "Consume",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "consume",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Init",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Consume",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/collection/StackUser2/StackUserProtocol.protocol 1`] = `
+Object {
+  "name": "StackUserProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "produce",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "Consume",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "produce",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Consume",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "consume",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Init",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Consume",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/file.protocol 1`] = `
+Object {
+  "name": "FileProtocol",
+  "package": null,
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "open",
+          "returnType": Object {
+            "name": "Status",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "OK",
+                  "type": "Type",
+                },
+                "Open",
+              ],
+              Array [
+                Object {
+                  "name": "ERROR",
+                  "type": "Type",
+                },
+                "end",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "Open",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "hasNext",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:2",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "TRUE",
+                  "type": "Type",
+                },
+                "Read",
+              ],
+              Array [
+                Object {
+                  "name": "FALSE",
+                  "type": "Type",
+                },
+                "Close",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Open",
+      "type": "State",
+    },
+    Object {
+      "_name": "Read",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "read",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "Open",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Read",
+      "type": "State",
+    },
+    Object {
+      "_name": "Close",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Close",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
+Object {
+  "Connect": Object {
+    "name": "Connect",
+    "transitions": Array [
+      Object {
+        "to": "GreetAlice",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "EndProtocol": Object {
+    "name": "EndProtocol",
+    "transitions": Array [
+      Object {
+        "to": "unknown:3",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "GreetAlice": Object {
+    "name": "GreetAlice",
+    "transitions": Array [
+      Object {
+        "to": "GreetCarol",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendHelloToAlice",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "GreetCarol": Object {
+    "name": "GreetCarol",
+    "transitions": Array [
+      Object {
+        "to": "MakeChoice",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendHelloToCarol",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "MakeChoice": Object {
+    "name": "MakeChoice",
+    "transitions": Array [
+      Object {
+        "to": "unknown:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToAlice",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "unknown:2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToCarol",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+  "unknown:1": Object {
+    "name": "unknown:1",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvTimeFromAlice",
+          "returnType": "int",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "unknown:2": Object {
+    "name": "unknown:2",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvTimeFromCarol",
+          "returnType": "int",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/ThreeParties/FriendProtocol.protocol 1`] = `
+Object {
+  "EndProtocol": Object {
+    "name": "EndProtocol",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "unknown:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "ReceiveChoice": Object {
+    "name": "ReceiveChoice",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvChoiceFromBob",
+          "returnType": "BobChoice",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "SendTime": Object {
+    "name": "SendTime",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "sendTimeToBob",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "SendTime",
+        "transition": Object {
+          "name": "TIME",
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "name": "END",
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+  "unknown:1": Object {
+    "name": "unknown:1",
+    "transitions": Array [
+      Object {
+        "to": "ReceiveChoice",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvHelloFromBob",
+          "returnType": "String",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/TwoParties/AliceProtocol.protocol 1`] = `
+Object {
+  "EndProtocol": Object {
+    "name": "EndProtocol",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "HowAreYou": Object {
+    "name": "HowAreYou",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendGreetToBob",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "unknown:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "ReceiveChoice": Object {
+    "name": "ReceiveChoice",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "choiceFromBob",
+          "returnType": "BobChoice",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "SendTime": Object {
+    "name": "SendTime",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "sendTimeToBob",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "SendTime",
+        "transition": Object {
+          "name": "TIME",
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "HowAreYou",
+        "transition": Object {
+          "name": "GREET",
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+  "unknown:1": Object {
+    "name": "unknown:1",
+    "transitions": Array [
+      Object {
+        "to": "ReceiveChoice",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvStringFromBob",
+          "returnType": "String",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/TwoParties/BobProtocol.protocol 1`] = `
+Object {
+  "EndProtocol": Object {
+    "name": "EndProtocol",
+    "transitions": Array [
+      Object {
+        "to": "unknown:4",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "endCommunication",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "unknown:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "connect",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "SendChoice": Object {
+    "name": "SendChoice",
+    "transitions": Array [
+      Object {
+        "to": "unknown:2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "sendTimeChoiceToAlice",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "unknown:3",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "sendGreetingChoiceToAlice",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+  "unknown:1": Object {
+    "name": "unknown:1",
+    "transitions": Array [
+      Object {
+        "to": "SendChoice",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendStringToAlice",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "unknown:2": Object {
+    "name": "unknown:2",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvTimeFromAlice",
+          "returnType": "int",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "unknown:3": Object {
+    "name": "unknown:3",
+    "transitions": Array [
+      Object {
+        "to": "EndProtocol",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "recvGreetingFromAlice",
+          "returnType": "String",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/collection/CollectionProtocol.protocol 1`] = `
+Object {
+  "Empty": Object {
+    "name": "Empty",
+    "transitions": Array [
+      Object {
+        "to": "NonEmpty",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "Empty",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "initialise",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "NonEmpty": Object {
+    "name": "NonEmpty",
+    "transitions": Array [
+      Object {
+        "to": "NonEmpty",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Unknown",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "get",
+          "returnType": "Node",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Unknown": Object {
+    "name": "Unknown",
+    "transitions": Array [
+      Object {
+        "to": "NonEmpty",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Node",
+              "type": "Type",
+            },
+          ],
+          "name": "put",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "isEmpty",
+          "returnType": "BooleanChoice",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "Empty",
+        "transition": Object {
+          "name": "TRUE",
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "NonEmpty",
+        "transition": Object {
+          "name": "FALSE",
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/collection/StackUser/StackUserProtocol.protocol 1`] = `
+Object {
+  "Consume": Object {
+    "name": "Consume",
+    "transitions": Array [
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "Stack",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "Stack",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Init",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "consume",
+          "returnType": "Stack",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "Stack",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Stack",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "Stack",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/collection/StackUser2/StackUserProtocol.protocol 1`] = `
+Object {
+  "Consume": Object {
+    "name": "Consume",
+    "transitions": Array [
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "produce",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Init",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "consume",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "produce",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "Consume",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "produce",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/file.protocol 1`] = `
+Object {
+  "Close": Object {
+    "name": "Close",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Init": Object {
+    "name": "Init",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "open",
+          "returnType": "Status",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Open": Object {
+    "name": "Open",
+    "transitions": Array [
+      Object {
+        "to": "decision:2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "hasNext",
+          "returnType": "Boolean",
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "close",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "Read": Object {
+    "name": "Read",
+    "transitions": Array [
+      Object {
+        "to": "Open",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "read",
+          "returnType": "void",
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "Open",
+        "transition": Object {
+          "name": "OK",
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "name": "ERROR",
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "decision:2": Object {
+    "name": "decision:2",
+    "transitions": Array [
+      Object {
+        "to": "Read",
+        "transition": Object {
+          "name": "TRUE",
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "Close",
+        "transition": Object {
+          "name": "FALSE",
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;

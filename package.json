@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "mungo-typestate-grammar",
+  "main": "src/parser.js",
+  "scripts": {
+    "start": "babel-node src/example.js",
+    "lint": "eslint **/*.js",
+    "test": "jest",
+    "flow": "flow"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/test/"
+    ],
+    "testRegex": "/test/(index|.+\\.test)\\.js$",
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/node": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@quase/eslint-config-quase": "^0.3.0-1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^22.4.3",
+    "circular-json": "^0.5.3",
+    "eslint": "^4.19.1",
+    "flow-bin": "^0.69.0",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
+    "jest": "^22.4.3"
+  }
+}

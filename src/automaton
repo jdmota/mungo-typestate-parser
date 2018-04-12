@@ -1,0 +1,112 @@
+{
+  "numberOfStates": 7,
+  "states": {
+    "end": {
+      "name": "end",
+      "transitions": []
+    },
+    "decision:1": {
+      "name": "decision:1",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Label",
+            "name": "OK"
+          },
+          "to": "Open"
+        },
+        {
+          "transition": {
+            "type": "Label",
+            "name": "ERROR"
+          },
+          "to": "end"
+        }
+      ]
+    },
+    "Init": {
+      "name": "Init",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "open",
+            "arguments": [],
+            "returnType": "Status"
+          },
+          "to": "decision:1"
+        }
+      ]
+    },
+    "decision:2": {
+      "name": "decision:2",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Label",
+            "name": "TRUE"
+          },
+          "to": "Read"
+        },
+        {
+          "transition": {
+            "type": "Label",
+            "name": "FALSE"
+          },
+          "to": "Close"
+        }
+      ]
+    },
+    "Open": {
+      "name": "Open",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "hasNext",
+            "arguments": [],
+            "returnType": "Boolean"
+          },
+          "to": "decision:2"
+        },
+        {
+          "transition": {
+            "type": "Method",
+            "name": "close",
+            "arguments": [],
+            "returnType": "void"
+          },
+          "to": "end"
+        }
+      ]
+    },
+    "Read": {
+      "name": "Read",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "read",
+            "arguments": [],
+            "returnType": "void"
+          },
+          "to": "Open"
+        }
+      ]
+    },
+    "Close": {
+      "name": "Close",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "close",
+            "arguments": [],
+            "returnType": "void"
+          },
+          "to": "end"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "type": "Typestate",
+  "package": null,
+  "name": "FileProtocol",
+  "states": [
+    {
+      "type": "State",
+      "name": "Init",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "open",
+          "arguments": [],
+          "returnType": {
+            "type": "Type",
+            "name": "Status"
+          },
+          "transition": {
+            "type": "DecisionState",
+            "transitions": [
+              [
+                {
+                  "type": "Type",
+                  "name": "OK"
+                },
+                "Open"
+              ],
+              [
+                {
+                  "type": "Type",
+                  "name": "ERROR"
+                },
+                "end"
+              ]
+            ],
+            "_name": "decision:1"
+          }
+        }
+      ],
+      "_name": "Init"
+    },
+    {
+      "type": "State",
+      "name": "Open",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "hasNext",
+          "arguments": [],
+          "returnType": {
+            "type": "Type",
+            "name": "Boolean"
+          },
+          "transition": {
+            "type": "DecisionState",
+            "transitions": [
+              [
+                {
+                  "type": "Type",
+                  "name": "TRUE"
+                },
+                "Read"
+              ],
+              [
+                {
+                  "type": "Type",
+                  "name": "FALSE"
+                },
+                "Close"
+              ]
+            ],
+            "_name": "decision:2"
+          }
+        },
+        {
+          "type": "Method",
+          "name": "close",
+          "arguments": [],
+          "returnType": {
+            "type": "Type",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "end"
+          }
+        }
+      ],
+      "_name": "Open"
+    },
+    {
+      "type": "State",
+      "name": "Read",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "read",
+          "arguments": [],
+          "returnType": {
+            "type": "Type",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "Open"
+          }
+        }
+      ],
+      "_name": "Read"
+    },
+    {
+      "type": "State",
+      "name": "Close",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "close",
+          "arguments": [],
+          "returnType": {
+            "type": "Type",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "end"
+          }
+        }
+      ],
+      "_name": "Close"
+    }
+  ]
+}
