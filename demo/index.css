@@ -1,0 +1,25 @@
+#automaton {
+  width: 600px;
+  height: 400px;
+  border: 1px solid lightgray;
+  float: left;
+}
+
+#ui {
+  margin-left: 10px;
+  float: left;
+}
+
+#ui textarea {
+  width: 600px;
+  height: 700px;
+}
+
+#ui button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#ui pre {
+  color: red;
+}

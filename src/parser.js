@@ -144,6 +144,11 @@ export default class Parser {
       _name: `unknown:${this.unknownUuid++}`
     };
 
+    // FIXME point state without transitions to 'end'
+    // FIXME method signatures don't defer on return type, just name and arguments
+    // FIXME don't allow for duplicate named states
+    // FIXME deal with the usage of unknown states
+
     this.expect( "{" );
 
     while ( !this.match( "}" ) ) {

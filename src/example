@@ -1,15 +1,15 @@
 typestate FileProtocol {
 
-  Init =  {
-    Status open(): <OK: Open, ERROR:end>
+  Init = {
+    Status open(): <OK: Open, ERROR: end>
   }
 
-  Open =  {
+  Open = {
     Boolean hasNext(): <TRUE: Read, FALSE: Close>,
     void close(): end
   }
 
-  Read =  {
+  Read = {
     void read(): Open
   }
 
