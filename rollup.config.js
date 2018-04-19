@@ -5,7 +5,7 @@ export default {
   input: "src/index.js",
   output: {
     name: "MungoTypestate",
-    file: "demo/vendor/mungo_typestate.js",
+    file: "docs/vendor/mungo_typestate.js",
     format: "umd"
   },
   plugins: [
