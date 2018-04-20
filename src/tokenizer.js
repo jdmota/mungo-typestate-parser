@@ -1,10 +1,9 @@
 // @flow
 // Based on babel/babylon's tokenizer
 
-/* eslint default-case: 0, no-labels: 0, no-fallthrough: 0 */
+/* eslint default-case: 0, no-fallthrough: 0 */
 
-// const lineBreak = /\r\n?|\n|\u2028|\u2029/;
-const nonASCIIwhitespace = /[\u1680\u180e\u2000-\u200a\u202f\u205f\u3000\ufeff]/;
+// Reference: https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html
 
 function isIdentifierStart( code: number ): boolean {
   if ( code < 65 ) return code === 36; // 36 -> $
@@ -18,6 +17,19 @@ function isIdentifierChar( code: number ): boolean {
   if ( code < 48 ) return code === 36; // 36 -> $
   if ( code < 58 ) return true; // 48-57 -> 0-9
   return isIdentifierStart( code );
+}
+
+const keywords = [
+  "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class",
+  "const", "continue", "default", "do", "double", "else", "enum", "extends", "final",
+  "finally", "float", "for", "goto", "if", "implements", "import", "instanceof", "int",
+  "interface", "long", "native", "new", "package", "private", "protected", "public",
+  "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this",
+  "throw", "throws", "transient", "try", "void", "volatile", "while"
+];
+
+export function isReserved( word: string ) {
+  return keywords.includes( word );
 }
 
 export class Token {
@@ -66,22 +78,14 @@ export default class Tokenizer {
   }
 
   skipSpace(): void {
-    loop: while ( this.pos < this.inputLen ) {
+    while ( this.pos < this.inputLen ) {
       const ch = this.codeAt( this.pos );
       switch ( ch ) {
-        case 32: // space
-        case 160: // non-breaking space
-          this.pos++;
-          break;
-
-        case 13: // '\r' carriage return
-          if ( this.codeAt( this.pos + 1 ) === 10 ) {
-            this.pos++;
-          }
-
+        case 9: // horizontal tab
         case 10: // '\n' line feed
-        case 8232: // line separator
-        case 8233: // paragraph separator
+        case 12: // form feed
+        case 13: // '\r' carriage return
+        case 32: // space
           this.pos++;
           break;
 
@@ -92,39 +96,24 @@ export default class Tokenizer {
               break;
 
             case 47:
-              this.skipLineComment( 2 );
+              this.skipLineComment();
               break;
 
             default:
-              break loop;
+              return;
           }
           break;
 
         default:
-          if (
-            ( ch > 8 && ch < 14 ) ||
-            ( ch >= 5760 && nonASCIIwhitespace.test( String.fromCharCode( ch ) ) )
-          ) {
-            this.pos++;
-          } else {
-            break loop;
-          }
+          return;
       }
     }
   }
 
-  skipLineComment( startSkip: number ): void {
-
-    let ch = this.codeAt( ( this.pos += startSkip ) );
-
+  skipLineComment(): void {
+    let ch = this.codeAt( ( this.pos += 2 ) );
     if ( this.pos < this.inputLen ) {
-      while (
-        ch !== 10 &&
-        ch !== 13 &&
-        ch !== 8232 &&
-        ch !== 8233 &&
-        ++this.pos < this.inputLen
-      ) {
+      while ( ch !== 10 && ch !== 13 && ++this.pos < this.inputLen ) {
         ch = this.codeAt( this.pos );
       }
     }
@@ -147,7 +136,8 @@ export default class Tokenizer {
         break;
       }
     }
-    return new Token( "identifier", this.input.slice( start, this.pos ) );
+    const word = this.input.slice( start, this.pos );
+    return new Token( "identifier", word );
   }
 
   readToken( char: string ): Token {
