@@ -1,4 +1,7 @@
 // @flow
+import type {
+  Typestate, NamedState, State, Type, Method, DecisionState
+} from "./ast_types";
 import Tokenizer, { type Token } from "./tokenizer";
 
 export default class Parser {
@@ -14,27 +17,8 @@ export default class Parser {
     this.input = input;
     this.tokenizer = new Tokenizer( input );
     this.token = this.next();
-    this.states = {};
     this.decisionUuid = 1;
     this.unknownUuid = 1;
-
-    this.addState( "end" );
-  }
-
-  addState( name: string ) {
-    this.states[ name ] = this.states[ name ] || {
-      name,
-      transitions: []
-    };
-    return this.states[ name ];
-  }
-
-  addTransition( name: string, transition: Object, to: string ) {
-    this.addState( name ).transitions.push( {
-      transition,
-      to
-      // this.addState( to )
-    } );
   }
 
   next(): Token {
@@ -63,13 +47,7 @@ export default class Parser {
     return node;
   }
 
-  parse(): Object {
-    const node: Object = {
-      type: "Typestate",
-      package: null,
-      name: null,
-      states: []
-    };
+  parse(): Typestate {
 
     // FIXME save package
     if ( this.eat( "identifier", "package" ) ) {
@@ -91,111 +69,98 @@ export default class Parser {
 
     this.expect( "identifier", "typestate" );
 
-    node.name = this.expect( "identifier" ).value;
+    const name = this.expect( "identifier" ).value;
+    const states = [];
 
     this.expect( "{" );
 
     while ( !this.eat( "}" ) ) {
-      node.states.push( this.parseStateDefName() );
+      states.push( this.parseStateDefName() );
     }
 
     this.expect( "eof" );
 
-    return node;
+    return {
+      type: "Typestate",
+      name,
+      states
+    };
   }
 
   // FIXME handle dots
-  parseType() {
-    const node: Object = {
+  parseType(): Type {
+    return {
       type: "Type",
-      name: null
+      name: this.expect( "identifier" ).value
     };
-
-    node.name = this.expect( "identifier" ).value;
-
-    return node;
   }
 
-  parseStateDefName() {
-    const node: Object = {
-      type: "State",
-      name: null,
-      methods: [],
-      _name: null
-    };
+  parseStateDefName(): NamedState {
 
-    node.name = this.expect( "identifier" ).value;
-    node._name = node.name;
+    const name = this.expect( "identifier" ).value;
 
-    if ( node.name === "end" ) {
+    if ( name === "end" ) {
       throw new Error( "You cannot have a state called 'end'" );
     }
 
     this.expect( "=" );
 
-    return this.parseState( node );
+    const { type, methods } = this.parseState();
+
+    return {
+      type,
+      name,
+      methods,
+      _name: name
+    };
   }
 
-  parseState( node: ?Object ) {
-    node = node || {
-      type: "State",
-      name: null,
-      methods: [],
-      _name: `unknown:${this.unknownUuid++}`
-    };
+  parseState(): State {
 
-    // FIXME point state without transitions to 'end'
+    let _name = `unknown:${this.unknownUuid++}`;
+    const methods = [];
+
     // FIXME method signatures don't defer on return type, just name and arguments
-    // FIXME don't allow for duplicate named states
-    // FIXME deal with the usage of unknown states
 
     this.expect( "{" );
 
     while ( !this.match( "}" ) ) {
-      const method = this.parseMethod();
-      node.methods.push( method );
 
-      this.addTransition(
-        node._name,
-        {
-          type: "Method",
-          name: method.name,
-          arguments: method.arguments,
-          returnType: method.returnType.name
-        },
-        method.transition._name || method.transition.name
-      );
+      methods.push( this.parseMethod() );
 
       if ( !this.eat( "," ) ) {
         break;
       }
     }
 
+    if ( methods.length === 0 ) {
+      _name = "end";
+    }
+
     this.expect( "}" );
 
-    return node;
+    return {
+      type: "State",
+      name: null,
+      methods,
+      _name
+    };
   }
 
-  parseMethod() {
-    const node: Object = {
-      type: "Method",
-      name: null,
-      arguments: [],
-      returnType: null,
-      transition: null
-    };
+  parseMethod(): Method {
 
-    node.returnType = this.parseType();
-    node.name = this.expect( "identifier" ).value;
+    const returnType = this.parseType();
+    const name = this.expect( "identifier" ).value;
+    const args = [];
 
-    if ( node.name === "end" ) {
+    if ( name === "end" ) {
       throw new Error( "Method cannot be called 'end'" );
     }
 
     this.expect( "(" );
 
     while ( !this.match( ")" ) ) {
-      node.arguments.push( this.parseType() );
+      args.push( this.parseType() );
 
       if ( !this.eat( "," ) ) {
         break;
@@ -205,26 +170,31 @@ export default class Parser {
     this.expect( ")" );
     this.expect( ":" );
 
+    let transition;
+
     if ( this.match( "<" ) ) {
-      node.transition = this.parseLabels();
+      transition = this.parseLabels();
     } else if ( this.match( "{" ) ) {
-      node.transition = this.parseState();
+      transition = this.parseState();
     } else {
-      node.transition = {
+      transition = {
         type: "Identifier",
         name: this.expect( "identifier" ).value
       };
     }
 
-    return node;
+    return {
+      type: "Method",
+      name,
+      arguments: args,
+      returnType,
+      transition
+    };
   }
 
-  parseLabels() {
-    const node: Object = {
-      type: "DecisionState",
-      transitions: [],
-      _name: `decision:${this.decisionUuid++}`
-    };
+  parseLabels(): DecisionState {
+    const transitions = [];
+    const _name = `decision:${this.decisionUuid++}`;
 
     this.expect( "<" );
 
@@ -236,16 +206,7 @@ export default class Parser {
 
       const stateName = this.expect( "identifier" ).value;
 
-      node.transitions.push( [ label, stateName ] );
-
-      this.addTransition(
-        node._name,
-        {
-          type: "Label",
-          name: label.name
-        },
-        stateName
-      );
+      transitions.push( [ label, stateName ] );
 
       if ( !this.eat( "," ) ) {
         break;
@@ -254,7 +215,11 @@ export default class Parser {
 
     this.expect( ">" );
 
-    return node;
+    return {
+      type: "DecisionState",
+      transitions,
+      _name
+    };
   }
 
 }

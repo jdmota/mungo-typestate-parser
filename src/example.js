@@ -1,24 +1,28 @@
 // @flow
 import Parser from "./parser";
+import createAutomaton from "./automaton";
 
 const fs = require( "fs" );
 const path = require( "path" );
 // $FlowIgnore
 const JSON = require( "circular-json" );
 
-const example = fs.readFileSync( path.join( __dirname, "example" ), "utf8" );
+const example = fs.readFileSync( path.join( __dirname, "_example" ), "utf8" );
 
 const parser = new Parser( example );
+const ast = parser.parse();
 
 fs.writeFileSync(
-  path.join( __dirname, "ast" ),
-  JSON.stringify( parser.parse(), null, 2 )
+  path.join( __dirname, "_ast" ),
+  JSON.stringify( ast, null, 2 )
 );
 
+const automaton = createAutomaton( ast );
+
 fs.writeFileSync(
-  path.join( __dirname, "automaton" ),
+  path.join( __dirname, "_automaton" ),
   JSON.stringify( {
-    numberOfStates: Object.keys( parser.states ).length,
-    states: parser.states
+    numberOfStates: Object.keys( automaton ).length,
+    states: automaton
   }, null, 2 )
 );

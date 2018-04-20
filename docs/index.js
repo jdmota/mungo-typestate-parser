@@ -21,7 +21,7 @@ function createDemo( automaton ) {
       let label;
 
       if ( transition.type === "Label" ) {
-        label = transition.name;
+        label = transition.label.name;
       } else {
         label = `${transition.name}(${transition.arguments.join( ", " )})`;
       }

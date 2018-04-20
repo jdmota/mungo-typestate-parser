@@ -1,4 +1,5 @@
 import Parser from "../src/parser";
+import createAutomaton from "../src/automaton";
 
 const path = require( "path" );
 const fs = require( "fs-extra" );
@@ -28,10 +29,9 @@ it( "mungo examples", async() => {
       try {
         const ast = parser.parse();
         expect( ast ).toMatchSnapshot( `ast ${relative}` );
-        expect( parser.states ).toMatchSnapshot( `automaton ${relative}` );
+        expect( createAutomaton( ast ) ).toMatchSnapshot( `automaton ${relative}` );
       } catch ( error ) {
-        console.error( file, error.message );
-        throw error;
+        expect( error.message ).toMatchSnapshot( `error ${relative}` );
       }
 
     } )() );

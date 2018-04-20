@@ -1,0 +1,139 @@
+{
+  "numberOfStates": 7,
+  "states": {
+    "end": {
+      "name": "end",
+      "transitions": []
+    },
+    "Init": {
+      "name": "Init",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "open",
+            "arguments": [],
+            "returnType": {
+              "type": "Type",
+              "name": "Status"
+            }
+          },
+          "to": "decision:1"
+        }
+      ]
+    },
+    "Open": {
+      "name": "Open",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "hasNext",
+            "arguments": [],
+            "returnType": {
+              "type": "Type",
+              "name": "Boolean"
+            }
+          },
+          "to": "decision:2"
+        },
+        {
+          "transition": {
+            "type": "Method",
+            "name": "close",
+            "arguments": [],
+            "returnType": {
+              "type": "Type",
+              "name": "void"
+            }
+          },
+          "to": "end"
+        }
+      ]
+    },
+    "Read": {
+      "name": "Read",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "read",
+            "arguments": [],
+            "returnType": {
+              "type": "Type",
+              "name": "void"
+            }
+          },
+          "to": "Open"
+        }
+      ]
+    },
+    "Close": {
+      "name": "Close",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Method",
+            "name": "close",
+            "arguments": [],
+            "returnType": {
+              "type": "Type",
+              "name": "void"
+            }
+          },
+          "to": "end"
+        }
+      ]
+    },
+    "decision:1": {
+      "name": "decision:1",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Label",
+            "label": {
+              "type": "Type",
+              "name": "OK"
+            }
+          },
+          "to": "Open"
+        },
+        {
+          "transition": {
+            "type": "Label",
+            "label": {
+              "type": "Type",
+              "name": "ERROR"
+            }
+          },
+          "to": "end"
+        }
+      ]
+    },
+    "decision:2": {
+      "name": "decision:2",
+      "transitions": [
+        {
+          "transition": {
+            "type": "Label",
+            "label": {
+              "type": "Type",
+              "name": "TRUE"
+            }
+          },
+          "to": "Read"
+        },
+        {
+          "transition": {
+            "type": "Label",
+            "label": {
+              "type": "Type",
+              "name": "FALSE"
+            }
+          },
+          "to": "Close"
+        }
+      ]
+    }
+  }
+}

@@ -3,7 +3,6 @@
 exports[`mungo examples: ast test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
 Object {
   "name": "BobProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Connect",
@@ -86,7 +85,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:1",
+            "_name": "unknown:5",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -115,7 +114,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:2",
+            "_name": "unknown:6",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -151,7 +150,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:3",
+            "_name": "end",
             "methods": Array [],
             "name": null,
             "type": "State",
@@ -170,7 +169,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/ThreeParties/FriendProtocol.protocol 1`] = `
 Object {
   "name": "FriendProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -183,7 +181,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:1",
+            "_name": "unknown:2",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -297,7 +295,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/TwoParties/AliceProtocol.protocol 1`] = `
 Object {
   "name": "AliceProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -310,7 +307,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:1",
+            "_name": "unknown:2",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -449,7 +446,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/TwoParties/BobProtocol.protocol 1`] = `
 Object {
   "name": "BobProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -462,7 +458,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:1",
+            "_name": "unknown:2",
             "methods": Array [
               Object {
                 "arguments": Array [
@@ -503,7 +499,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:2",
+            "_name": "unknown:4",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -532,7 +528,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:3",
+            "_name": "unknown:5",
             "methods": Array [
               Object {
                 "arguments": Array [],
@@ -568,7 +564,7 @@ Object {
             "type": "Type",
           },
           "transition": Object {
-            "_name": "unknown:4",
+            "_name": "end",
             "methods": Array [],
             "name": null,
             "type": "State",
@@ -587,7 +583,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/collection/CollectionProtocol.protocol 1`] = `
 Object {
   "name": "CollectionProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -752,7 +747,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/collection/StackUser/StackUserProtocol.protocol 1`] = `
 Object {
   "name": "StackUserProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -887,7 +881,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/collection/StackUser2/StackUserProtocol.protocol 1`] = `
 Object {
   "name": "StackUserProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -999,7 +992,6 @@ Object {
 exports[`mungo examples: ast test/fixtures/file.protocol 1`] = `
 Object {
   "name": "FileProtocol",
-  "package": null,
   "states": Array [
     Object {
       "_name": "Init",
@@ -1141,7 +1133,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "connect",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1151,11 +1146,14 @@ Object {
     "name": "EndProtocol",
     "transitions": Array [
       Object {
-        "to": "unknown:3",
+        "to": "end",
         "transition": Object {
           "arguments": Array [],
           "name": "endCommunication",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1174,7 +1172,10 @@ Object {
             },
           ],
           "name": "sendHelloToAlice",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1193,7 +1194,10 @@ Object {
             },
           ],
           "name": "sendHelloToCarol",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1203,20 +1207,26 @@ Object {
     "name": "MakeChoice",
     "transitions": Array [
       Object {
-        "to": "unknown:1",
+        "to": "unknown:5",
         "transition": Object {
           "arguments": Array [],
           "name": "sendTimeChoiceToAlice",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
       Object {
-        "to": "unknown:2",
+        "to": "unknown:6",
         "transition": Object {
           "arguments": Array [],
           "name": "sendTimeChoiceToCarol",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1226,29 +1236,35 @@ Object {
     "name": "end",
     "transitions": Array [],
   },
-  "unknown:1": Object {
-    "name": "unknown:1",
+  "unknown:5": Object {
+    "name": "unknown:5",
     "transitions": Array [
       Object {
         "to": "EndProtocol",
         "transition": Object {
           "arguments": Array [],
           "name": "recvTimeFromAlice",
-          "returnType": "int",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
     ],
   },
-  "unknown:2": Object {
-    "name": "unknown:2",
+  "unknown:6": Object {
+    "name": "unknown:6",
     "transitions": Array [
       Object {
         "to": "EndProtocol",
         "transition": Object {
           "arguments": Array [],
           "name": "recvTimeFromCarol",
-          "returnType": "int",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1267,7 +1283,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "endCommunication",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1277,11 +1296,14 @@ Object {
     "name": "Init",
     "transitions": Array [
       Object {
-        "to": "unknown:1",
+        "to": "unknown:2",
         "transition": Object {
           "arguments": Array [],
           "name": "connect",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1295,7 +1317,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "recvChoiceFromBob",
-          "returnType": "BobChoice",
+          "returnType": Object {
+            "name": "BobChoice",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1314,7 +1339,10 @@ Object {
             },
           ],
           "name": "sendTimeToBob",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1326,14 +1354,20 @@ Object {
       Object {
         "to": "SendTime",
         "transition": Object {
-          "name": "TIME",
+          "label": Object {
+            "name": "TIME",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
       Object {
         "to": "EndProtocol",
         "transition": Object {
-          "name": "END",
+          "label": Object {
+            "name": "END",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
@@ -1343,15 +1377,18 @@ Object {
     "name": "end",
     "transitions": Array [],
   },
-  "unknown:1": Object {
-    "name": "unknown:1",
+  "unknown:2": Object {
+    "name": "unknown:2",
     "transitions": Array [
       Object {
         "to": "ReceiveChoice",
         "transition": Object {
           "arguments": Array [],
           "name": "recvHelloFromBob",
-          "returnType": "String",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1370,7 +1407,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "endCommunication",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1389,7 +1429,10 @@ Object {
             },
           ],
           "name": "sendGreetToBob",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1399,11 +1442,14 @@ Object {
     "name": "Init",
     "transitions": Array [
       Object {
-        "to": "unknown:1",
+        "to": "unknown:2",
         "transition": Object {
           "arguments": Array [],
           "name": "connect",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1417,7 +1463,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "choiceFromBob",
-          "returnType": "BobChoice",
+          "returnType": Object {
+            "name": "BobChoice",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1436,7 +1485,10 @@ Object {
             },
           ],
           "name": "sendTimeToBob",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1448,14 +1500,20 @@ Object {
       Object {
         "to": "SendTime",
         "transition": Object {
-          "name": "TIME",
+          "label": Object {
+            "name": "TIME",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
       Object {
         "to": "HowAreYou",
         "transition": Object {
-          "name": "GREET",
+          "label": Object {
+            "name": "GREET",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
@@ -1465,15 +1523,18 @@ Object {
     "name": "end",
     "transitions": Array [],
   },
-  "unknown:1": Object {
-    "name": "unknown:1",
+  "unknown:2": Object {
+    "name": "unknown:2",
     "transitions": Array [
       Object {
         "to": "ReceiveChoice",
         "transition": Object {
           "arguments": Array [],
           "name": "recvStringFromBob",
-          "returnType": "String",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1488,11 +1549,14 @@ Object {
     "name": "EndProtocol",
     "transitions": Array [
       Object {
-        "to": "unknown:4",
+        "to": "end",
         "transition": Object {
           "arguments": Array [],
           "name": "endCommunication",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1502,11 +1566,14 @@ Object {
     "name": "Init",
     "transitions": Array [
       Object {
-        "to": "unknown:1",
+        "to": "unknown:2",
         "transition": Object {
           "arguments": Array [],
           "name": "connect",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1516,20 +1583,26 @@ Object {
     "name": "SendChoice",
     "transitions": Array [
       Object {
-        "to": "unknown:2",
+        "to": "unknown:4",
         "transition": Object {
           "arguments": Array [],
           "name": "sendTimeChoiceToAlice",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
       Object {
-        "to": "unknown:3",
+        "to": "unknown:5",
         "transition": Object {
           "arguments": Array [],
           "name": "sendGreetingChoiceToAlice",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1539,8 +1612,8 @@ Object {
     "name": "end",
     "transitions": Array [],
   },
-  "unknown:1": Object {
-    "name": "unknown:1",
+  "unknown:2": Object {
+    "name": "unknown:2",
     "transitions": Array [
       Object {
         "to": "SendChoice",
@@ -1552,35 +1625,44 @@ Object {
             },
           ],
           "name": "sendStringToAlice",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
     ],
   },
-  "unknown:2": Object {
-    "name": "unknown:2",
+  "unknown:4": Object {
+    "name": "unknown:4",
     "transitions": Array [
       Object {
         "to": "EndProtocol",
         "transition": Object {
           "arguments": Array [],
           "name": "recvTimeFromAlice",
-          "returnType": "int",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
     ],
   },
-  "unknown:3": Object {
-    "name": "unknown:3",
+  "unknown:5": Object {
+    "name": "unknown:5",
     "transitions": Array [
       Object {
         "to": "EndProtocol",
         "transition": Object {
           "arguments": Array [],
           "name": "recvGreetingFromAlice",
-          "returnType": "String",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1604,7 +1686,10 @@ Object {
             },
           ],
           "name": "put",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1613,7 +1698,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "close",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1632,7 +1720,10 @@ Object {
             },
           ],
           "name": "initialise",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1651,7 +1742,10 @@ Object {
             },
           ],
           "name": "put",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1660,7 +1754,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "get",
-          "returnType": "Node",
+          "returnType": Object {
+            "name": "Node",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1679,7 +1776,10 @@ Object {
             },
           ],
           "name": "put",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1688,7 +1788,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "isEmpty",
-          "returnType": "BooleanChoice",
+          "returnType": Object {
+            "name": "BooleanChoice",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1700,14 +1803,20 @@ Object {
       Object {
         "to": "Empty",
         "transition": Object {
-          "name": "TRUE",
+          "label": Object {
+            "name": "TRUE",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
       Object {
         "to": "NonEmpty",
         "transition": Object {
-          "name": "FALSE",
+          "label": Object {
+            "name": "FALSE",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
@@ -1739,7 +1848,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "Stack",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1753,7 +1865,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "Stack",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1767,7 +1882,10 @@ Object {
             },
           ],
           "name": "consume",
-          "returnType": "Stack",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1790,7 +1908,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "Stack",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1804,7 +1925,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "Stack",
+          "returnType": Object {
+            "name": "Stack",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1813,7 +1937,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "close",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1841,7 +1968,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1850,7 +1980,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "produce",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1859,7 +1992,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "consume",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1878,7 +2014,10 @@ Object {
             },
           ],
           "name": "produce",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1887,7 +2026,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "produce",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1896,7 +2038,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "close",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1919,7 +2064,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "close",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1933,7 +2081,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "open",
-          "returnType": "Status",
+          "returnType": Object {
+            "name": "Status",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1947,7 +2098,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "hasNext",
-          "returnType": "Boolean",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1956,7 +2110,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "close",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1970,7 +2127,10 @@ Object {
         "transition": Object {
           "arguments": Array [],
           "name": "read",
-          "returnType": "void",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
           "type": "Method",
         },
       },
@@ -1982,14 +2142,20 @@ Object {
       Object {
         "to": "Open",
         "transition": Object {
-          "name": "OK",
+          "label": Object {
+            "name": "OK",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
       Object {
         "to": "end",
         "transition": Object {
-          "name": "ERROR",
+          "label": Object {
+            "name": "ERROR",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
@@ -2001,14 +2167,20 @@ Object {
       Object {
         "to": "Read",
         "transition": Object {
-          "name": "TRUE",
+          "label": Object {
+            "name": "TRUE",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },
       Object {
         "to": "Close",
         "transition": Object {
-          "name": "FALSE",
+          "label": Object {
+            "name": "FALSE",
+            "type": "Type",
+          },
           "type": "Label",
         },
       },

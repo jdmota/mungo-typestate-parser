@@ -1,11 +1,13 @@
 // @flow
 import Parser from "./parser";
+import createAutomaton from "./automaton";
 
 export default function( text: string ) {
   const parser = new Parser( text );
-  parser.parse();
+  const ast = parser.parse();
+  const automaton = createAutomaton( ast );
   return {
-    numberOfStates: Object.keys( parser.states ).length,
-    states: parser.states
+    numberOfStates: Object.keys( automaton ).length,
+    states: automaton
   };
 }

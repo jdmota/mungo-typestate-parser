@@ -1,6 +1,5 @@
 {
   "type": "Typestate",
-  "package": null,
   "name": "FileProtocol",
   "states": [
     {
