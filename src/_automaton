@@ -1,4 +1,5 @@
 {
+  "firstState": "Init",
   "numberOfStates": 7,
   "states": {
     "end": {

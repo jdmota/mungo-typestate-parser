@@ -2184,2075 +2184,2147 @@ Object {
 
 exports[`mungo examples: automaton test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
 Object {
-  "Connect": Object {
-    "name": "Connect",
-    "transitions": Array [
-      Object {
-        "to": "GreetAlice",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "connect",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "EndProtocol": Object {
-    "name": "EndProtocol",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "endCommunication",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "GreetAlice": Object {
-    "name": "GreetAlice",
-    "transitions": Array [
-      Object {
-        "to": "GreetCarol",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "String",
+  "firstState": "Connect",
+  "numberOfStates": 8,
+  "states": Object {
+    "Connect": Object {
+      "name": "Connect",
+      "transitions": Array [
+        Object {
+          "to": "GreetAlice",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "connect",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "sendHelloToAlice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "GreetCarol": Object {
-    "name": "GreetCarol",
-    "transitions": Array [
-      Object {
-        "to": "MakeChoice",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "String",
+      ],
+    },
+    "EndProtocol": Object {
+      "name": "EndProtocol",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "endCommunication",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "sendHelloToCarol",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "MakeChoice": Object {
-    "name": "MakeChoice",
-    "transitions": Array [
-      Object {
-        "to": "unknown:5",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "sendTimeChoiceToAlice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "GreetAlice": Object {
+      "name": "GreetAlice",
+      "transitions": Array [
+        Object {
+          "to": "GreetCarol",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "sendHelloToAlice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "unknown:6",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "sendTimeChoiceToCarol",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "GreetCarol": Object {
+      "name": "GreetCarol",
+      "transitions": Array [
+        Object {
+          "to": "MakeChoice",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "sendHelloToCarol",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
-  },
-  "unknown:5": Object {
-    "name": "unknown:5",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvTimeFromAlice",
-          "returnType": Object {
-            "name": "int",
-            "type": "Type",
+      ],
+    },
+    "MakeChoice": Object {
+      "name": "MakeChoice",
+      "transitions": Array [
+        Object {
+          "to": "unknown:5",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "sendTimeChoiceToAlice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "unknown:6": Object {
-    "name": "unknown:6",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvTimeFromCarol",
-          "returnType": Object {
-            "name": "int",
-            "type": "Type",
+        Object {
+          "to": "unknown:6",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "sendTimeChoiceToCarol",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
+    "unknown:5": Object {
+      "name": "unknown:5",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvTimeFromAlice",
+            "returnType": Object {
+              "name": "int",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "unknown:6": Object {
+      "name": "unknown:6",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvTimeFromCarol",
+            "returnType": Object {
+              "name": "int",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/ThreeParties/FriendProtocol.protocol 1`] = `
 Object {
-  "EndProtocol": Object {
-    "name": "EndProtocol",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "endCommunication",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "unknown:2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "connect",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "ReceiveChoice": Object {
-    "name": "ReceiveChoice",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvChoiceFromBob",
-          "returnType": Object {
-            "name": "BobChoice",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "SendTime": Object {
-    "name": "SendTime",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
+  "firstState": "Init",
+  "numberOfStates": 7,
+  "states": Object {
+    "EndProtocol": Object {
+      "name": "EndProtocol",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "endCommunication",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "sendTimeToBob",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "SendTime",
-        "transition": Object {
-          "label": Object {
-            "name": "TIME",
-            "type": "Type",
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "unknown:2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "connect",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "label": Object {
-            "name": "END",
-            "type": "Type",
+      ],
+    },
+    "ReceiveChoice": Object {
+      "name": "ReceiveChoice",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvChoiceFromBob",
+            "returnType": Object {
+              "name": "BobChoice",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
-  },
-  "unknown:2": Object {
-    "name": "unknown:2",
-    "transitions": Array [
-      Object {
-        "to": "ReceiveChoice",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvHelloFromBob",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
+      ],
+    },
+    "SendTime": Object {
+      "name": "SendTime",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "sendTimeToBob",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "SendTime",
+          "transition": Object {
+            "label": Object {
+              "name": "TIME",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "label": Object {
+              "name": "END",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
+    "unknown:2": Object {
+      "name": "unknown:2",
+      "transitions": Array [
+        Object {
+          "to": "ReceiveChoice",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvHelloFromBob",
+            "returnType": Object {
+              "name": "String",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/TwoParties/AliceProtocol.protocol 1`] = `
 Object {
-  "EndProtocol": Object {
-    "name": "EndProtocol",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "endCommunication",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+  "firstState": "Init",
+  "numberOfStates": 8,
+  "states": Object {
+    "EndProtocol": Object {
+      "name": "EndProtocol",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "endCommunication",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "HowAreYou": Object {
-    "name": "HowAreYou",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+      ],
+    },
+    "HowAreYou": Object {
+      "name": "HowAreYou",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "sendGreetToBob",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "unknown:2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "connect",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "ReceiveChoice": Object {
+      "name": "ReceiveChoice",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "choiceFromBob",
+            "returnType": Object {
+              "name": "BobChoice",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "SendTime": Object {
+      "name": "SendTime",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "sendTimeToBob",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "SendTime",
+          "transition": Object {
+            "label": Object {
+              "name": "TIME",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+        Object {
+          "to": "HowAreYou",
+          "transition": Object {
+            "label": Object {
+              "name": "GREET",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
+    "unknown:2": Object {
+      "name": "unknown:2",
+      "transitions": Array [
+        Object {
+          "to": "ReceiveChoice",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvStringFromBob",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "sendGreetToBob",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "unknown:2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "connect",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "ReceiveChoice": Object {
-    "name": "ReceiveChoice",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "choiceFromBob",
-          "returnType": Object {
-            "name": "BobChoice",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "SendTime": Object {
-    "name": "SendTime",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
-              "type": "Type",
-            },
-          ],
-          "name": "sendTimeToBob",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "SendTime",
-        "transition": Object {
-          "label": Object {
-            "name": "TIME",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-      Object {
-        "to": "HowAreYou",
-        "transition": Object {
-          "label": Object {
-            "name": "GREET",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
-  },
-  "unknown:2": Object {
-    "name": "unknown:2",
-    "transitions": Array [
-      Object {
-        "to": "ReceiveChoice",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvStringFromBob",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
+      ],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/TwoParties/BobProtocol.protocol 1`] = `
 Object {
-  "EndProtocol": Object {
-    "name": "EndProtocol",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "endCommunication",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+  "firstState": "Init",
+  "numberOfStates": 7,
+  "states": Object {
+    "EndProtocol": Object {
+      "name": "EndProtocol",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "endCommunication",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "unknown:2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "connect",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "unknown:2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "connect",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "SendChoice": Object {
-    "name": "SendChoice",
-    "transitions": Array [
-      Object {
-        "to": "unknown:4",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "sendTimeChoiceToAlice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "SendChoice": Object {
+      "name": "SendChoice",
+      "transitions": Array [
+        Object {
+          "to": "unknown:4",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "sendTimeChoiceToAlice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "unknown:5",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "sendGreetingChoiceToAlice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+        Object {
+          "to": "unknown:5",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "sendGreetingChoiceToAlice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
-  },
-  "unknown:2": Object {
-    "name": "unknown:2",
-    "transitions": Array [
-      Object {
-        "to": "SendChoice",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
+    "unknown:2": Object {
+      "name": "unknown:2",
+      "transitions": Array [
+        Object {
+          "to": "SendChoice",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "sendStringToAlice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "unknown:4": Object {
+      "name": "unknown:4",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvTimeFromAlice",
+            "returnType": Object {
+              "name": "int",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "unknown:5": Object {
+      "name": "unknown:5",
+      "transitions": Array [
+        Object {
+          "to": "EndProtocol",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "recvGreetingFromAlice",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "sendStringToAlice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "unknown:4": Object {
-    "name": "unknown:4",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvTimeFromAlice",
-          "returnType": Object {
-            "name": "int",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "unknown:5": Object {
-    "name": "unknown:5",
-    "transitions": Array [
-      Object {
-        "to": "EndProtocol",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "recvGreetingFromAlice",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
+      ],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/collection/CollectionProtocol.protocol 1`] = `
 Object {
-  "Empty": Object {
-    "name": "Empty",
-    "transitions": Array [
-      Object {
-        "to": "NonEmpty",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+  "firstState": "Init",
+  "numberOfStates": 6,
+  "states": Object {
+    "Empty": Object {
+      "name": "Empty",
+      "transitions": Array [
+        Object {
+          "to": "NonEmpty",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Node",
+                "type": "Type",
+              },
+            ],
+            "name": "put",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "close",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "Empty",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "initialise",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "NonEmpty": Object {
+      "name": "NonEmpty",
+      "transitions": Array [
+        Object {
+          "to": "NonEmpty",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Node",
+                "type": "Type",
+              },
+            ],
+            "name": "put",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+        Object {
+          "to": "Unknown",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "get",
+            "returnType": Object {
               "name": "Node",
               "type": "Type",
             },
-          ],
-          "name": "put",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "close",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "Empty",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
+      ],
+    },
+    "Unknown": Object {
+      "name": "Unknown",
+      "transitions": Array [
+        Object {
+          "to": "NonEmpty",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Node",
+                "type": "Type",
+              },
+            ],
+            "name": "put",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "initialise",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "NonEmpty": Object {
-    "name": "NonEmpty",
-    "transitions": Array [
-      Object {
-        "to": "NonEmpty",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Node",
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "isEmpty",
+            "returnType": Object {
+              "name": "BooleanChoice",
               "type": "Type",
             },
-          ],
-          "name": "put",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Unknown",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "get",
-          "returnType": Object {
-            "name": "Node",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "Unknown": Object {
-    "name": "Unknown",
-    "transitions": Array [
-      Object {
-        "to": "NonEmpty",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Node",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "Empty",
+          "transition": Object {
+            "label": Object {
+              "name": "TRUE",
               "type": "Type",
             },
-          ],
-          "name": "put",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Label",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "isEmpty",
-          "returnType": Object {
-            "name": "BooleanChoice",
-            "type": "Type",
+        Object {
+          "to": "NonEmpty",
+          "transition": Object {
+            "label": Object {
+              "name": "FALSE",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "Empty",
-        "transition": Object {
-          "label": Object {
-            "name": "TRUE",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-      Object {
-        "to": "NonEmpty",
-        "transition": Object {
-          "label": Object {
-            "name": "FALSE",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/collection/StackUser/StackUserProtocol.protocol 1`] = `
 Object {
-  "Consume": Object {
-    "name": "Consume",
-    "transitions": Array [
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+  "firstState": "Init",
+  "numberOfStates": 3,
+  "states": Object {
+    "Consume": Object {
+      "name": "Consume",
+      "transitions": Array [
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Stack",
+                "type": "Type",
+              },
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
               "name": "Stack",
               "type": "Type",
             },
-            Object {
-              "name": "int",
-              "type": "Type",
-            },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "Stack",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Stack",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
               "name": "Stack",
               "type": "Type",
             },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "Stack",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Init",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+        Object {
+          "to": "Init",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Stack",
+                "type": "Type",
+              },
+            ],
+            "name": "consume",
+            "returnType": Object {
               "name": "Stack",
               "type": "Type",
             },
-          ],
-          "name": "consume",
-          "returnType": Object {
-            "name": "Stack",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Stack",
+                "type": "Type",
+              },
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
               "name": "Stack",
               "type": "Type",
             },
-            Object {
-              "name": "int",
-              "type": "Type",
-            },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "Stack",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Stack",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
               "name": "Stack",
               "type": "Type",
             },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "Stack",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "close",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "close",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/collection/StackUser2/StackUserProtocol.protocol 1`] = `
 Object {
-  "Consume": Object {
-    "name": "Consume",
-    "transitions": Array [
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
+  "firstState": "Init",
+  "numberOfStates": 3,
+  "states": Object {
+    "Consume": Object {
+      "name": "Consume",
+      "transitions": Array [
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "produce",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-      Object {
-        "to": "Init",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "consume",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "produce",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "produce",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "Consume",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "produce",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+        Object {
+          "to": "Init",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "consume",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "close",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "produce",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+        Object {
+          "to": "Consume",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "produce",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "close",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/AProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_requestStringFromC",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "int",
-              "type": "Type",
-            },
-          ],
-          "name": "send_dataintToC",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_Choice1LabelFromB",
-          "returnType": Object {
-            "name": "Choice1",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State3": Object {
-    "name": "State3",
-    "transitions": Array [
-      Object {
-        "to": "State4",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_approveBooleanFromB",
-          "returnType": Object {
-            "name": "Boolean",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State4": Object {
-    "name": "State4",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+  "firstState": "State0",
+  "numberOfStates": 8,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_requestStringFromC",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "send_invoiceStringToBC",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State5": Object {
-    "name": "State5",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_refuseBooleanFromB",
-          "returnType": Object {
-            "name": "Boolean",
-            "type": "Type",
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "send_dataintToC",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State3",
-        "transition": Object {
-          "label": Object {
-            "name": "APPROVE",
-            "type": "Type",
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_Choice1LabelFromB",
+            "returnType": Object {
+              "name": "Choice1",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State5",
-        "transition": Object {
-          "label": Object {
-            "name": "REFUSE",
-            "type": "Type",
+      ],
+    },
+    "State3": Object {
+      "name": "State3",
+      "transitions": Array [
+        Object {
+          "to": "State4",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_approveBooleanFromB",
+            "returnType": Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "State4": Object {
+      "name": "State4",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "send_invoiceStringToBC",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State5": Object {
+      "name": "State5",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_refuseBooleanFromB",
+            "returnType": Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State3",
+          "transition": Object {
+            "label": Object {
+              "name": "APPROVE",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+        Object {
+          "to": "State5",
+          "transition": Object {
+            "label": Object {
+              "name": "REFUSE",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/BProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_paymentintFromC",
-          "returnType": Object {
-            "name": "int",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "send_APPROVEToCA",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-      Object {
-        "to": "State4",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "send_REFUSEToCA",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "State3",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Boolean",
+  "firstState": "State0",
+  "numberOfStates": 6,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_paymentintFromC",
+            "returnType": Object {
+              "name": "int",
               "type": "Type",
             },
-          ],
-          "name": "send_approveBooleanToCA",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State3": Object {
-    "name": "State3",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_invoiceStringFromA",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State4": Object {
-    "name": "State4",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Boolean",
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "send_APPROVEToCA",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "send_refuseBooleanToCA",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+        Object {
+          "to": "State4",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "send_REFUSEToCA",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "State3",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Boolean",
+                "type": "Type",
+              },
+            ],
+            "name": "send_approveBooleanToCA",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State3": Object {
+      "name": "State3",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_invoiceStringFromA",
+            "returnType": Object {
+              "name": "String",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State4": Object {
+      "name": "State4",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Boolean",
+                "type": "Type",
+              },
+            ],
+            "name": "send_refuseBooleanToCA",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/Bank.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receivePayment",
-          "returnType": Object {
-            "name": "Data",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "boolean",
+  "firstState": "State0",
+  "numberOfStates": 3,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receivePayment",
+            "returnType": Object {
+              "name": "Data",
               "type": "Type",
             },
-          ],
-          "name": "sendApproval",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "boolean",
+                "type": "Type",
+              },
+            ],
+            "name": "sendApproval",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/CProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "String",
+  "firstState": "State0",
+  "numberOfStates": 9,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "send_requestStringToA",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "send_requestStringToA",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_dataintFromA",
-          "returnType": Object {
-            "name": "int",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "State3",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_dataintFromA",
+            "returnType": Object {
               "name": "int",
               "type": "Type",
             },
-          ],
-          "name": "send_paymentintToB",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State3": Object {
-    "name": "State3",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_Choice1LabelFromB",
-          "returnType": Object {
-            "name": "Choice1",
-            "type": "Type",
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "State3",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "int",
+                "type": "Type",
+              },
+            ],
+            "name": "send_paymentintToB",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State4": Object {
-    "name": "State4",
-    "transitions": Array [
-      Object {
-        "to": "State5",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_approveBooleanFromB",
-          "returnType": Object {
-            "name": "Boolean",
-            "type": "Type",
+      ],
+    },
+    "State3": Object {
+      "name": "State3",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_Choice1LabelFromB",
+            "returnType": Object {
+              "name": "Choice1",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State5": Object {
-    "name": "State5",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_invoiceStringFromA",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
+      ],
+    },
+    "State4": Object {
+      "name": "State4",
+      "transitions": Array [
+        Object {
+          "to": "State5",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_approveBooleanFromB",
+            "returnType": Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State6": Object {
-    "name": "State6",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receive_refuseBooleanFromB",
-          "returnType": Object {
-            "name": "Boolean",
-            "type": "Type",
+      ],
+    },
+    "State5": Object {
+      "name": "State5",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_invoiceStringFromA",
+            "returnType": Object {
+              "name": "String",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State4",
-        "transition": Object {
-          "label": Object {
-            "name": "APPROVE",
-            "type": "Type",
+      ],
+    },
+    "State6": Object {
+      "name": "State6",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receive_refuseBooleanFromB",
+            "returnType": Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State6",
-        "transition": Object {
-          "label": Object {
-            "name": "REFUSE",
-            "type": "Type",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State4",
+          "transition": Object {
+            "label": Object {
+              "name": "APPROVE",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+        Object {
+          "to": "State6",
+          "transition": Object {
+            "label": Object {
+              "name": "REFUSE",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/Client.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Travel",
+  "firstState": "State0",
+  "numberOfStates": 7,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Travel",
+                "type": "Type",
+              },
+            ],
+            "name": "sendRequest",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "sendRequest",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveData",
-          "returnType": Object {
-            "name": "Data",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "State3",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveData",
+            "returnType": Object {
               "name": "Data",
               "type": "Type",
             },
-          ],
-          "name": "payment",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State3": Object {
-    "name": "State3",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveApproval",
-          "returnType": Object {
-            "name": "boolean",
-            "type": "Type",
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "State3",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Data",
+                "type": "Type",
+              },
+            ],
+            "name": "payment",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State4": Object {
-    "name": "State4",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveInvoice",
-          "returnType": Object {
-            "name": "Invoice",
-            "type": "Type",
+      ],
+    },
+    "State3": Object {
+      "name": "State3",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveApproval",
+            "returnType": Object {
+              "name": "boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State4",
-        "transition": Object {
-          "label": Object {
-            "name": "true",
-            "type": "Type",
+      ],
+    },
+    "State4": Object {
+      "name": "State4",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveInvoice",
+            "returnType": Object {
+              "name": "Invoice",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "label": Object {
-            "name": "false",
-            "type": "Type",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State4",
+          "transition": Object {
+            "label": Object {
+              "name": "true",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+        Object {
+          "to": "end",
+          "transition": Object {
+            "label": Object {
+              "name": "false",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/TravelAgency.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveRequest",
-          "returnType": Object {
-            "name": "Travel",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Data",
+  "firstState": "State0",
+  "numberOfStates": 6,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveRequest",
+            "returnType": Object {
+              "name": "Travel",
               "type": "Type",
             },
-          ],
-          "name": "sendData",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveApproval",
-          "returnType": Object {
-            "name": "boolean",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-    ],
-  },
-  "State3": Object {
-    "name": "State3",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "Invoice",
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Data",
+                "type": "Type",
+              },
+            ],
+            "name": "sendData",
+            "returnType": Object {
+              "name": "void",
               "type": "Type",
             },
-          ],
-          "name": "sendInvoice",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State3",
-        "transition": Object {
-          "label": Object {
-            "name": "true",
-            "type": "Type",
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveApproval",
+            "returnType": Object {
+              "name": "boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "label": Object {
-            "name": "false",
-            "type": "Type",
+      ],
+    },
+    "State3": Object {
+      "name": "State3",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "Invoice",
+                "type": "Type",
+              },
+            ],
+            "name": "sendInvoice",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State3",
+          "transition": Object {
+            "label": Object {
+              "name": "true",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+        Object {
+          "to": "end",
+          "transition": Object {
+            "label": Object {
+              "name": "false",
+              "type": "Type",
+            },
+            "type": "Label",
+          },
+        },
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/file.protocol 1`] = `
 Object {
-  "Close": Object {
-    "name": "Close",
-    "transitions": Array [
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "close",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+  "firstState": "Init",
+  "numberOfStates": 7,
+  "states": Object {
+    "Close": Object {
+      "name": "Close",
+      "transitions": Array [
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "close",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Init": Object {
-    "name": "Init",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "open",
-          "returnType": Object {
-            "name": "Status",
-            "type": "Type",
+      ],
+    },
+    "Init": Object {
+      "name": "Init",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "open",
+            "returnType": Object {
+              "name": "Status",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Open": Object {
-    "name": "Open",
-    "transitions": Array [
-      Object {
-        "to": "decision:2",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "hasNext",
-          "returnType": Object {
-            "name": "Boolean",
-            "type": "Type",
+      ],
+    },
+    "Open": Object {
+      "name": "Open",
+      "transitions": Array [
+        Object {
+          "to": "decision:2",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "hasNext",
+            "returnType": Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "close",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+        Object {
+          "to": "end",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "close",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "Read": Object {
-    "name": "Read",
-    "transitions": Array [
-      Object {
-        "to": "Open",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "read",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+      ],
+    },
+    "Read": Object {
+      "name": "Read",
+      "transitions": Array [
+        Object {
+          "to": "Open",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "read",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "Open",
-        "transition": Object {
-          "label": Object {
-            "name": "OK",
-            "type": "Type",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "Open",
+          "transition": Object {
+            "label": Object {
+              "name": "OK",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "end",
-        "transition": Object {
-          "label": Object {
-            "name": "ERROR",
-            "type": "Type",
+        Object {
+          "to": "end",
+          "transition": Object {
+            "label": Object {
+              "name": "ERROR",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "decision:2": Object {
-    "name": "decision:2",
-    "transitions": Array [
-      Object {
-        "to": "Read",
-        "transition": Object {
-          "label": Object {
-            "name": "TRUE",
-            "type": "Type",
+      ],
+    },
+    "decision:2": Object {
+      "name": "decision:2",
+      "transitions": Array [
+        Object {
+          "to": "Read",
+          "transition": Object {
+            "label": Object {
+              "name": "TRUE",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "Close",
-        "transition": Object {
-          "label": Object {
-            "name": "FALSE",
-            "type": "Type",
+        Object {
+          "to": "Close",
+          "transition": Object {
+            "label": Object {
+              "name": "FALSE",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/infinite/BankProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receivePayment",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+  "firstState": "State0",
+  "numberOfStates": 2,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receivePayment",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/BankProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [
-            Object {
-              "name": "String",
+  "firstState": "State0",
+  "numberOfStates": 2,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "receivePayment",
+            "returnType": Object {
+              "name": "PaymentStatus",
               "type": "Type",
             },
-          ],
-          "name": "receivePayment",
-          "returnType": Object {
-            "name": "PaymentStatus",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/ClientProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveInfo",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+  "firstState": "State0",
+  "numberOfStates": 5,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveInfo",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "sendRequest",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "sendRequest",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "tryPayment",
+            "returnType": Object {
+              "name": "PaymentStatus",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "receiveInvoice",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "tryPayment",
-          "returnType": Object {
-            "name": "PaymentStatus",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "receiveInvoice",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "label": Object {
+              "name": "OK",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "label": Object {
-            "name": "OK",
-            "type": "Type",
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "label": Object {
+              "name": "KO",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "label": Object {
-            "name": "KO",
-            "type": "Type",
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "label": Object {
+              "name": "TA",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "label": Object {
-            "name": "TA",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;
 
 exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/TravelAgencyProtocol.protocol 1`] = `
 Object {
-  "State0": Object {
-    "name": "State0",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "getInfo",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
-          },
-          "type": "Method",
-        },
-      },
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+  "firstState": "State0",
+  "numberOfStates": 5,
+  "states": Object {
+    "State0": Object {
+      "name": "State0",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "getInfo",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "receiveRequest",
-          "returnType": Object {
-            "name": "void",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State1": Object {
-    "name": "State1",
-    "transitions": Array [
-      Object {
-        "to": "decision:1",
-        "transition": Object {
-          "arguments": Array [
-            Object {
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "receiveRequest",
+            "returnType": Object {
+              "name": "void",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State1": Object {
+      "name": "State1",
+      "transitions": Array [
+        Object {
+          "to": "decision:1",
+          "transition": Object {
+            "arguments": Array [
+              Object {
+                "name": "String",
+                "type": "Type",
+              },
+            ],
+            "name": "tryPayment",
+            "returnType": Object {
+              "name": "PaymentStatus",
+              "type": "Type",
+            },
+            "type": "Method",
+          },
+        },
+      ],
+    },
+    "State2": Object {
+      "name": "State2",
+      "transitions": Array [
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "arguments": Array [],
+            "name": "getInvoice",
+            "returnType": Object {
               "name": "String",
               "type": "Type",
             },
-          ],
-          "name": "tryPayment",
-          "returnType": Object {
-            "name": "PaymentStatus",
-            "type": "Type",
+            "type": "Method",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "State2": Object {
-    "name": "State2",
-    "transitions": Array [
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "arguments": Array [],
-          "name": "getInvoice",
-          "returnType": Object {
-            "name": "String",
-            "type": "Type",
+      ],
+    },
+    "decision:1": Object {
+      "name": "decision:1",
+      "transitions": Array [
+        Object {
+          "to": "State2",
+          "transition": Object {
+            "label": Object {
+              "name": "OK",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Method",
         },
-      },
-    ],
-  },
-  "decision:1": Object {
-    "name": "decision:1",
-    "transitions": Array [
-      Object {
-        "to": "State2",
-        "transition": Object {
-          "label": Object {
-            "name": "OK",
-            "type": "Type",
+        Object {
+          "to": "State0",
+          "transition": Object {
+            "label": Object {
+              "name": "KO",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State0",
-        "transition": Object {
-          "label": Object {
-            "name": "KO",
-            "type": "Type",
+        Object {
+          "to": "State1",
+          "transition": Object {
+            "label": Object {
+              "name": "TA",
+              "type": "Type",
+            },
+            "type": "Label",
           },
-          "type": "Label",
         },
-      },
-      Object {
-        "to": "State1",
-        "transition": Object {
-          "label": Object {
-            "name": "TA",
-            "type": "Type",
-          },
-          "type": "Label",
-        },
-      },
-    ],
-  },
-  "end": Object {
-    "name": "end",
-    "transitions": Array [],
+      ],
+    },
+    "end": Object {
+      "name": "end",
+      "transitions": Array [],
+    },
   },
 }
 `;

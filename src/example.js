@@ -21,8 +21,5 @@ const automaton = createAutomaton( ast );
 
 fs.writeFileSync(
   path.join( __dirname, "_automaton" ),
-  JSON.stringify( {
-    numberOfStates: Object.keys( automaton ).length,
-    states: automaton
-  }, null, 2 )
+  JSON.stringify( automaton, null, 2 )
 );

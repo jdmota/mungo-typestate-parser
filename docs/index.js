@@ -3,15 +3,38 @@
 function createDemo( automaton ) {
   const vis = window.vis;
 
-  const nodes = [];
-  const edges = [];
+  const invisible = ":invisible:";
+
+  const nodes = [
+    {
+      id: invisible,
+      size: 0,
+      borderWidth: 0,
+      color: {
+        border: "#FFFFFF",
+        background: "#FFFFFF"
+      }
+    }
+  ];
+
+  const edges = [
+    {
+      from: invisible,
+      to: automaton.firstState,
+      color: {
+        color: "#848484"
+      },
+      arrows: "to"
+    }
+  ];
 
   for ( const stateName in automaton.states ) {
 
     nodes.push( {
       id: stateName,
       label: /^decision:/.test( stateName ) ? "" : stateName,
-      shape: /^decision:/.test( stateName ) ? "diamond" : "circle"
+      shape: /^decision:/.test( stateName ) ? "diamond" : "circle",
+      borderWidth: stateName === "end" ? 4 : 1
     } );
 
     const state = automaton.states[ stateName ];

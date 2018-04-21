@@ -91,14 +91,21 @@ export default function( ast: Typestate ) {
     end: createState( "end" )
   };
 
+  let firstState = "";
+
   for ( const { name } of ast.states ) {
     if ( automaton[ name ] ) {
       throw new Error( `Duplicated ${name} state` );
     }
     automaton[ name ] = createState( name );
+    firstState = firstState || name;
   }
 
   traversers.Typestate( ast, automaton );
 
-  return automaton;
+  return {
+    firstState,
+    numberOfStates: Object.keys( automaton ).length,
+    states: automaton
+  };
 }

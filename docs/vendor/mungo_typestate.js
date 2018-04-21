@@ -529,6 +529,7 @@
     var automaton = {
       end: createState("end")
     };
+    var firstState = "";
 
     for (var _iterator4 = ast.states, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
       var _ref5;
@@ -550,20 +551,21 @@
       }
 
       automaton[name] = createState(name);
+      firstState = firstState || name;
     }
 
     traversers.Typestate(ast, automaton);
-    return automaton;
+    return {
+      firstState: firstState,
+      numberOfStates: Object.keys(automaton).length,
+      states: automaton
+    };
   }
 
   function index (text) {
     var parser = new Parser(text);
     var ast = parser.parse();
-    var automaton = createAutomaton(ast);
-    return {
-      numberOfStates: Object.keys(automaton).length,
-      states: automaton
-    };
+    return createAutomaton(ast);
   }
 
   return index;
