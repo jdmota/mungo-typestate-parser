@@ -1,0 +1,11 @@
+typestate BankProtocol {
+
+	State0 = {
+		Data receivePayment(): State1
+	}
+	
+	State1 = {
+		void sendApproval(boolean): end
+	}
+
+}

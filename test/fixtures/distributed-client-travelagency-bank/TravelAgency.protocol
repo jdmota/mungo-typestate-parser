@@ -1,0 +1,19 @@
+typestate TravelAgencyProtocol {
+
+	State0 = {
+		Travel receiveRequest(): State1
+	}
+	
+	State1 = {
+		void sendData(Data): State2
+	}
+	
+	State2 = {
+		boolean receiveApproval(): <true: State3, false: end>
+	}
+	
+	State3 = {
+		void sendInvoice(Invoice): end
+	}
+
+}

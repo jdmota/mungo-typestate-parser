@@ -1,0 +1,16 @@
+typestate ClientProtocol {
+
+	State0 = {
+		String receiveInfo(): State0,
+		void sendRequest(String): State1
+	}
+	
+	State1 = {
+		PaymentStatus tryPayment(String): <OK: State2, KO: State0, TA: State1>
+	}
+	
+	State2 = {
+		String receiveInvoice(): State0
+	}
+
+}

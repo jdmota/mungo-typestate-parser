@@ -1,0 +1,28 @@
+package distributed.demos.BuyTicket;
+//type <java> "java.lang.String" from "java.lang.String" as Travel;
+//type <java> "java.lang.Integer" from "java.lang.Integer" as Price;
+//type <java> "java.lang.String" from "java.lang.String" as Invoice;
+typestate CProtocol {
+	State0 = {
+		void send_requestStringToA(String): State1
+	}
+	State1 = {
+		int receive_dataintFromA(): State2
+	}
+	State2 = {
+		void send_paymentintToB(int): State3
+	}
+	State3 = {
+		Choice1 receive_Choice1LabelFromB():
+		<APPROVE: State4, REFUSE: State6>
+	}
+	State4 = {
+		Boolean receive_approveBooleanFromB(): State5
+	}
+	State5 = {
+		String receive_invoiceStringFromA(): end
+	}
+	State6 = {
+		Boolean receive_refuseBooleanFromB(): end
+	}
+}

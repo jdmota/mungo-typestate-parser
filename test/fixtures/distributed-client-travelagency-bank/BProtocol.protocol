@@ -1,0 +1,18 @@
+typestate BProtocol {
+	State0 = {
+		int receive_paymentintFromC(): State1
+	}
+	State1 = {
+		void send_APPROVEToCA(): State2,
+		void send_REFUSEToCA(): State4
+	}
+	State2 = {
+		void send_approveBooleanToCA(Boolean): State3
+	}
+	State3 = {
+		String receive_invoiceStringFromA(): end
+	}
+	State4 = {
+		void send_refuseBooleanToCA(Boolean): end
+	}
+}

@@ -1,0 +1,23 @@
+typestate ClientProtocol {
+
+	State0 = {
+		void sendRequest(Travel): State1
+	}
+	
+	State1 = {
+		Data receiveData(): State2
+	}
+	
+	State2 = {
+		void payment(Data): State3
+	}
+	
+	State3 = {
+		boolean receiveApproval(): <true: State4, false: end>
+	}
+	
+	State4 = {
+		Invoice receiveInvoice(): end
+	}
+
+}

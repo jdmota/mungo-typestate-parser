@@ -1,0 +1,7 @@
+typestate BankProtocol {
+
+	State0 = {
+		PaymentStatus receivePayment(String): State0
+	}
+
+}

@@ -1,0 +1,7 @@
+typestate BankProtocol {
+
+	State0 = {
+		void receivePayment(): State0
+	}
+
+}

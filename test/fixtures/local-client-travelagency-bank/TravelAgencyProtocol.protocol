@@ -1,0 +1,16 @@
+typestate TravelAgencyProtocol {
+
+	State0 = {
+		String getInfo(): State0,
+		void receiveRequest(String): State1
+	}
+	
+	State1 = {
+		PaymentStatus tryPayment(String): <OK: State2, KO: State0, TA: State1>
+	}
+	
+	State2 = {
+		String getInvoice(): State0
+	}
+
+}

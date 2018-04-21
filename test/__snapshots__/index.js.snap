@@ -989,6 +989,772 @@ Object {
 }
 `;
 
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/AProtocol.protocol 1`] = `
+Object {
+  "name": "AProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_requestStringFromC",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "send_dataintToC",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State2",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_Choice1LabelFromB",
+          "returnType": Object {
+            "name": "Choice1",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "APPROVE",
+                  "type": "Type",
+                },
+                "State3",
+              ],
+              Array [
+                Object {
+                  "name": "REFUSE",
+                  "type": "Type",
+                },
+                "State5",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+    Object {
+      "_name": "State3",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_approveBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State4",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State3",
+      "type": "State",
+    },
+    Object {
+      "_name": "State4",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "send_invoiceStringToBC",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State4",
+      "type": "State",
+    },
+    Object {
+      "_name": "State5",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_refuseBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State5",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/BProtocol.protocol 1`] = `
+Object {
+  "name": "BProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_paymentintFromC",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "send_APPROVEToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State2",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [],
+          "name": "send_REFUSEToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State4",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "send_approveBooleanToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State3",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+    Object {
+      "_name": "State3",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_invoiceStringFromA",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State3",
+      "type": "State",
+    },
+    Object {
+      "_name": "State4",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "send_refuseBooleanToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State4",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/Bank.protocol 1`] = `
+Object {
+  "name": "BankProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "Data",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "sendApproval",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/CProtocol.protocol 1`] = `
+Object {
+  "name": "CProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "send_requestStringToA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_dataintFromA",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State2",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "send_paymentintToB",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State3",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+    Object {
+      "_name": "State3",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_Choice1LabelFromB",
+          "returnType": Object {
+            "name": "Choice1",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "APPROVE",
+                  "type": "Type",
+                },
+                "State4",
+              ],
+              Array [
+                Object {
+                  "name": "REFUSE",
+                  "type": "Type",
+                },
+                "State6",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State3",
+      "type": "State",
+    },
+    Object {
+      "_name": "State4",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_approveBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State5",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State4",
+      "type": "State",
+    },
+    Object {
+      "_name": "State5",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_invoiceStringFromA",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State5",
+      "type": "State",
+    },
+    Object {
+      "_name": "State6",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receive_refuseBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State6",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/Client.protocol 1`] = `
+Object {
+  "name": "ClientProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Travel",
+              "type": "Type",
+            },
+          ],
+          "name": "sendRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveData",
+          "returnType": Object {
+            "name": "Data",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State2",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Data",
+              "type": "Type",
+            },
+          ],
+          "name": "payment",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State3",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+    Object {
+      "_name": "State3",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveApproval",
+          "returnType": Object {
+            "name": "boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "true",
+                  "type": "Type",
+                },
+                "State4",
+              ],
+              Array [
+                Object {
+                  "name": "false",
+                  "type": "Type",
+                },
+                "end",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State3",
+      "type": "State",
+    },
+    Object {
+      "_name": "State4",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveInvoice",
+          "returnType": Object {
+            "name": "Invoice",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State4",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/distributed-client-travelagency-bank/TravelAgency.protocol 1`] = `
+Object {
+  "name": "TravelAgencyProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveRequest",
+          "returnType": Object {
+            "name": "Travel",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Data",
+              "type": "Type",
+            },
+          ],
+          "name": "sendData",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State2",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveApproval",
+          "returnType": Object {
+            "name": "boolean",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "true",
+                  "type": "Type",
+                },
+                "State3",
+              ],
+              Array [
+                Object {
+                  "name": "false",
+                  "type": "Type",
+                },
+                "end",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+    Object {
+      "_name": "State3",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "Invoice",
+              "type": "Type",
+            },
+          ],
+          "name": "sendInvoice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "end",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State3",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
 exports[`mungo examples: ast test/fixtures/file.protocol 1`] = `
 Object {
   "name": "FileProtocol",
@@ -1116,6 +1882,299 @@ Object {
         },
       ],
       "name": "Close",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/infinite/BankProtocol.protocol 1`] = `
+Object {
+  "name": "BankProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/local-client-travelagency-bank/BankProtocol.protocol 1`] = `
+Object {
+  "name": "BankProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/local-client-travelagency-bank/ClientProtocol.protocol 1`] = `
+Object {
+  "name": "ClientProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveInfo",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "tryPayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "OK",
+                  "type": "Type",
+                },
+                "State2",
+              ],
+              Array [
+                Object {
+                  "name": "KO",
+                  "type": "Type",
+                },
+                "State0",
+              ],
+              Array [
+                Object {
+                  "name": "TA",
+                  "type": "Type",
+                },
+                "State1",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "receiveInvoice",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/local-client-travelagency-bank/TravelAgencyProtocol.protocol 1`] = `
+Object {
+  "name": "TravelAgencyProtocol",
+  "states": Array [
+    Object {
+      "_name": "State0",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "getInfo",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "receiveRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State1",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State0",
+      "type": "State",
+    },
+    Object {
+      "_name": "State1",
+      "methods": Array [
+        Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "tryPayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "OK",
+                  "type": "Type",
+                },
+                "State2",
+              ],
+              Array [
+                Object {
+                  "name": "KO",
+                  "type": "Type",
+                },
+                "State0",
+              ],
+              Array [
+                Object {
+                  "name": "TA",
+                  "type": "Type",
+                },
+                "State1",
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State1",
+      "type": "State",
+    },
+    Object {
+      "_name": "State2",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "getInvoice",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "transition": Object {
+            "name": "State0",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "State2",
       "type": "State",
     },
   ],
@@ -2054,6 +3113,720 @@ Object {
 }
 `;
 
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/AProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_requestStringFromC",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "send_dataintToC",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_Choice1LabelFromB",
+          "returnType": Object {
+            "name": "Choice1",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State3": Object {
+    "name": "State3",
+    "transitions": Array [
+      Object {
+        "to": "State4",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_approveBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State4": Object {
+    "name": "State4",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "send_invoiceStringToBC",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State5": Object {
+    "name": "State5",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_refuseBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State3",
+        "transition": Object {
+          "label": Object {
+            "name": "APPROVE",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State5",
+        "transition": Object {
+          "label": Object {
+            "name": "REFUSE",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/BProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_paymentintFromC",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "send_APPROVEToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "State4",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "send_REFUSEToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "State3",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "send_approveBooleanToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State3": Object {
+    "name": "State3",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_invoiceStringFromA",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State4": Object {
+    "name": "State4",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "send_refuseBooleanToCA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/Bank.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "Data",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "boolean",
+              "type": "Type",
+            },
+          ],
+          "name": "sendApproval",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/CProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "send_requestStringToA",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_dataintFromA",
+          "returnType": Object {
+            "name": "int",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "State3",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "name": "send_paymentintToB",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State3": Object {
+    "name": "State3",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_Choice1LabelFromB",
+          "returnType": Object {
+            "name": "Choice1",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State4": Object {
+    "name": "State4",
+    "transitions": Array [
+      Object {
+        "to": "State5",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_approveBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State5": Object {
+    "name": "State5",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_invoiceStringFromA",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State6": Object {
+    "name": "State6",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receive_refuseBooleanFromB",
+          "returnType": Object {
+            "name": "Boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State4",
+        "transition": Object {
+          "label": Object {
+            "name": "APPROVE",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State6",
+        "transition": Object {
+          "label": Object {
+            "name": "REFUSE",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/Client.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Travel",
+              "type": "Type",
+            },
+          ],
+          "name": "sendRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveData",
+          "returnType": Object {
+            "name": "Data",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "State3",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Data",
+              "type": "Type",
+            },
+          ],
+          "name": "payment",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State3": Object {
+    "name": "State3",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveApproval",
+          "returnType": Object {
+            "name": "boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State4": Object {
+    "name": "State4",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveInvoice",
+          "returnType": Object {
+            "name": "Invoice",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State4",
+        "transition": Object {
+          "label": Object {
+            "name": "true",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "label": Object {
+            "name": "false",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/distributed-client-travelagency-bank/TravelAgency.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveRequest",
+          "returnType": Object {
+            "name": "Travel",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Data",
+              "type": "Type",
+            },
+          ],
+          "name": "sendData",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveApproval",
+          "returnType": Object {
+            "name": "boolean",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State3": Object {
+    "name": "State3",
+    "transitions": Array [
+      Object {
+        "to": "end",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "Invoice",
+              "type": "Type",
+            },
+          ],
+          "name": "sendInvoice",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State3",
+        "transition": Object {
+          "label": Object {
+            "name": "true",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "end",
+        "transition": Object {
+          "label": Object {
+            "name": "false",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
 exports[`mungo examples: automaton test/fixtures/file.protocol 1`] = `
 Object {
   "Close": Object {
@@ -2179,6 +3952,297 @@ Object {
         "transition": Object {
           "label": Object {
             "name": "FALSE",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/infinite/BankProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/BankProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "receivePayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/ClientProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveInfo",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "sendRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "tryPayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "receiveInvoice",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "label": Object {
+            "name": "OK",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "label": Object {
+            "name": "KO",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "label": Object {
+            "name": "TA",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+    ],
+  },
+  "end": Object {
+    "name": "end",
+    "transitions": Array [],
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/local-client-travelagency-bank/TravelAgencyProtocol.protocol 1`] = `
+Object {
+  "State0": Object {
+    "name": "State0",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "getInfo",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "receiveRequest",
+          "returnType": Object {
+            "name": "void",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State1": Object {
+    "name": "State1",
+    "transitions": Array [
+      Object {
+        "to": "decision:1",
+        "transition": Object {
+          "arguments": Array [
+            Object {
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "name": "tryPayment",
+          "returnType": Object {
+            "name": "PaymentStatus",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "State2": Object {
+    "name": "State2",
+    "transitions": Array [
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "arguments": Array [],
+          "name": "getInvoice",
+          "returnType": Object {
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "Method",
+        },
+      },
+    ],
+  },
+  "decision:1": Object {
+    "name": "decision:1",
+    "transitions": Array [
+      Object {
+        "to": "State2",
+        "transition": Object {
+          "label": Object {
+            "name": "OK",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State0",
+        "transition": Object {
+          "label": Object {
+            "name": "KO",
+            "type": "Type",
+          },
+          "type": "Label",
+        },
+      },
+      Object {
+        "to": "State1",
+        "transition": Object {
+          "label": Object {
+            "name": "TA",
             "type": "Type",
           },
           "type": "Label",

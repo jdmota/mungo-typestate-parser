@@ -1,0 +1,21 @@
+typestate AProtocol {
+	State0 = {
+		String receive_requestStringFromC(): State1
+	}
+	State1 = {
+		void send_dataintToC(int): State2
+	}
+	State2 = {
+		Choice1 receive_Choice1LabelFromB():
+		<APPROVE: State3, REFUSE: State5>
+	}
+	State3 = {
+		Boolean receive_approveBooleanFromB(): State4
+	}
+	State4 = {
+		void send_invoiceStringToBC(String): end
+	}
+	State5 = {
+		Boolean receive_refuseBooleanFromB(): end
+	}
+}
