@@ -181,14 +181,16 @@
       this.token = this.next();
       this.decisionUuid = 1;
       this.unknownUuid = 1;
-    }
+    } // Returns the next current token
+
 
     var _proto = Parser.prototype;
 
     _proto.next = function next() {
       this.token = this.tokenizer.nextToken();
       return this.token;
-    };
+    }; // If we have a token with this type, we return in, and call "next". If not, we return null
+
 
     _proto.eat = function eat(type, value) {
       var token = this.token;
@@ -199,11 +201,13 @@
       }
 
       return null;
-    };
+    }; // Returns "true" if the current token has this type
+
 
     _proto.match = function match(type) {
       return this.token.type === type;
-    };
+    }; // Tries to consume a token with a specific type, and if it can't, it throws an error
+
 
     _proto.expect = function expect(type, value) {
       var node = this.eat(type, value);
@@ -213,7 +217,8 @@
       }
 
       return node;
-    };
+    }; // Parsing starts here
+
 
     _proto.parse = function parse() {
       // FIXME save package
@@ -272,9 +277,9 @@
 
       this.expect("=");
 
-      var _parseState = this.parseState(),
-          type = _parseState.type,
-          methods = _parseState.methods;
+      var _this$parseState = this.parseState(),
+          type = _this$parseState.type,
+          methods = _this$parseState.methods;
 
       return {
         type: type,

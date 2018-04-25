@@ -9,7 +9,6 @@ export default class Parser {
   +input: string;
   +tokenizer: Tokenizer;
   token: Token;
-  +states: { [key: string]: { name: string, transitions: Object[] } };
   decisionUuid: number;
   unknownUuid: number;
 
@@ -21,11 +20,13 @@ export default class Parser {
     this.unknownUuid = 1;
   }
 
+  // Returns the next current token
   next(): Token {
     this.token = this.tokenizer.nextToken();
     return this.token;
   }
 
+  // If we have a token with this type, we return in, and call "next". If not, we return null
   eat( type: string, value: ?string ): Token | null {
     const token = this.token;
     if ( token.type === type && ( value == null || token.value === value ) ) {
@@ -35,10 +36,12 @@ export default class Parser {
     return null;
   }
 
+  // Returns "true" if the current token has this type
   match( type: string ): boolean {
     return this.token.type === type;
   }
 
+  // Tries to consume a token with a specific type, and if it can't, it throws an error
   expect( type: string, value: ?string ): Token {
     let node = this.eat( type, value );
     if ( node == null ) {
@@ -47,6 +50,7 @@ export default class Parser {
     return node;
   }
 
+  // Parsing starts here
   parse(): Typestate {
 
     // FIXME save package
