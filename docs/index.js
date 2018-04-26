@@ -67,12 +67,27 @@ function createDemo( automaton ) {
 
   const options = {
     layout: {
-      randomSeed: 293814
+      randomSeed: 293814 // network.getSeed()
     }
   };
 
   const network = new vis.Network( container, data, options );
-  // console.log( network.getSeed() );
+
+  // https://github.com/almende/vis/issues/2292
+  network.on( "beforeDrawing", ctx => {
+    if ( !document.querySelector( "#background-option" ).checked ) {
+      // save current translate/zoom
+      ctx.save();
+      // reset transform to identity
+      ctx.setTransform( 1, 0, 0, 1, 0, 0 );
+      // fill background with solid white
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect( 0, 0, ctx.canvas.width, ctx.canvas.height );
+      // restore old transform
+      ctx.restore();
+    }
+  } );
+
   return network;
 }
 

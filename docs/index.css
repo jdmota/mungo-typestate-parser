@@ -26,6 +26,11 @@
   margin-left: 0;
 }
 
+#ui label {
+  display: block;
+  float: left;
+}
+
 #ui pre {
   width: 600px;
   color: red;
