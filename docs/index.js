@@ -46,7 +46,7 @@ function createDemo( automaton ) {
       if ( transition.type === "Label" ) {
         label = transition.label.name;
       } else {
-        label = `${transition.name}(${transition.arguments.join( ", " )})`;
+        label = `${transition.name}(${transition.arguments.map( a => a.name ).join( ", " )})`;
       }
 
       edges.push( {
