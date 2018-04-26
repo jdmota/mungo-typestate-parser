@@ -81,8 +81,11 @@ class UI {
   constructor() {
     this.container = document.querySelector( "#ui" );
     this.textarea = document.querySelector( "#ui textarea" );
-    this.button = document.querySelector( "#ui button" );
+    this.show = document.querySelector( "#ui .show" );
+    this.downloader = document.querySelector( "#ui .downloader" );
     this.error = document.querySelector( "#ui pre" );
+
+    this.downloader.disabled = true;
 
     this.DEFAULT_TEXT = `typestate FileProtocol {
 
@@ -107,7 +110,8 @@ class UI {
 
     this.textarea.value = this.DEFAULT_TEXT;
 
-    this.button.addEventListener( "click", () => {
+    this.show.addEventListener( "click", () => {
+      this.downloader.disabled = false;
       try {
         const automaton = window.MungoTypestate( this.textarea.value );
         createDemo( automaton );
@@ -115,6 +119,13 @@ class UI {
       } catch ( e ) {
         this.error.innerText = e.message;
       }
+    } );
+
+    this.downloader.addEventListener( "click", () => {
+      const anchor = document.createElement( "a" );
+      anchor.download = "automaton.png"; // Does not support IE
+      anchor.href = document.querySelector( "canvas" ).toDataURL( "image/png" );
+      anchor.click();
     } );
   }
 

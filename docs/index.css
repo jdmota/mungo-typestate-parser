@@ -18,6 +18,12 @@
 #ui button {
   display: block;
   margin-bottom: 10px;
+  margin-left: 10px;
+  float: left;
+}
+
+#ui button:nth-child(1) {
+  margin-left: 0;
 }
 
 #ui pre {
