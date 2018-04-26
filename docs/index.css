@@ -21,5 +21,6 @@
 }
 
 #ui pre {
+  width: 600px;
   color: red;
 }

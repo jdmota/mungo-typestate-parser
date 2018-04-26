@@ -113,7 +113,7 @@ class UI {
         createDemo( automaton );
         this.error.innerText = "";
       } catch ( e ) {
-        this.error.innerText = e.stack;
+        this.error.innerText = e.message;
       }
     } );
   }
