@@ -67,7 +67,7 @@ function createDemo( automaton ) {
 
   const options = {
     layout: {
-      randomSeed: 293814 // network.getSeed()
+      // randomSeed: 293814 // network.getSeed()
     }
   };
 
