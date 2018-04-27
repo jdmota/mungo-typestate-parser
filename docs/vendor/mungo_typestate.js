@@ -296,11 +296,13 @@
 
       this.expect("{");
 
-      while (!this.match("}")) {
-        methods.push(this.parseMethod());
+      if (!this.match("}")) {
+        while (true) {
+          methods.push(this.parseMethod());
 
-        if (!this.eat(",")) {
-          break;
+          if (!this.eat(",")) {
+            break;
+          }
         }
       }
 
@@ -328,11 +330,13 @@
 
       this.expect("(");
 
-      while (!this.match(")")) {
-        args.push(this.parseType());
+      if (!this.match(")")) {
+        while (true) {
+          args.push(this.parseType());
 
-        if (!this.eat(",")) {
-          break;
+          if (!this.eat(",")) {
+            break;
+          }
         }
       }
 
@@ -367,7 +371,7 @@
 
       this.expect("<");
 
-      while (!this.match(">")) {
+      while (true) {
         var label = this.parseType();
         this.expect(":");
         var stateName = this.expect("identifier").value;
@@ -404,10 +408,28 @@
     }
 
     if (!state) {
-      throw new Error("State not defined " + name);
+      throw new Error("State not defined: " + name);
     }
 
     return state;
+  }
+
+  function equalSignature(a, b) {
+    if (a.name !== b.name) {
+      return false;
+    }
+
+    if (a.arguments.length !== b.arguments.length) {
+      return false;
+    }
+
+    for (var i = 0; i < a.arguments.length; i++) {
+      if (a.arguments[i].name !== b.arguments[i].name) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   var traversers = {
@@ -449,19 +471,17 @@
 
       return State;
     }(function (node, automaton) {
-      for (var _iterator2 = node.methods, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-        var _ref2;
+      for (var i = 0; i < node.methods.length; i++) {
+        var method = node.methods[i];
 
-        if (_isArray2) {
-          if (_i2 >= _iterator2.length) break;
-          _ref2 = _iterator2[_i2++];
-        } else {
-          _i2 = _iterator2.next();
-          if (_i2.done) break;
-          _ref2 = _i2.value;
+        for (var j = 0; j < i; j++) {
+          if (equalSignature(method, node.methods[j])) {
+            throw new Error("Duplicate method signature: " + method.name + "(" + method.arguments.map(function (a) {
+              return a.name;
+            }).join(", ") + ")");
+          }
         }
 
-        var method = _ref2;
         var fromName = node._name;
         var transition = {
           type: "Method",
@@ -501,21 +521,28 @@
 
       return DecisionState;
     }(function (node, automaton) {
-      for (var _iterator3 = node.transitions, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-        var _ref3;
+      var set = new Set();
 
-        if (_isArray3) {
-          if (_i3 >= _iterator3.length) break;
-          _ref3 = _iterator3[_i3++];
+      for (var _iterator2 = node.transitions, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        var _ref2;
+
+        if (_isArray2) {
+          if (_i2 >= _iterator2.length) break;
+          _ref2 = _iterator2[_i2++];
         } else {
-          _i3 = _iterator3.next();
-          if (_i3.done) break;
-          _ref3 = _i3.value;
+          _i2 = _iterator2.next();
+          if (_i2.done) break;
+          _ref2 = _i2.value;
         }
 
-        var _ref4 = _ref3,
-            label = _ref4[0],
-            toName = _ref4[1];
+        var _ref3 = _ref2,
+            label = _ref3[0],
+            toName = _ref3[1];
+
+        if (set.has(label.name)) {
+          throw new Error("Duplicate case label: " + label.name);
+        }
+
         var fromName = node._name;
         var transition = {
           type: "Label",
@@ -527,6 +554,7 @@
           transition: transition,
           to: toName
         });
+        set.add(label.name);
       }
     })
   };
@@ -536,20 +564,20 @@
     };
     var firstState = "";
 
-    for (var _iterator4 = ast.states, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
-      var _ref5;
+    for (var _iterator3 = ast.states, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+      var _ref4;
 
-      if (_isArray4) {
-        if (_i4 >= _iterator4.length) break;
-        _ref5 = _iterator4[_i4++];
+      if (_isArray3) {
+        if (_i3 >= _iterator3.length) break;
+        _ref4 = _iterator3[_i3++];
       } else {
-        _i4 = _iterator4.next();
-        if (_i4.done) break;
-        _ref5 = _i4.value;
+        _i3 = _iterator3.next();
+        if (_i3.done) break;
+        _ref4 = _i3.value;
       }
 
-      var _ref6 = _ref5,
-          name = _ref6.name;
+      var _ref5 = _ref4,
+          name = _ref5.name;
 
       if (automaton[name]) {
         throw new Error("Duplicated " + name + " state");
