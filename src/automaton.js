@@ -15,9 +15,24 @@ function getState( automaton: Automaton, name: string ): AutomatonState {
     return state || ( automaton[ name ] = createState( name ) );
   }
   if ( !state ) {
-    throw new Error( `State not defined ${name}` );
+    throw new Error( `State not defined: ${name}` );
   }
   return state;
+}
+
+function equalSignature( a, b ) {
+  if ( a.name !== b.name ) {
+    return false;
+  }
+  if ( a.arguments.length !== b.arguments.length ) {
+    return false;
+  }
+  for ( let i = 0; i < a.arguments.length; i++ ) {
+    if ( a.arguments[ i ].name !== b.arguments[ i ].name ) {
+      return false;
+    }
+  }
+  return true;
 }
 
 const traversers = {
@@ -29,7 +44,15 @@ const traversers = {
   },
 
   State( node: State, automaton: Automaton ) {
-    for ( const method of node.methods ) {
+    for ( let i = 0; i < node.methods.length; i++ ) {
+
+      const method = node.methods[ i ];
+
+      for ( let j = 0; j < i; j++ ) {
+        if ( equalSignature( method, node.methods[ j ] ) ) {
+          throw new Error( `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})` );
+        }
+      }
 
       const fromName = node._name;
       const transition = {
@@ -64,7 +87,13 @@ const traversers = {
   },
 
   DecisionState( node: DecisionState, automaton: Automaton ) {
+    const set = new Set();
+
     for ( const [ label, toName ] of node.transitions ) {
+
+      if ( set.has( label.name ) ) {
+        throw new Error( `Duplicate case label: ${label.name}` );
+      }
 
       const fromName = node._name;
       const transition = {
@@ -79,6 +108,8 @@ const traversers = {
         transition,
         to: toName
       } );
+
+      set.add( label.name );
 
     }
   }
