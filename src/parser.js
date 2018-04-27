@@ -1,6 +1,6 @@
 // @flow
 import type {
-  Typestate, NamedState, State, Type, Method, DecisionState
+  Typestate, NamedState, State, Identifier, Method, DecisionState
 } from "./ast_types";
 import Tokenizer, { type Token } from "./tokenizer";
 
@@ -92,9 +92,9 @@ export default class Parser {
   }
 
   // FIXME handle dots
-  parseType(): Type {
+  parseType(): Identifier {
     return {
-      type: "Type",
+      type: "Identifier",
       name: this.expect( "identifier" ).value
     };
   }

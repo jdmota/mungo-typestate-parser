@@ -263,7 +263,7 @@
 
     _proto.parseType = function parseType() {
       return {
-        type: "Type",
+        type: "Identifier",
         name: this.expect("identifier").value
       };
     };

@@ -17,11 +17,6 @@ export type State = AbstractState & { +name: ?string };
 
 export type NamedState = AbstractState & { +name: string };
 
-export type Type = {
-  +type: "Type",
-  +name: string
-};
-
 export type Identifier = {
   +type: "Identifier",
   +name: string
@@ -30,13 +25,13 @@ export type Identifier = {
 export type Method = {
   +type: "Method",
   +name: string,
-  +arguments: Type[],
-  +returnType: Type,
+  +arguments: Identifier[],
+  +returnType: Identifier,
   +transition: Identifier | State | DecisionState
 };
 
 export type DecisionState = {
   +type: "DecisionState",
-  +transitions: [ Type, string ][],
+  +transitions: [ Identifier, string ][],
   +_name: string
 };
