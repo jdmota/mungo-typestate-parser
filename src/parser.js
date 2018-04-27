@@ -128,12 +128,14 @@ export default class Parser {
 
     this.expect( "{" );
 
-    while ( !this.match( "}" ) ) {
+    if ( !this.match( "}" ) ) {
+      while ( true ) {
 
-      methods.push( this.parseMethod() );
+        methods.push( this.parseMethod() );
 
-      if ( !this.eat( "," ) ) {
-        break;
+        if ( !this.eat( "," ) ) {
+          break;
+        }
       }
     }
 
@@ -163,11 +165,13 @@ export default class Parser {
 
     this.expect( "(" );
 
-    while ( !this.match( ")" ) ) {
-      args.push( this.parseType() );
+    if ( !this.match( ")" ) ) {
+      while ( true ) {
+        args.push( this.parseType() );
 
-      if ( !this.eat( "," ) ) {
-        break;
+        if ( !this.eat( "," ) ) {
+          break;
+        }
       }
     }
 
@@ -202,7 +206,7 @@ export default class Parser {
 
     this.expect( "<" );
 
-    while ( !this.match( ">" ) ) {
+    while ( true ) {
 
       const label = this.parseType();
 
