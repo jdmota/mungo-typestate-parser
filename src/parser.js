@@ -124,8 +124,6 @@ export default class Parser {
     let _name = `unknown:${this.unknownUuid++}`;
     const methods = [];
 
-    // FIXME method signatures don't defer on return type, just name and arguments
-
     this.expect( "{" );
 
     if ( !this.match( "}" ) ) {
