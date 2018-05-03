@@ -292,8 +292,7 @@
     _proto.parseState = function parseState() {
       var _name = "unknown:" + this.unknownUuid++;
 
-      var methods = []; // FIXME method signatures don't defer on return type, just name and arguments
-
+      var methods = [];
       this.expect("{");
 
       if (!this.match("}")) {
@@ -486,8 +485,10 @@
         var transition = {
           type: "Method",
           name: method.name,
-          arguments: method.arguments,
-          returnType: method.returnType
+          arguments: method.arguments.map(function (a) {
+            return a.name;
+          }),
+          returnType: method.returnType.name
         };
         var toName = "";
         var transitionNode = method.transition;
@@ -546,7 +547,7 @@
         var fromName = node._name;
         var transition = {
           type: "Label",
-          label: label
+          label: label.name
         };
         var fromState = getState(automaton, fromName);
         getState(automaton, toName);

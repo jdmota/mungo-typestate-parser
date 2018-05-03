@@ -2195,10 +2195,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "connect",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2212,10 +2209,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "endCommunication",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2228,16 +2222,10 @@ Object {
           "to": "GreetCarol",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "sendHelloToAlice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2250,16 +2238,10 @@ Object {
           "to": "MakeChoice",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "sendHelloToCarol",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2273,10 +2255,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "sendTimeChoiceToAlice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2285,10 +2264,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "sendTimeChoiceToCarol",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2306,10 +2282,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvTimeFromAlice",
-            "returnType": Object {
-              "name": "int",
-              "type": "Identifier",
-            },
+            "returnType": "int",
             "type": "Method",
           },
         },
@@ -2323,10 +2296,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvTimeFromCarol",
-            "returnType": Object {
-              "name": "int",
-              "type": "Identifier",
-            },
+            "returnType": "int",
             "type": "Method",
           },
         },
@@ -2349,10 +2319,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "endCommunication",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2366,10 +2333,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "connect",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2383,10 +2347,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvChoiceFromBob",
-            "returnType": Object {
-              "name": "BobChoice",
-              "type": "Identifier",
-            },
+            "returnType": "BobChoice",
             "type": "Method",
           },
         },
@@ -2399,16 +2360,10 @@ Object {
           "to": "EndProtocol",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "sendTimeToBob",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2420,20 +2375,14 @@ Object {
         Object {
           "to": "SendTime",
           "transition": Object {
-            "label": Object {
-              "name": "TIME",
-              "type": "Identifier",
-            },
+            "label": "TIME",
             "type": "Label",
           },
         },
         Object {
           "to": "EndProtocol",
           "transition": Object {
-            "label": Object {
-              "name": "END",
-              "type": "Identifier",
-            },
+            "label": "END",
             "type": "Label",
           },
         },
@@ -2451,10 +2400,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvHelloFromBob",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -2477,10 +2423,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "endCommunication",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2493,16 +2436,10 @@ Object {
           "to": "EndProtocol",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "sendGreetToBob",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2516,10 +2453,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "connect",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2533,10 +2467,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "choiceFromBob",
-            "returnType": Object {
-              "name": "BobChoice",
-              "type": "Identifier",
-            },
+            "returnType": "BobChoice",
             "type": "Method",
           },
         },
@@ -2549,16 +2480,10 @@ Object {
           "to": "EndProtocol",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "sendTimeToBob",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2570,20 +2495,14 @@ Object {
         Object {
           "to": "SendTime",
           "transition": Object {
-            "label": Object {
-              "name": "TIME",
-              "type": "Identifier",
-            },
+            "label": "TIME",
             "type": "Label",
           },
         },
         Object {
           "to": "HowAreYou",
           "transition": Object {
-            "label": Object {
-              "name": "GREET",
-              "type": "Identifier",
-            },
+            "label": "GREET",
             "type": "Label",
           },
         },
@@ -2601,10 +2520,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvStringFromBob",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -2627,10 +2543,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "endCommunication",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2644,10 +2557,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "connect",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2661,10 +2571,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "sendTimeChoiceToAlice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2673,10 +2580,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "sendGreetingChoiceToAlice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2693,16 +2597,10 @@ Object {
           "to": "SendChoice",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "sendStringToAlice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2716,10 +2614,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvTimeFromAlice",
-            "returnType": Object {
-              "name": "int",
-              "type": "Identifier",
-            },
+            "returnType": "int",
             "type": "Method",
           },
         },
@@ -2733,10 +2628,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "recvGreetingFromAlice",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -2758,16 +2650,10 @@ Object {
           "to": "NonEmpty",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Node",
-                "type": "Identifier",
-              },
+              "Node",
             ],
             "name": "put",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2776,10 +2662,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "close",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2792,16 +2675,10 @@ Object {
           "to": "Empty",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "initialise",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2814,16 +2691,10 @@ Object {
           "to": "NonEmpty",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Node",
-                "type": "Identifier",
-              },
+              "Node",
             ],
             "name": "put",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2832,10 +2703,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "get",
-            "returnType": Object {
-              "name": "Node",
-              "type": "Identifier",
-            },
+            "returnType": "Node",
             "type": "Method",
           },
         },
@@ -2848,16 +2716,10 @@ Object {
           "to": "NonEmpty",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Node",
-                "type": "Identifier",
-              },
+              "Node",
             ],
             "name": "put",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -2866,10 +2728,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "isEmpty",
-            "returnType": Object {
-              "name": "BooleanChoice",
-              "type": "Identifier",
-            },
+            "returnType": "BooleanChoice",
             "type": "Method",
           },
         },
@@ -2881,20 +2740,14 @@ Object {
         Object {
           "to": "Empty",
           "transition": Object {
-            "label": Object {
-              "name": "TRUE",
-              "type": "Identifier",
-            },
+            "label": "TRUE",
             "type": "Label",
           },
         },
         Object {
           "to": "NonEmpty",
           "transition": Object {
-            "label": Object {
-              "name": "FALSE",
-              "type": "Identifier",
-            },
+            "label": "FALSE",
             "type": "Label",
           },
         },
@@ -2920,20 +2773,11 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Stack",
-                "type": "Identifier",
-              },
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "Stack",
+              "int",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "Stack",
-              "type": "Identifier",
-            },
+            "returnType": "Stack",
             "type": "Method",
           },
         },
@@ -2941,16 +2785,10 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Stack",
-                "type": "Identifier",
-              },
+              "Stack",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "Stack",
-              "type": "Identifier",
-            },
+            "returnType": "Stack",
             "type": "Method",
           },
         },
@@ -2958,16 +2796,10 @@ Object {
           "to": "Init",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Stack",
-                "type": "Identifier",
-              },
+              "Stack",
             ],
             "name": "consume",
-            "returnType": Object {
-              "name": "Stack",
-              "type": "Identifier",
-            },
+            "returnType": "Stack",
             "type": "Method",
           },
         },
@@ -2980,20 +2812,11 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Stack",
-                "type": "Identifier",
-              },
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "Stack",
+              "int",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "Stack",
-              "type": "Identifier",
-            },
+            "returnType": "Stack",
             "type": "Method",
           },
         },
@@ -3001,16 +2824,10 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Stack",
-                "type": "Identifier",
-              },
+              "Stack",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "Stack",
-              "type": "Identifier",
-            },
+            "returnType": "Stack",
             "type": "Method",
           },
         },
@@ -3019,10 +2836,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "close",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3048,16 +2862,10 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3066,10 +2874,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "produce",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3078,10 +2883,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "consume",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3094,16 +2896,10 @@ Object {
           "to": "Consume",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "produce",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3112,10 +2908,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "produce",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3124,10 +2917,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "close",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3154,10 +2944,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_requestStringFromC",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -3170,16 +2957,10 @@ Object {
           "to": "State2",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "send_dataintToC",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3193,10 +2974,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_Choice1LabelFromB",
-            "returnType": Object {
-              "name": "Choice1",
-              "type": "Identifier",
-            },
+            "returnType": "Choice1",
             "type": "Method",
           },
         },
@@ -3210,10 +2988,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_approveBooleanFromB",
-            "returnType": Object {
-              "name": "Boolean",
-              "type": "Identifier",
-            },
+            "returnType": "Boolean",
             "type": "Method",
           },
         },
@@ -3226,16 +3001,10 @@ Object {
           "to": "end",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "send_invoiceStringToBC",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3249,10 +3018,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_refuseBooleanFromB",
-            "returnType": Object {
-              "name": "Boolean",
-              "type": "Identifier",
-            },
+            "returnType": "Boolean",
             "type": "Method",
           },
         },
@@ -3264,20 +3030,14 @@ Object {
         Object {
           "to": "State3",
           "transition": Object {
-            "label": Object {
-              "name": "APPROVE",
-              "type": "Identifier",
-            },
+            "label": "APPROVE",
             "type": "Label",
           },
         },
         Object {
           "to": "State5",
           "transition": Object {
-            "label": Object {
-              "name": "REFUSE",
-              "type": "Identifier",
-            },
+            "label": "REFUSE",
             "type": "Label",
           },
         },
@@ -3304,10 +3064,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_paymentintFromC",
-            "returnType": Object {
-              "name": "int",
-              "type": "Identifier",
-            },
+            "returnType": "int",
             "type": "Method",
           },
         },
@@ -3321,10 +3078,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "send_APPROVEToCA",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3333,10 +3087,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "send_REFUSEToCA",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3349,16 +3100,10 @@ Object {
           "to": "State3",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Boolean",
-                "type": "Identifier",
-              },
+              "Boolean",
             ],
             "name": "send_approveBooleanToCA",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3372,10 +3117,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_invoiceStringFromA",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -3388,16 +3130,10 @@ Object {
           "to": "end",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Boolean",
-                "type": "Identifier",
-              },
+              "Boolean",
             ],
             "name": "send_refuseBooleanToCA",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3424,10 +3160,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receivePayment",
-            "returnType": Object {
-              "name": "Data",
-              "type": "Identifier",
-            },
+            "returnType": "Data",
             "type": "Method",
           },
         },
@@ -3440,16 +3173,10 @@ Object {
           "to": "end",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "boolean",
-                "type": "Identifier",
-              },
+              "boolean",
             ],
             "name": "sendApproval",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3475,16 +3202,10 @@ Object {
           "to": "State1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "send_requestStringToA",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3498,10 +3219,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_dataintFromA",
-            "returnType": Object {
-              "name": "int",
-              "type": "Identifier",
-            },
+            "returnType": "int",
             "type": "Method",
           },
         },
@@ -3514,16 +3232,10 @@ Object {
           "to": "State3",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "int",
-                "type": "Identifier",
-              },
+              "int",
             ],
             "name": "send_paymentintToB",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3537,10 +3249,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_Choice1LabelFromB",
-            "returnType": Object {
-              "name": "Choice1",
-              "type": "Identifier",
-            },
+            "returnType": "Choice1",
             "type": "Method",
           },
         },
@@ -3554,10 +3263,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_approveBooleanFromB",
-            "returnType": Object {
-              "name": "Boolean",
-              "type": "Identifier",
-            },
+            "returnType": "Boolean",
             "type": "Method",
           },
         },
@@ -3571,10 +3277,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_invoiceStringFromA",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -3588,10 +3291,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receive_refuseBooleanFromB",
-            "returnType": Object {
-              "name": "Boolean",
-              "type": "Identifier",
-            },
+            "returnType": "Boolean",
             "type": "Method",
           },
         },
@@ -3603,20 +3303,14 @@ Object {
         Object {
           "to": "State4",
           "transition": Object {
-            "label": Object {
-              "name": "APPROVE",
-              "type": "Identifier",
-            },
+            "label": "APPROVE",
             "type": "Label",
           },
         },
         Object {
           "to": "State6",
           "transition": Object {
-            "label": Object {
-              "name": "REFUSE",
-              "type": "Identifier",
-            },
+            "label": "REFUSE",
             "type": "Label",
           },
         },
@@ -3642,16 +3336,10 @@ Object {
           "to": "State1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Travel",
-                "type": "Identifier",
-              },
+              "Travel",
             ],
             "name": "sendRequest",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3665,10 +3353,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveData",
-            "returnType": Object {
-              "name": "Data",
-              "type": "Identifier",
-            },
+            "returnType": "Data",
             "type": "Method",
           },
         },
@@ -3681,16 +3366,10 @@ Object {
           "to": "State3",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Data",
-                "type": "Identifier",
-              },
+              "Data",
             ],
             "name": "payment",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3704,10 +3383,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveApproval",
-            "returnType": Object {
-              "name": "boolean",
-              "type": "Identifier",
-            },
+            "returnType": "boolean",
             "type": "Method",
           },
         },
@@ -3721,10 +3397,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveInvoice",
-            "returnType": Object {
-              "name": "Invoice",
-              "type": "Identifier",
-            },
+            "returnType": "Invoice",
             "type": "Method",
           },
         },
@@ -3736,20 +3409,14 @@ Object {
         Object {
           "to": "State4",
           "transition": Object {
-            "label": Object {
-              "name": "true",
-              "type": "Identifier",
-            },
+            "label": "true",
             "type": "Label",
           },
         },
         Object {
           "to": "end",
           "transition": Object {
-            "label": Object {
-              "name": "false",
-              "type": "Identifier",
-            },
+            "label": "false",
             "type": "Label",
           },
         },
@@ -3776,10 +3443,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveRequest",
-            "returnType": Object {
-              "name": "Travel",
-              "type": "Identifier",
-            },
+            "returnType": "Travel",
             "type": "Method",
           },
         },
@@ -3792,16 +3456,10 @@ Object {
           "to": "State2",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Data",
-                "type": "Identifier",
-              },
+              "Data",
             ],
             "name": "sendData",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3815,10 +3473,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveApproval",
-            "returnType": Object {
-              "name": "boolean",
-              "type": "Identifier",
-            },
+            "returnType": "boolean",
             "type": "Method",
           },
         },
@@ -3831,16 +3486,10 @@ Object {
           "to": "end",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "Invoice",
-                "type": "Identifier",
-              },
+              "Invoice",
             ],
             "name": "sendInvoice",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3852,20 +3501,14 @@ Object {
         Object {
           "to": "State3",
           "transition": Object {
-            "label": Object {
-              "name": "true",
-              "type": "Identifier",
-            },
+            "label": "true",
             "type": "Label",
           },
         },
         Object {
           "to": "end",
           "transition": Object {
-            "label": Object {
-              "name": "false",
-              "type": "Identifier",
-            },
+            "label": "false",
             "type": "Label",
           },
         },
@@ -3892,10 +3535,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "close",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3909,10 +3549,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "open",
-            "returnType": Object {
-              "name": "Status",
-              "type": "Identifier",
-            },
+            "returnType": "Status",
             "type": "Method",
           },
         },
@@ -3926,10 +3563,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "hasNext",
-            "returnType": Object {
-              "name": "Boolean",
-              "type": "Identifier",
-            },
+            "returnType": "Boolean",
             "type": "Method",
           },
         },
@@ -3938,10 +3572,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "close",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3955,10 +3586,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "read",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -3970,20 +3598,14 @@ Object {
         Object {
           "to": "Open",
           "transition": Object {
-            "label": Object {
-              "name": "OK",
-              "type": "Identifier",
-            },
+            "label": "OK",
             "type": "Label",
           },
         },
         Object {
           "to": "end",
           "transition": Object {
-            "label": Object {
-              "name": "ERROR",
-              "type": "Identifier",
-            },
+            "label": "ERROR",
             "type": "Label",
           },
         },
@@ -3995,20 +3617,14 @@ Object {
         Object {
           "to": "Read",
           "transition": Object {
-            "label": Object {
-              "name": "TRUE",
-              "type": "Identifier",
-            },
+            "label": "TRUE",
             "type": "Label",
           },
         },
         Object {
           "to": "Close",
           "transition": Object {
-            "label": Object {
-              "name": "FALSE",
-              "type": "Identifier",
-            },
+            "label": "FALSE",
             "type": "Label",
           },
         },
@@ -4035,10 +3651,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receivePayment",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -4064,16 +3677,10 @@ Object {
           "to": "State0",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "receivePayment",
-            "returnType": Object {
-              "name": "PaymentStatus",
-              "type": "Identifier",
-            },
+            "returnType": "PaymentStatus",
             "type": "Method",
           },
         },
@@ -4100,10 +3707,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveInfo",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -4111,16 +3715,10 @@ Object {
           "to": "State1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "sendRequest",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -4133,16 +3731,10 @@ Object {
           "to": "decision:1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "tryPayment",
-            "returnType": Object {
-              "name": "PaymentStatus",
-              "type": "Identifier",
-            },
+            "returnType": "PaymentStatus",
             "type": "Method",
           },
         },
@@ -4156,10 +3748,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "receiveInvoice",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -4171,30 +3760,21 @@ Object {
         Object {
           "to": "State2",
           "transition": Object {
-            "label": Object {
-              "name": "OK",
-              "type": "Identifier",
-            },
+            "label": "OK",
             "type": "Label",
           },
         },
         Object {
           "to": "State0",
           "transition": Object {
-            "label": Object {
-              "name": "KO",
-              "type": "Identifier",
-            },
+            "label": "KO",
             "type": "Label",
           },
         },
         Object {
           "to": "State1",
           "transition": Object {
-            "label": Object {
-              "name": "TA",
-              "type": "Identifier",
-            },
+            "label": "TA",
             "type": "Label",
           },
         },
@@ -4221,10 +3801,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "getInfo",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -4232,16 +3809,10 @@ Object {
           "to": "State1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "receiveRequest",
-            "returnType": Object {
-              "name": "void",
-              "type": "Identifier",
-            },
+            "returnType": "void",
             "type": "Method",
           },
         },
@@ -4254,16 +3825,10 @@ Object {
           "to": "decision:1",
           "transition": Object {
             "arguments": Array [
-              Object {
-                "name": "String",
-                "type": "Identifier",
-              },
+              "String",
             ],
             "name": "tryPayment",
-            "returnType": Object {
-              "name": "PaymentStatus",
-              "type": "Identifier",
-            },
+            "returnType": "PaymentStatus",
             "type": "Method",
           },
         },
@@ -4277,10 +3842,7 @@ Object {
           "transition": Object {
             "arguments": Array [],
             "name": "getInvoice",
-            "returnType": Object {
-              "name": "String",
-              "type": "Identifier",
-            },
+            "returnType": "String",
             "type": "Method",
           },
         },
@@ -4292,30 +3854,21 @@ Object {
         Object {
           "to": "State2",
           "transition": Object {
-            "label": Object {
-              "name": "OK",
-              "type": "Identifier",
-            },
+            "label": "OK",
             "type": "Label",
           },
         },
         Object {
           "to": "State0",
           "transition": Object {
-            "label": Object {
-              "name": "KO",
-              "type": "Identifier",
-            },
+            "label": "KO",
             "type": "Label",
           },
         },
         Object {
           "to": "State1",
           "transition": Object {
-            "label": Object {
-              "name": "TA",
-              "type": "Identifier",
-            },
+            "label": "TA",
             "type": "Label",
           },
         },

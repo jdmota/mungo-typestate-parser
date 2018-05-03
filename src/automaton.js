@@ -58,8 +58,8 @@ const traversers = {
       const transition = {
         type: "Method",
         name: method.name,
-        arguments: method.arguments,
-        returnType: method.returnType
+        arguments: method.arguments.map( a => a.name ),
+        returnType: method.returnType.name
       };
 
       let toName = "";
@@ -98,7 +98,7 @@ const traversers = {
       const fromName = node._name;
       const transition = {
         type: "Label",
-        label
+        label: label.name
       };
 
       const fromState = getState( automaton, fromName );

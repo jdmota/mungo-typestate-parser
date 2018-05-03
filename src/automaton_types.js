@@ -1,8 +1,6 @@
 // @flow
 /* eslint no-use-before-define: 0 */
 
-import type { Identifier } from "./ast_types";
-
 export type Automaton = {
   [key: string]: AutomatonState
 };
@@ -20,12 +18,12 @@ export type AutomationTransition = {
 export type AutomationTransitionMethod = {
   +type: "Method",
   +name: string,
-  +arguments: Identifier[],
-  +returnType: Identifier
+  +arguments: string[],
+  +returnType: string
 };
 
 export type AutomationTransitionLabel = {
   +type: "Label",
-  +label: Identifier
+  +label: string
 };
 
