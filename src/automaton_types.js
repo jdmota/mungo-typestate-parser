@@ -7,22 +7,22 @@ export type Automaton = {
 
 export type AutomatonState = {
   +name: string,
-  +transitions: AutomationTransition[]
+  +transitions: AutomatonTransition[]
 };
 
-export type AutomationTransition = {
-  +transition: AutomationTransitionMethod | AutomationTransitionLabel,
+export type AutomatonTransition = {
+  +transition: AutomatonTransitionMethod | AutomatonTransitionLabel,
   +to: string
 }
 
-export type AutomationTransitionMethod = {
+export type AutomatonTransitionMethod = {
   +type: "Method",
   +name: string,
   +arguments: string[],
   +returnType: string
 };
 
-export type AutomationTransitionLabel = {
+export type AutomatonTransitionLabel = {
   +type: "Label",
   +label: string
 };
