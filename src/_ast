@@ -11,7 +11,7 @@
           "name": "open",
           "arguments": [],
           "returnType": {
-            "type": "Type",
+            "type": "Identifier",
             "name": "Status"
           },
           "transition": {
@@ -19,14 +19,14 @@
             "transitions": [
               [
                 {
-                  "type": "Type",
+                  "type": "Identifier",
                   "name": "OK"
                 },
                 "Open"
               ],
               [
                 {
-                  "type": "Type",
+                  "type": "Identifier",
                   "name": "ERROR"
                 },
                 "end"
@@ -47,7 +47,7 @@
           "name": "hasNext",
           "arguments": [],
           "returnType": {
-            "type": "Type",
+            "type": "Identifier",
             "name": "Boolean"
           },
           "transition": {
@@ -55,14 +55,14 @@
             "transitions": [
               [
                 {
-                  "type": "Type",
+                  "type": "Identifier",
                   "name": "TRUE"
                 },
                 "Read"
               ],
               [
                 {
-                  "type": "Type",
+                  "type": "Identifier",
                   "name": "FALSE"
                 },
                 "Close"
@@ -76,7 +76,7 @@
           "name": "close",
           "arguments": [],
           "returnType": {
-            "type": "Type",
+            "type": "Identifier",
             "name": "void"
           },
           "transition": {
@@ -96,7 +96,7 @@
           "name": "read",
           "arguments": [],
           "returnType": {
-            "type": "Type",
+            "type": "Identifier",
             "name": "void"
           },
           "transition": {
@@ -116,7 +116,7 @@
           "name": "close",
           "arguments": [],
           "returnType": {
-            "type": "Type",
+            "type": "Identifier",
             "name": "void"
           },
           "transition": {

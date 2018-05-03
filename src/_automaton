@@ -14,10 +14,7 @@
             "type": "Method",
             "name": "open",
             "arguments": [],
-            "returnType": {
-              "type": "Type",
-              "name": "Status"
-            }
+            "returnType": "Status"
           },
           "to": "decision:1"
         }
@@ -31,10 +28,7 @@
             "type": "Method",
             "name": "hasNext",
             "arguments": [],
-            "returnType": {
-              "type": "Type",
-              "name": "Boolean"
-            }
+            "returnType": "Boolean"
           },
           "to": "decision:2"
         },
@@ -43,10 +37,7 @@
             "type": "Method",
             "name": "close",
             "arguments": [],
-            "returnType": {
-              "type": "Type",
-              "name": "void"
-            }
+            "returnType": "void"
           },
           "to": "end"
         }
@@ -60,10 +51,7 @@
             "type": "Method",
             "name": "read",
             "arguments": [],
-            "returnType": {
-              "type": "Type",
-              "name": "void"
-            }
+            "returnType": "void"
           },
           "to": "Open"
         }
@@ -77,10 +65,7 @@
             "type": "Method",
             "name": "close",
             "arguments": [],
-            "returnType": {
-              "type": "Type",
-              "name": "void"
-            }
+            "returnType": "void"
           },
           "to": "end"
         }
@@ -92,20 +77,14 @@
         {
           "transition": {
             "type": "Label",
-            "label": {
-              "type": "Type",
-              "name": "OK"
-            }
+            "label": "OK"
           },
           "to": "Open"
         },
         {
           "transition": {
             "type": "Label",
-            "label": {
-              "type": "Type",
-              "name": "ERROR"
-            }
+            "label": "ERROR"
           },
           "to": "end"
         }
@@ -117,20 +96,14 @@
         {
           "transition": {
             "type": "Label",
-            "label": {
-              "type": "Type",
-              "name": "TRUE"
-            }
+            "label": "TRUE"
           },
           "to": "Read"
         },
         {
           "transition": {
             "type": "Label",
-            "label": {
-              "type": "Type",
-              "name": "FALSE"
-            }
+            "label": "FALSE"
           },
           "to": "Close"
         }
