@@ -89,7 +89,7 @@ function createDemo( automaton ) {
       enabled: true,
       solver: "repulsion",
       repulsion: {
-        springLength: 225
+        springLength: 220
       }
     }
   };

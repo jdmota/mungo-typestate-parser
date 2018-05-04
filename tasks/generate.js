@@ -83,8 +83,8 @@ async function run() {
       newPdf.addPage();
     }
 
-    newPdf.fontSize( 11 ).text( `// ${file}\n\n`, 50, 50 ).text( text ).image( buffer, {
-      scale: 0.9
+    newPdf.fontSize( 10 ).text( `// ${file}\n\n`, 50, 50 ).text( text ).image( buffer, {
+      scale: 0.8
     } );
 
     first = false;
