@@ -1,0 +1,5 @@
+typestate CannotCreateStateCalledEnd {
+
+  end = {}
+
+}

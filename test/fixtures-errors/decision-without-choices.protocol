@@ -1,0 +1,7 @@
+typestate DecisionWithoutChoices {
+
+  Init = {
+    void open(): <>
+  }
+
+}

@@ -1,0 +1,7 @@
+typestate NotDefined {
+
+  Init = {
+    void open(): Something
+  }
+
+}

@@ -1,0 +1,14 @@
+typestate DuplicateMethod {
+
+  State0 = {
+    void open(): end,
+    void open(A): end,
+    void open(A,B): end
+  }
+
+  State1 = {
+    void close(): end,
+    void close(): State0
+  }
+
+}

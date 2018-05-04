@@ -1,0 +1,7 @@
+typestate DuplicateLabel {
+
+  Init = {
+    void open(): <OK: end, OK: end, ERROR: end>
+  }
+
+}

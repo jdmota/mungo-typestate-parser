@@ -1,21 +1,26 @@
 const path = require( "path" );
 const { URL } = require( "url" );
 const fs = require( "fs-extra" );
-const glob = require( "glob" );
+const _glob = require( "glob" );
 const puppeteer = require( "puppeteer" );
 const PDFDocument = require( "pdfkit" );
 
 /* eslint-disable no-console, no-await-in-loop, no-inner-declarations */
 
-const filesPromise = new Promise( ( resolve, reject ) => {
-  glob( "test/fixtures/**/*.protocol", { nonull: false }, ( error, files ) => {
-    if ( error ) {
-      reject( error );
-    } else {
-      resolve( files.map( f => path.relative( process.cwd(), f ).replace( /\\/g, "/" ) ) );
-    }
+function glob( p ) {
+  return new Promise( ( resolve, reject ) => {
+    _glob( p, { nonull: false }, ( error, files ) => {
+      if ( error ) {
+        reject( error );
+      } else {
+        resolve( files.map( f => path.relative( process.cwd(), f ).replace( /\\/g, "/" ) ) );
+      }
+    } );
   } );
-} );
+}
+
+const fixturesPromise = glob( "test/fixtures/**/*.protocol" );
+const fixturesErrorsPromise = glob( "test/fixtures-errors/**/*.protocol" );
 
 async function run() {
   console.log( "Launching browser..." );
@@ -38,21 +43,21 @@ async function run() {
 
   console.log( "Getting files..." );
 
-  const files = await filesPromise;
+  const globResult = await Promise.all( [ fixturesPromise, fixturesErrorsPromise ] );
 
   const newPdf = new PDFDocument();
   newPdf.pipe( fs.createWriteStream( "tasks/output.pdf" ) );
 
   let first = true;
 
-  for ( const file of files ) {
+  for ( const file of globResult[ 0 ].concat( globResult[ 1 ] ) ) {
 
     console.log( file );
 
     let text = await fs.readFile( file, "utf8" );
     text = text.replace( /\t/g, "  " );
 
-    const array = await page.evaluate( text => {
+    const result = await page.evaluate( text => {
 
       /* eslint-disable no-undef */
       const doc = document;
@@ -66,6 +71,14 @@ async function run() {
 
       return new Promise( ( resolve, reject ) => {
         setTimeout( () => {
+
+          const error = doc.querySelector( "pre" ).innerText;
+
+          if ( error ) {
+            resolve( { error } );
+            return;
+          }
+
           doc.querySelector( "canvas" ).toBlob( blob => {
             const reader = new FReader();
             reader.onload = () => resolve( Array.from( new Uint8Array( reader.result ) ) );
@@ -77,15 +90,25 @@ async function run() {
 
     }, text );
 
-    const buffer = Buffer.from( array );
-
     if ( !first ) {
       newPdf.addPage();
     }
 
-    newPdf.fontSize( 10 ).text( `// ${file}\n\n`, 50, 50 ).text( text ).image( buffer, {
-      scale: 0.8
-    } );
+    newPdf.fontSize( 10 ).text( `// ${file}\n\n`, 50, 50 ).text( text );
+
+    if ( Array.isArray( result ) ) {
+
+      const buffer = Buffer.from( result );
+
+      newPdf.image( buffer, {
+        scale: 0.8
+      } );
+
+    } else {
+
+      newPdf.fillColor( "red" ).text( `\n${result.error}` ).fillColor( "black" );
+
+    }
 
     first = false;
 

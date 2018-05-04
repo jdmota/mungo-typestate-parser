@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`error examples: test/fixtures-errors/cannot-use-end.protocol 1`] = `"You cannot have a state called 'end'"`;
+
+exports[`error examples: test/fixtures-errors/decision-without-choices.protocol 1`] = `"Unexpected token >, expected identifier at 66"`;
+
+exports[`error examples: test/fixtures-errors/duplicate-label.protocol 1`] = `"Duplicate case label: OK"`;
+
+exports[`error examples: test/fixtures-errors/duplicate-method.protocol 1`] = `"Duplicate method signature: close()"`;
+
+exports[`error examples: test/fixtures-errors/duplicate-state.protocol 1`] = `"Duplicated Init state"`;
+
+exports[`error examples: test/fixtures-errors/not-defined.protocol 1`] = `"State not defined: Something"`;
+
 exports[`mungo examples: ast test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
 Object {
   "name": "BobProtocol",
