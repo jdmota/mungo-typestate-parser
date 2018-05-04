@@ -20,7 +20,7 @@ function createDemo( automaton ) {
   const edges = [
     {
       from: invisible,
-      to: automaton.firstState,
+      to: automaton.start,
       color: {
         color: "#848484"
       },
@@ -28,34 +28,40 @@ function createDemo( automaton ) {
     }
   ];
 
-  for ( const stateName in automaton.states ) {
-
+  for ( const name of automaton.states ) {
     nodes.push( {
-      id: stateName,
-      label: /^decision:/.test( stateName ) ? "" : stateName,
-      shape: /^decision:/.test( stateName ) ? "diamond" : "circle",
-      borderWidth: stateName === "end" ? 4 : 1
+      id: name,
+      label: name,
+      shape: "circle",
+      borderWidth: automaton.final.has( name ) ? 4 : 1
     } );
+  }
 
-    const state = automaton.states[ stateName ];
+  for ( const name of automaton.choices ) {
+    nodes.push( {
+      id: name,
+      label: "",
+      shape: "diamond",
+      borderWidth: 1
+    } );
+  }
 
-    for ( const { transition, to } of state.transitions ) {
+  for ( const { from: _from, transition, to } of automaton.mTransitions ) {
+    edges.push( {
+      from: _from,
+      to,
+      arrows: "to",
+      label: `${transition.name}(${transition.arguments.join( ", " )})`
+    } );
+  }
 
-      let label;
-
-      if ( transition.type === "Label" ) {
-        label = transition.label;
-      } else {
-        label = `${transition.name}(${transition.arguments.join( ", " )})`;
-      }
-
-      edges.push( {
-        from: stateName,
-        to,
-        arrows: "to",
-        label
-      } );
-    }
+  for ( const { from: _from, transition, to } of automaton.lTransitions ) {
+    edges.push( {
+      from: _from,
+      to,
+      arrows: "to",
+      label: transition.name
+    } );
   }
 
   const container = document.getElementById( "automaton" );

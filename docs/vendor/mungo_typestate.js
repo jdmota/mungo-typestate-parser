@@ -392,25 +392,16 @@
     return Parser;
   }();
 
-  function createState(name) {
-    return {
-      name: name,
-      transitions: []
-    };
-  }
-
-  function getState(automaton, name) {
-    var state = automaton[name];
-
+  function checkState(automaton, name) {
     if (/:/.test(name)) {
-      return state || (automaton[name] = createState(name));
-    }
-
-    if (!state) {
+      if (/^decision:/.test(name)) {
+        automaton.choices.add(name);
+      } else {
+        automaton.states.add(name);
+      }
+    } else if (!automaton.states.has(name)) {
       throw new Error("State not defined: " + name);
     }
-
-    return state;
   }
 
   function equalSignature(a, b) {
@@ -431,139 +422,127 @@
     return true;
   }
 
-  var traversers = {
-    Typestate: function (_Typestate) {
-      function Typestate(_x, _x2) {
-        return _Typestate.apply(this, arguments);
+  function traverseTypestate(node, automaton) {
+    for (var _iterator = node.states, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
       }
 
-      Typestate.toString = function () {
-        return _Typestate.toString();
-      };
+      var state = _ref;
+      traverseState(state, automaton);
+    }
+  }
 
-      return Typestate;
-    }(function (node, automaton) {
-      for (var _iterator = node.states, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
+  function traverseState(node, automaton) {
+    var fromName = node._name;
+    checkState(automaton, fromName);
 
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref = _i.value;
-        }
+    if (node.methods.length === 0) {
+      automaton.final.add(fromName);
+      return;
+    }
 
-        var state = _ref;
-        traversers.State(state, automaton);
-      }
-    }),
-    State: function (_State) {
-      function State(_x3, _x4) {
-        return _State.apply(this, arguments);
-      }
+    for (var i = 0; i < node.methods.length; i++) {
+      var method = node.methods[i];
 
-      State.toString = function () {
-        return _State.toString();
-      };
-
-      return State;
-    }(function (node, automaton) {
-      for (var i = 0; i < node.methods.length; i++) {
-        var method = node.methods[i];
-
-        for (var j = 0; j < i; j++) {
-          if (equalSignature(method, node.methods[j])) {
-            throw new Error("Duplicate method signature: " + method.name + "(" + method.arguments.map(function (a) {
-              return a.name;
-            }).join(", ") + ")");
-          }
-        }
-
-        var fromName = node._name;
-        var transition = {
-          type: "Method",
-          name: method.name,
-          arguments: method.arguments.map(function (a) {
+      for (var j = 0; j < i; j++) {
+        if (equalSignature(method, node.methods[j])) {
+          throw new Error("Duplicate method signature: " + method.name + "(" + method.arguments.map(function (a) {
             return a.name;
-          }),
-          returnType: method.returnType.name
-        };
-        var toName = "";
-        var transitionNode = method.transition;
-
-        if (transitionNode.type === "State") {
-          traversers.State(transitionNode, automaton);
-          toName = transitionNode._name;
-        } else if (transitionNode.type === "DecisionState") {
-          traversers.DecisionState(transitionNode, automaton);
-          toName = transitionNode._name;
-        } else if (method.transition.type === "Identifier") {
-          toName = transitionNode.name;
+          }).join(", ") + ")");
         }
-
-        var fromState = getState(automaton, fromName);
-        getState(automaton, toName);
-        fromState.transitions.push({
-          transition: transition,
-          to: toName
-        });
-      }
-    }),
-    DecisionState: function (_DecisionState) {
-      function DecisionState(_x5, _x6) {
-        return _DecisionState.apply(this, arguments);
       }
 
-      DecisionState.toString = function () {
-        return _DecisionState.toString();
+      var transitionNode = method.transition;
+      var toName = "";
+
+      if (transitionNode.type === "State") {
+        traverseState(transitionNode, automaton);
+        toName = transitionNode._name;
+      } else if (transitionNode.type === "DecisionState") {
+        traverseDecisionState(transitionNode, automaton);
+        toName = transitionNode._name;
+      } else if (method.transition.type === "Identifier") {
+        toName = transitionNode.name;
+      }
+
+      checkState(automaton, toName);
+      var m = {
+        name: method.name,
+        arguments: method.arguments.map(function (a) {
+          return a.name;
+        }),
+        returnType: method.returnType.name
       };
+      automaton.methods.push(m);
+      automaton.mTransitions.push({
+        from: fromName,
+        transition: m,
+        to: toName
+      });
+    }
+  }
 
-      return DecisionState;
-    }(function (node, automaton) {
-      var set = new Set();
+  function traverseDecisionState(node, automaton) {
+    var set = new Set();
+    var fromName = node._name;
+    checkState(automaton, fromName);
 
-      for (var _iterator2 = node.transitions, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-        var _ref2;
+    for (var _iterator2 = node.transitions, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+      var _ref2;
 
-        if (_isArray2) {
-          if (_i2 >= _iterator2.length) break;
-          _ref2 = _iterator2[_i2++];
-        } else {
-          _i2 = _iterator2.next();
-          if (_i2.done) break;
-          _ref2 = _i2.value;
-        }
-
-        var _ref3 = _ref2,
-            label = _ref3[0],
-            toName = _ref3[1];
-
-        if (set.has(label.name)) {
-          throw new Error("Duplicate case label: " + label.name);
-        }
-
-        var fromName = node._name;
-        var transition = {
-          type: "Label",
-          label: label.name
-        };
-        var fromState = getState(automaton, fromName);
-        getState(automaton, toName);
-        fromState.transitions.push({
-          transition: transition,
-          to: toName
-        });
-        set.add(label.name);
+      if (_isArray2) {
+        if (_i2 >= _iterator2.length) break;
+        _ref2 = _iterator2[_i2++];
+      } else {
+        _i2 = _iterator2.next();
+        if (_i2.done) break;
+        _ref2 = _i2.value;
       }
-    })
-  };
+
+      var _ref3 = _ref2,
+          label = _ref3[0],
+          toName = _ref3[1];
+      var labelName = label.name;
+
+      if (set.has(labelName)) {
+        throw new Error("Duplicate case label: " + labelName);
+      }
+
+      checkState(automaton, toName);
+      var l = {
+        name: labelName
+      };
+      automaton.labels.push(l);
+      automaton.lTransitions.push({
+        from: fromName,
+        transition: l,
+        to: toName
+      });
+      set.add(labelName);
+    }
+  }
+
   function createAutomaton (ast) {
     var automaton = {
-      end: createState("end")
+      states: new Set(),
+      choices: new Set(),
+      methods: [],
+      labels: [],
+      start: "",
+      final: new Set(),
+      mTransitions: [],
+      lTransitions: []
     };
-    var firstState = "";
+    automaton.states.add("end");
+    automaton.final.add("end");
 
     for (var _iterator3 = ast.states, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
       var _ref4;
@@ -580,20 +559,17 @@
       var _ref5 = _ref4,
           name = _ref5.name;
 
-      if (automaton[name]) {
+      if (automaton.states.has(name)) {
         throw new Error("Duplicated " + name + " state");
       }
 
-      automaton[name] = createState(name);
-      firstState = firstState || name;
+      automaton.states.add(name);
+      automaton.start = automaton.start || name;
     }
 
-    traversers.Typestate(ast, automaton);
-    return {
-      firstState: firstState,
-      numberOfStates: Object.keys(automaton).length,
-      states: automaton
-    };
+    automaton.start = automaton.start || "end";
+    traverseTypestate(ast, automaton);
+    return automaton;
   }
 
   function index (text) {

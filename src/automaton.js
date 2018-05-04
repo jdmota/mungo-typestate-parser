@@ -1,23 +1,17 @@
 // @flow
 import type { Typestate, State, DecisionState } from "./ast_types";
-import type { Automaton, AutomatonState } from "./automaton_types";
+import type { Automaton } from "./automaton_types";
 
-function createState( name: string ): AutomatonState {
-  return {
-    name,
-    transitions: []
-  };
-}
-
-function getState( automaton: Automaton, name: string ): AutomatonState {
-  const state = automaton[ name ];
+function checkState( automaton, name ) {
   if ( /:/.test( name ) ) {
-    return state || ( automaton[ name ] = createState( name ) );
-  }
-  if ( !state ) {
+    if ( /^decision:/.test( name ) ) {
+      automaton.choices.add( name );
+    } else {
+      automaton.states.add( name );
+    }
+  } else if ( !automaton.states.has( name ) ) {
     throw new Error( `State not defined: ${name}` );
   }
-  return state;
 }
 
 function equalSignature( a, b ) {
@@ -35,108 +29,125 @@ function equalSignature( a, b ) {
   return true;
 }
 
-const traversers = {
+function traverseTypestate( node: Typestate, automaton: Automaton ) {
+  for ( const state of node.states ) {
+    traverseState( state, automaton );
+  }
+}
 
-  Typestate( node: Typestate, automaton: Automaton ) {
-    for ( const state of node.states ) {
-      traversers.State( state, automaton );
-    }
-  },
+function traverseState( node: State, automaton: Automaton ) {
 
-  State( node: State, automaton: Automaton ) {
-    for ( let i = 0; i < node.methods.length; i++ ) {
+  const fromName = node._name;
+  checkState( automaton, fromName );
 
-      const method = node.methods[ i ];
-
-      for ( let j = 0; j < i; j++ ) {
-        if ( equalSignature( method, node.methods[ j ] ) ) {
-          throw new Error( `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})` );
-        }
-      }
-
-      const fromName = node._name;
-      const transition = {
-        type: "Method",
-        name: method.name,
-        arguments: method.arguments.map( a => a.name ),
-        returnType: method.returnType.name
-      };
-
-      let toName = "";
-      const transitionNode = method.transition;
-
-      if ( transitionNode.type === "State" ) {
-        traversers.State( transitionNode, automaton );
-        toName = transitionNode._name;
-      } else if ( transitionNode.type === "DecisionState" ) {
-        traversers.DecisionState( transitionNode, automaton );
-        toName = transitionNode._name;
-      } else if ( method.transition.type === "Identifier" ) {
-        toName = transitionNode.name;
-      }
-
-      const fromState = getState( automaton, fromName );
-      getState( automaton, toName );
-
-      fromState.transitions.push( {
-        transition,
-        to: toName
-      } );
-
-    }
-  },
-
-  DecisionState( node: DecisionState, automaton: Automaton ) {
-    const set = new Set();
-
-    for ( const [ label, toName ] of node.transitions ) {
-
-      if ( set.has( label.name ) ) {
-        throw new Error( `Duplicate case label: ${label.name}` );
-      }
-
-      const fromName = node._name;
-      const transition = {
-        type: "Label",
-        label: label.name
-      };
-
-      const fromState = getState( automaton, fromName );
-      getState( automaton, toName );
-
-      fromState.transitions.push( {
-        transition,
-        to: toName
-      } );
-
-      set.add( label.name );
-
-    }
+  if ( node.methods.length === 0 ) {
+    automaton.final.add( fromName );
+    return;
   }
 
-};
+  for ( let i = 0; i < node.methods.length; i++ ) {
 
-export default function( ast: Typestate ) {
+    const method = node.methods[ i ];
 
-  const automaton: Automaton = {
-    end: createState( "end" )
+    for ( let j = 0; j < i; j++ ) {
+      if ( equalSignature( method, node.methods[ j ] ) ) {
+        throw new Error(
+          `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})`
+        );
+      }
+    }
+
+    const transitionNode = method.transition;
+    let toName = "";
+
+    if ( transitionNode.type === "State" ) {
+      traverseState( transitionNode, automaton );
+      toName = transitionNode._name;
+    } else if ( transitionNode.type === "DecisionState" ) {
+      traverseDecisionState( transitionNode, automaton );
+      toName = transitionNode._name;
+    } else if ( method.transition.type === "Identifier" ) {
+      toName = transitionNode.name;
+    }
+
+    checkState( automaton, toName );
+
+    const m = {
+      name: method.name,
+      arguments: method.arguments.map( a => a.name ),
+      returnType: method.returnType.name
+    };
+
+    automaton.methods.push( m );
+
+    automaton.mTransitions.push( {
+      from: fromName,
+      transition: m,
+      to: toName
+    } );
+
+  }
+}
+
+function traverseDecisionState( node: DecisionState, automaton: Automaton ) {
+  const set = new Set();
+  const fromName = node._name;
+  checkState( automaton, fromName );
+
+  for ( const [ label, toName ] of node.transitions ) {
+
+    const labelName = label.name;
+
+    if ( set.has( labelName ) ) {
+      throw new Error( `Duplicate case label: ${labelName}` );
+    }
+
+    checkState( automaton, toName );
+
+    const l = {
+      name: labelName
+    };
+
+    automaton.labels.push( l );
+
+    automaton.lTransitions.push( {
+      from: fromName,
+      transition: l,
+      to: toName
+    } );
+
+    set.add( labelName );
+
+  }
+}
+
+export default function( ast: Typestate ): Automaton {
+
+  const automaton = {
+    states: new Set(),
+    choices: new Set(),
+    methods: [],
+    labels: [],
+    start: "",
+    final: new Set(),
+    mTransitions: [],
+    lTransitions: []
   };
 
-  let firstState = "";
+  automaton.states.add( "end" );
+  automaton.final.add( "end" );
 
   for ( const { name } of ast.states ) {
-    if ( automaton[ name ] ) {
+    if ( automaton.states.has( name ) ) {
       throw new Error( `Duplicated ${name} state` );
     }
-    automaton[ name ] = createState( name );
-    firstState = firstState || name;
+    automaton.states.add( name );
+    automaton.start = automaton.start || name;
   }
 
-  traversers.Typestate( ast, automaton );
+  automaton.start = automaton.start || "end";
 
-  return {
-    firstState,
-    numberOfStates: Object.keys( automaton ).length,
-    states: automaton
-  };
+  traverseTypestate( ast, automaton );
+
+  return automaton;
 }

@@ -7,7 +7,8 @@
     "lint": "eslint **/*.js",
     "build": "rollup -c",
     "test": "jest",
-    "flow": "flow"
+    "flow": "flow",
+    "all": "flow && jest -u && rollup -c && babel-node src/example.js"
   },
   "jest": {
     "roots": [
