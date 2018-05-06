@@ -236,14 +236,20 @@ Object {
                   "name": "TIME",
                   "type": "Identifier",
                 },
-                "SendTime",
+                Object {
+                  "name": "SendTime",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "END",
                   "type": "Identifier",
                 },
-                "EndProtocol",
+                Object {
+                  "name": "EndProtocol",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -362,14 +368,20 @@ Object {
                   "name": "TIME",
                   "type": "Identifier",
                 },
-                "SendTime",
+                Object {
+                  "name": "SendTime",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "GREET",
                   "type": "Identifier",
                 },
-                "HowAreYou",
+                Object {
+                  "name": "HowAreYou",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -733,14 +745,20 @@ Object {
                   "name": "TRUE",
                   "type": "Identifier",
                 },
-                "Empty",
+                Object {
+                  "name": "Empty",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "FALSE",
                   "type": "Identifier",
                 },
-                "NonEmpty",
+                Object {
+                  "name": "NonEmpty",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1068,14 +1086,20 @@ Object {
                   "name": "APPROVE",
                   "type": "Identifier",
                 },
-                "State3",
+                Object {
+                  "name": "State3",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "REFUSE",
                   "type": "Identifier",
                 },
-                "State5",
+                Object {
+                  "name": "State5",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1434,14 +1458,20 @@ Object {
                   "name": "APPROVE",
                   "type": "Identifier",
                 },
-                "State4",
+                Object {
+                  "name": "State4",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "REFUSE",
                   "type": "Identifier",
                 },
-                "State6",
+                Object {
+                  "name": "State6",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1609,14 +1639,20 @@ Object {
                   "name": "true",
                   "type": "Identifier",
                 },
-                "State4",
+                Object {
+                  "name": "State4",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "false",
                   "type": "Identifier",
                 },
-                "end",
+                Object {
+                  "name": "end",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1719,14 +1755,20 @@ Object {
                   "name": "true",
                   "type": "Identifier",
                 },
-                "State3",
+                Object {
+                  "name": "State3",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "false",
                   "type": "Identifier",
                 },
-                "end",
+                Object {
+                  "name": "end",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1789,14 +1831,20 @@ Object {
                   "name": "OK",
                   "type": "Identifier",
                 },
-                "Open",
+                Object {
+                  "name": "Open",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "ERROR",
                   "type": "Identifier",
                 },
-                "end",
+                Object {
+                  "name": "end",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1825,14 +1873,20 @@ Object {
                   "name": "TRUE",
                   "type": "Identifier",
                 },
-                "Read",
+                Object {
+                  "name": "Read",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "FALSE",
                   "type": "Identifier",
                 },
-                "Close",
+                Object {
+                  "name": "Close",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -1923,6 +1977,93 @@ Object {
         },
       ],
       "name": "State0",
+      "type": "State",
+    },
+  ],
+  "type": "Typestate",
+}
+`;
+
+exports[`mungo examples: ast test/fixtures/inner-state-in-decision.protocol 1`] = `
+Object {
+  "name": "InnerStateInDecision",
+  "states": Array [
+    Object {
+      "_name": "Init",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "next",
+          "returnType": Object {
+            "name": "void",
+            "type": "Identifier",
+          },
+          "transition": Object {
+            "name": "Next",
+            "type": "Identifier",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Init",
+      "type": "State",
+    },
+    Object {
+      "_name": "Next",
+      "methods": Array [
+        Object {
+          "arguments": Array [],
+          "name": "next2",
+          "returnType": Object {
+            "name": "boolean",
+            "type": "Identifier",
+          },
+          "transition": Object {
+            "_name": "decision:1",
+            "transitions": Array [
+              Array [
+                Object {
+                  "name": "true",
+                  "type": "Identifier",
+                },
+                Object {
+                  "_name": "unknown:3",
+                  "methods": Array [
+                    Object {
+                      "arguments": Array [],
+                      "name": "next3",
+                      "returnType": Object {
+                        "name": "void",
+                        "type": "Identifier",
+                      },
+                      "transition": Object {
+                        "name": "end",
+                        "type": "Identifier",
+                      },
+                      "type": "Method",
+                    },
+                  ],
+                  "name": null,
+                  "type": "State",
+                },
+              ],
+              Array [
+                Object {
+                  "name": "false",
+                  "type": "Identifier",
+                },
+                Object {
+                  "name": "end",
+                  "type": "Identifier",
+                },
+              ],
+            ],
+            "type": "DecisionState",
+          },
+          "type": "Method",
+        },
+      ],
+      "name": "Next",
       "type": "State",
     },
   ],
@@ -2029,21 +2170,30 @@ Object {
                   "name": "OK",
                   "type": "Identifier",
                 },
-                "State2",
+                Object {
+                  "name": "State2",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "KO",
                   "type": "Identifier",
                 },
-                "State0",
+                Object {
+                  "name": "State0",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "TA",
                   "type": "Identifier",
                 },
-                "State1",
+                Object {
+                  "name": "State1",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -2144,21 +2294,30 @@ Object {
                   "name": "OK",
                   "type": "Identifier",
                 },
-                "State2",
+                Object {
+                  "name": "State2",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "KO",
                   "type": "Identifier",
                 },
-                "State0",
+                Object {
+                  "name": "State0",
+                  "type": "Identifier",
+                },
               ],
               Array [
                 Object {
                   "name": "TA",
                   "type": "Identifier",
                 },
-                "State1",
+                Object {
+                  "name": "State1",
+                  "type": "Identifier",
+                },
               ],
             ],
             "type": "DecisionState",
@@ -4004,6 +4163,94 @@ Object {
   "states": Set {
     "end",
     "State0",
+  },
+}
+`;
+
+exports[`mungo examples: automaton test/fixtures/inner-state-in-decision.protocol 1`] = `
+Object {
+  "choices": Set {
+    "decision:1",
+  },
+  "final": Set {
+    "end",
+  },
+  "lTransitions": Array [
+    Object {
+      "from": "decision:1",
+      "to": "unknown:3",
+      "transition": Object {
+        "name": "true",
+      },
+    },
+    Object {
+      "from": "decision:1",
+      "to": "end",
+      "transition": Object {
+        "name": "false",
+      },
+    },
+  ],
+  "labels": Array [
+    Object {
+      "name": "true",
+    },
+    Object {
+      "name": "false",
+    },
+  ],
+  "mTransitions": Array [
+    Object {
+      "from": "Init",
+      "to": "Next",
+      "transition": Object {
+        "arguments": Array [],
+        "name": "next",
+        "returnType": "void",
+      },
+    },
+    Object {
+      "from": "unknown:3",
+      "to": "end",
+      "transition": Object {
+        "arguments": Array [],
+        "name": "next3",
+        "returnType": "void",
+      },
+    },
+    Object {
+      "from": "Next",
+      "to": "decision:1",
+      "transition": Object {
+        "arguments": Array [],
+        "name": "next2",
+        "returnType": "boolean",
+      },
+    },
+  ],
+  "methods": Array [
+    Object {
+      "arguments": Array [],
+      "name": "next",
+      "returnType": "void",
+    },
+    Object {
+      "arguments": Array [],
+      "name": "next3",
+      "returnType": "void",
+    },
+    Object {
+      "arguments": Array [],
+      "name": "next2",
+      "returnType": "boolean",
+    },
+  ],
+  "start": "Init",
+  "states": Set {
+    "end",
+    "Init",
+    "Next",
+    "unknown:3",
   },
 }
 `;

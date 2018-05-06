@@ -32,6 +32,6 @@ export type Method = {
 
 export type DecisionState = {
   +type: "DecisionState",
-  +transitions: [ Identifier, string ][],
+  +transitions: [ Identifier, Identifier | State ][],
   +_name: string
 };

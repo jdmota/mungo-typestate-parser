@@ -66,7 +66,7 @@ function traverseState( node: State, automaton: Automaton ) {
     } else if ( transitionNode.type === "DecisionState" ) {
       traverseDecisionState( transitionNode, automaton );
       toName = transitionNode._name;
-    } else if ( method.transition.type === "Identifier" ) {
+    } else if ( transitionNode.type === "Identifier" ) {
       toName = transitionNode.name;
     }
 
@@ -94,12 +94,21 @@ function traverseDecisionState( node: DecisionState, automaton: Automaton ) {
   const fromName = node._name;
   checkState( automaton, fromName );
 
-  for ( const [ label, toName ] of node.transitions ) {
+  for ( const [ label, to ] of node.transitions ) {
 
     const labelName = label.name;
 
     if ( set.has( labelName ) ) {
       throw new Error( `Duplicate case label: ${labelName}` );
+    }
+
+    let toName = "";
+
+    if ( to.type === "State" ) {
+      traverseState( to, automaton );
+      toName = to._name;
+    } else if ( to.type === "Identifier" ) {
+      toName = to.name;
     }
 
     checkState( automaton, toName );

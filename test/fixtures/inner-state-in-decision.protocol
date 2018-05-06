@@ -1,0 +1,13 @@
+typestate InnerStateInDecision {
+  Init = {
+    void next(): Next
+  }
+  Next = {
+    boolean next2(): <
+      true: {
+        void next3(): end
+      },
+      false: end
+    >
+  }
+}

@@ -373,8 +373,12 @@
       while (true) {
         var label = this.parseType();
         this.expect(":");
-        var stateName = this.expect("identifier").value;
-        transitions.push([label, stateName]);
+
+        if (this.match("identifier")) {
+          transitions.push([label, this.parseType()]);
+        } else {
+          transitions.push([label, this.parseState()]);
+        }
 
         if (!this.eat(",")) {
           break;
@@ -469,7 +473,7 @@
       } else if (transitionNode.type === "DecisionState") {
         traverseDecisionState(transitionNode, automaton);
         toName = transitionNode._name;
-      } else if (method.transition.type === "Identifier") {
+      } else if (transitionNode.type === "Identifier") {
         toName = transitionNode.name;
       }
 
@@ -509,11 +513,20 @@
 
       var _ref3 = _ref2,
           label = _ref3[0],
-          toName = _ref3[1];
+          to = _ref3[1];
       var labelName = label.name;
 
       if (set.has(labelName)) {
         throw new Error("Duplicate case label: " + labelName);
+      }
+
+      var toName = "";
+
+      if (to.type === "State") {
+        traverseState(to, automaton);
+        toName = to._name;
+      } else if (to.type === "Identifier") {
+        toName = to.name;
       }
 
       checkState(automaton, toName);

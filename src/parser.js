@@ -210,9 +210,11 @@ export default class Parser {
 
       this.expect( ":" );
 
-      const stateName = this.expect( "identifier" ).value;
-
-      transitions.push( [ label, stateName ] );
+      if ( this.match( "identifier" ) ) {
+        transitions.push( [ label, this.parseType() ] );
+      } else {
+        transitions.push( [ label, this.parseState() ] );
+      }
 
       if ( !this.eat( "," ) ) {
         break;

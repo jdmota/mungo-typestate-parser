@@ -22,14 +22,20 @@
                   "type": "Identifier",
                   "name": "OK"
                 },
-                "Open"
+                {
+                  "type": "Identifier",
+                  "name": "Open"
+                }
               ],
               [
                 {
                   "type": "Identifier",
                   "name": "ERROR"
                 },
-                "end"
+                {
+                  "type": "Identifier",
+                  "name": "end"
+                }
               ]
             ],
             "_name": "decision:1"
@@ -58,14 +64,20 @@
                   "type": "Identifier",
                   "name": "TRUE"
                 },
-                "Read"
+                {
+                  "type": "Identifier",
+                  "name": "Read"
+                }
               ],
               [
                 {
                   "type": "Identifier",
                   "name": "FALSE"
                 },
-                "Close"
+                {
+                  "type": "Identifier",
+                  "name": "Close"
+                }
               ]
             ],
             "_name": "decision:2"
