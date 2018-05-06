@@ -258,10 +258,9 @@
         name: name,
         states: states
       };
-    }; // FIXME handle dots
+    };
 
-
-    _proto.parseType = function parseType() {
+    _proto.parseIdentifier = function parseIdentifier() {
       return {
         type: "Identifier",
         name: this.expect("identifier").value
@@ -319,7 +318,7 @@
     };
 
     _proto.parseMethod = function parseMethod() {
-      var returnType = this.parseType();
+      var returnType = this.parseIdentifier();
       var name = this.expect("identifier").value;
       var args = [];
 
@@ -331,7 +330,7 @@
 
       if (!this.match(")")) {
         while (true) {
-          args.push(this.parseType());
+          args.push(this.parseIdentifier());
 
           if (!this.eat(",")) {
             break;
@@ -371,11 +370,11 @@
       this.expect("<");
 
       while (true) {
-        var label = this.parseType();
+        var label = this.parseIdentifier();
         this.expect(":");
 
         if (this.match("identifier")) {
-          transitions.push([label, this.parseType()]);
+          transitions.push([label, this.parseIdentifier()]);
         } else {
           transitions.push([label, this.parseState()]);
         }

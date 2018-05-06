@@ -91,8 +91,7 @@ export default class Parser {
     };
   }
 
-  // FIXME handle dots
-  parseType(): Identifier {
+  parseIdentifier(): Identifier {
     return {
       type: "Identifier",
       name: this.expect( "identifier" ).value
@@ -153,7 +152,7 @@ export default class Parser {
 
   parseMethod(): Method {
 
-    const returnType = this.parseType();
+    const returnType = this.parseIdentifier();
     const name = this.expect( "identifier" ).value;
     const args = [];
 
@@ -165,7 +164,7 @@ export default class Parser {
 
     if ( !this.match( ")" ) ) {
       while ( true ) {
-        args.push( this.parseType() );
+        args.push( this.parseIdentifier() );
 
         if ( !this.eat( "," ) ) {
           break;
@@ -206,12 +205,12 @@ export default class Parser {
 
     while ( true ) {
 
-      const label = this.parseType();
+      const label = this.parseIdentifier();
 
       this.expect( ":" );
 
       if ( this.match( "identifier" ) ) {
-        transitions.push( [ label, this.parseType() ] );
+        transitions.push( [ label, this.parseIdentifier() ] );
       } else {
         transitions.push( [ label, this.parseState() ] );
       }
