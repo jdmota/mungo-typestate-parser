@@ -1,5 +1,5 @@
 // @flow
-import type { Typestate, State, DecisionState } from "./ast_types";
+import type { Typestate, State, DecisionState, Method } from "./ast_types";
 import type { Automaton } from "./automaton_types";
 
 function checkState( automaton, name ) {
@@ -29,26 +29,79 @@ function equalSignature( a, b ) {
   return true;
 }
 
-function traverseTypestate( node: Typestate, automaton: Automaton ) {
-  for ( const state of node.states ) {
-    traverseState( state, automaton );
+function compileMethod( fromName: string, method: Method, automaton: Automaton ) {
+  const transitionNode = method.transition;
+  let toName = "";
+
+  if ( transitionNode.type === "State" ) {
+    compileState( transitionNode, automaton );
+    toName = transitionNode._name;
+  } else if ( transitionNode.type === "DecisionState" ) {
+    compileDecisionState( transitionNode, automaton );
+    toName = transitionNode._name;
+  } else if ( transitionNode.type === "Identifier" ) {
+    toName = transitionNode.name;
   }
+
+  checkState( automaton, toName );
+
+  const m = {
+    name: method.name,
+    arguments: method.arguments.map( a => a.name ),
+    returnType: method.returnType.name
+  };
+
+  automaton.methods.push( m );
+
+  automaton.mTransitions.push( {
+    from: fromName,
+    transition: m,
+    to: toName
+  } );
+
+  return automaton;
 }
 
-function traverseState( node: State, automaton: Automaton ) {
+function compileLabel( fromName: string, [ label, to ], automaton: Automaton ) {
+
+  let toName = "";
+
+  if ( to.type === "State" ) {
+    compileState( to, automaton );
+    toName = to._name;
+  } else if ( to.type === "Identifier" ) {
+    toName = to.name;
+  }
+
+  checkState( automaton, toName );
+
+  const l = {
+    name: label.name
+  };
+
+  automaton.labels.push( l );
+
+  automaton.lTransitions.push( {
+    from: fromName,
+    transition: l,
+    to: toName
+  } );
+
+  return automaton;
+}
+
+function compileState( node: State, automaton: Automaton ) {
 
   const fromName = node._name;
   checkState( automaton, fromName );
 
   if ( node.methods.length === 0 ) {
     automaton.final.add( fromName );
-    return;
+    return automaton;
   }
 
   for ( let i = 0; i < node.methods.length; i++ ) {
-
     const method = node.methods[ i ];
-
     for ( let j = 0; j < i; j++ ) {
       if ( equalSignature( method, node.methods[ j ] ) ) {
         throw new Error(
@@ -56,107 +109,61 @@ function traverseState( node: State, automaton: Automaton ) {
         );
       }
     }
-
-    const transitionNode = method.transition;
-    let toName = "";
-
-    if ( transitionNode.type === "State" ) {
-      traverseState( transitionNode, automaton );
-      toName = transitionNode._name;
-    } else if ( transitionNode.type === "DecisionState" ) {
-      traverseDecisionState( transitionNode, automaton );
-      toName = transitionNode._name;
-    } else if ( transitionNode.type === "Identifier" ) {
-      toName = transitionNode.name;
-    }
-
-    checkState( automaton, toName );
-
-    const m = {
-      name: method.name,
-      arguments: method.arguments.map( a => a.name ),
-      returnType: method.returnType.name
-    };
-
-    automaton.methods.push( m );
-
-    automaton.mTransitions.push( {
-      from: fromName,
-      transition: m,
-      to: toName
-    } );
-
   }
+
+  return node.methods.reduce(
+    ( automaton, method ) => compileMethod( fromName, method, automaton ),
+    automaton
+  );
 }
 
-function traverseDecisionState( node: DecisionState, automaton: Automaton ) {
-  const set = new Set();
+function compileDecisionState( node: DecisionState, automaton: Automaton ) {
+
   const fromName = node._name;
   checkState( automaton, fromName );
 
-  for ( const [ label, to ] of node.transitions ) {
-
+  const set = new Set();
+  for ( const [ label ] of node.transitions ) {
     const labelName = label.name;
-
     if ( set.has( labelName ) ) {
       throw new Error( `Duplicate case label: ${labelName}` );
     }
-
-    let toName = "";
-
-    if ( to.type === "State" ) {
-      traverseState( to, automaton );
-      toName = to._name;
-    } else if ( to.type === "Identifier" ) {
-      toName = to.name;
-    }
-
-    checkState( automaton, toName );
-
-    const l = {
-      name: labelName
-    };
-
-    automaton.labels.push( l );
-
-    automaton.lTransitions.push( {
-      from: fromName,
-      transition: l,
-      to: toName
-    } );
-
     set.add( labelName );
-
   }
+
+  return node.transitions.reduce( ( automaton, transition ) => compileLabel( fromName, transition, automaton ), automaton );
 }
 
 export default function( ast: Typestate ): Automaton {
 
   const automaton = {
-    states: new Set(),
+    states: new Set( [ "end" ] ),
     choices: new Set(),
     methods: [],
     labels: [],
     start: "",
-    final: new Set(),
+    final: new Set( [ "end" ] ),
     mTransitions: [],
     lTransitions: []
   };
 
-  automaton.states.add( "end" );
-  automaton.final.add( "end" );
-
+  // Get all named states
   for ( const { name } of ast.states ) {
     if ( automaton.states.has( name ) ) {
       throw new Error( `Duplicated ${name} state` );
     }
     automaton.states.add( name );
-    automaton.start = automaton.start || name;
   }
 
-  automaton.start = automaton.start || "end";
+  // Calculate first state
+  if ( ast.states.length === 0 ) {
+    automaton.start = "end";
+  } else {
+    automaton.start = ast.states[ 0 ].name;
+  }
 
-  traverseTypestate( ast, automaton );
-
-  return automaton;
+  return ast.states.reduce(
+    ( automaton, state ) => compileState( state, automaton ),
+    automaton
+  );
 }

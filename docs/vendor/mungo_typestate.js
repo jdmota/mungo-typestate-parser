@@ -425,31 +425,69 @@
     return true;
   }
 
-  function traverseTypestate(node, automaton) {
-    for (var _iterator = node.states, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref;
+  function compileMethod(fromName, method, automaton) {
+    var transitionNode = method.transition;
+    var toName = "";
 
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        _ref = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        _ref = _i.value;
-      }
-
-      var state = _ref;
-      traverseState(state, automaton);
+    if (transitionNode.type === "State") {
+      compileState(transitionNode, automaton);
+      toName = transitionNode._name;
+    } else if (transitionNode.type === "DecisionState") {
+      compileDecisionState(transitionNode, automaton);
+      toName = transitionNode._name;
+    } else if (transitionNode.type === "Identifier") {
+      toName = transitionNode.name;
     }
+
+    checkState(automaton, toName);
+    var m = {
+      name: method.name,
+      arguments: method.arguments.map(function (a) {
+        return a.name;
+      }),
+      returnType: method.returnType.name
+    };
+    automaton.methods.push(m);
+    automaton.mTransitions.push({
+      from: fromName,
+      transition: m,
+      to: toName
+    });
+    return automaton;
   }
 
-  function traverseState(node, automaton) {
+  function compileLabel(fromName, _ref, automaton) {
+    var label = _ref[0],
+        to = _ref[1];
+    var toName = "";
+
+    if (to.type === "State") {
+      compileState(to, automaton);
+      toName = to._name;
+    } else if (to.type === "Identifier") {
+      toName = to.name;
+    }
+
+    checkState(automaton, toName);
+    var l = {
+      name: label.name
+    };
+    automaton.labels.push(l);
+    automaton.lTransitions.push({
+      from: fromName,
+      transition: l,
+      to: toName
+    });
+    return automaton;
+  }
+
+  function compileState(node, automaton) {
     var fromName = node._name;
     checkState(automaton, fromName);
 
     if (node.methods.length === 0) {
       automaton.final.add(fromName);
-      return;
+      return automaton;
     }
 
     for (var i = 0; i < node.methods.length; i++) {
@@ -462,110 +500,68 @@
           }).join(", ") + ")");
         }
       }
-
-      var transitionNode = method.transition;
-      var toName = "";
-
-      if (transitionNode.type === "State") {
-        traverseState(transitionNode, automaton);
-        toName = transitionNode._name;
-      } else if (transitionNode.type === "DecisionState") {
-        traverseDecisionState(transitionNode, automaton);
-        toName = transitionNode._name;
-      } else if (transitionNode.type === "Identifier") {
-        toName = transitionNode.name;
-      }
-
-      checkState(automaton, toName);
-      var m = {
-        name: method.name,
-        arguments: method.arguments.map(function (a) {
-          return a.name;
-        }),
-        returnType: method.returnType.name
-      };
-      automaton.methods.push(m);
-      automaton.mTransitions.push({
-        from: fromName,
-        transition: m,
-        to: toName
-      });
     }
+
+    return node.methods.reduce(function (automaton, method) {
+      return compileMethod(fromName, method, automaton);
+    }, automaton);
   }
 
-  function traverseDecisionState(node, automaton) {
-    var set = new Set();
+  function compileDecisionState(node, automaton) {
     var fromName = node._name;
     checkState(automaton, fromName);
+    var set = new Set();
 
-    for (var _iterator2 = node.transitions, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+    for (var _iterator = node.transitions, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       var _ref2;
 
-      if (_isArray2) {
-        if (_i2 >= _iterator2.length) break;
-        _ref2 = _iterator2[_i2++];
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref2 = _iterator[_i++];
       } else {
-        _i2 = _iterator2.next();
-        if (_i2.done) break;
-        _ref2 = _i2.value;
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref2 = _i.value;
       }
 
       var _ref3 = _ref2,
-          label = _ref3[0],
-          to = _ref3[1];
+          label = _ref3[0];
       var labelName = label.name;
 
       if (set.has(labelName)) {
         throw new Error("Duplicate case label: " + labelName);
       }
 
-      var toName = "";
-
-      if (to.type === "State") {
-        traverseState(to, automaton);
-        toName = to._name;
-      } else if (to.type === "Identifier") {
-        toName = to.name;
-      }
-
-      checkState(automaton, toName);
-      var l = {
-        name: labelName
-      };
-      automaton.labels.push(l);
-      automaton.lTransitions.push({
-        from: fromName,
-        transition: l,
-        to: toName
-      });
       set.add(labelName);
     }
+
+    return node.transitions.reduce(function (automaton, transition) {
+      return compileLabel(fromName, transition, automaton);
+    }, automaton);
   }
 
   function createAutomaton (ast) {
     var automaton = {
-      states: new Set(),
+      states: new Set(["end"]),
       choices: new Set(),
       methods: [],
       labels: [],
       start: "",
-      final: new Set(),
+      final: new Set(["end"]),
       mTransitions: [],
       lTransitions: []
-    };
-    automaton.states.add("end");
-    automaton.final.add("end");
+    }; // Get all named states
 
-    for (var _iterator3 = ast.states, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+    for (var _iterator2 = ast.states, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
       var _ref4;
 
-      if (_isArray3) {
-        if (_i3 >= _iterator3.length) break;
-        _ref4 = _iterator3[_i3++];
+      if (_isArray2) {
+        if (_i2 >= _iterator2.length) break;
+        _ref4 = _iterator2[_i2++];
       } else {
-        _i3 = _iterator3.next();
-        if (_i3.done) break;
-        _ref4 = _i3.value;
+        _i2 = _iterator2.next();
+        if (_i2.done) break;
+        _ref4 = _i2.value;
       }
 
       var _ref5 = _ref4,
@@ -576,12 +572,18 @@
       }
 
       automaton.states.add(name);
-      automaton.start = automaton.start || name;
+    } // Calculate first state
+
+
+    if (ast.states.length === 0) {
+      automaton.start = "end";
+    } else {
+      automaton.start = ast.states[0].name;
     }
 
-    automaton.start = automaton.start || "end";
-    traverseTypestate(ast, automaton);
-    return automaton;
+    return ast.states.reduce(function (automaton, state) {
+      return compileState(state, automaton);
+    }, automaton);
   }
 
   function index (text) {
