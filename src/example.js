@@ -1,6 +1,7 @@
 // @flow
 import Parser from "./parser";
 import createAutomaton from "./automaton";
+import automatonToAst from "./automaton_to_ast";
 
 const fs = require( "fs" );
 const path = require( "path" );
@@ -22,4 +23,11 @@ const automaton = createAutomaton( ast );
 fs.writeFileSync(
   path.join( __dirname, "_automaton" ),
   JSON.stringify( automaton, null, 2 )
+);
+
+const newAst = automatonToAst( "FileProtocol", automaton );
+
+fs.writeFileSync(
+  path.join( __dirname, "_automaton_to_ast" ),
+  JSON.stringify( newAst, null, 2 )
 );

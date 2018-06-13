@@ -1,0 +1,143 @@
+{
+  "type": "Typestate",
+  "name": "FileProtocol",
+  "states": [
+    {
+      "type": "State",
+      "name": "Init",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "open",
+          "arguments": [],
+          "returnType": {
+            "type": "Identifier",
+            "name": "Status"
+          },
+          "transition": {
+            "type": "DecisionState",
+            "transitions": [
+              [
+                {
+                  "type": "Identifier",
+                  "name": "OK"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "Open"
+                }
+              ],
+              [
+                {
+                  "type": "Identifier",
+                  "name": "ERROR"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "end"
+                }
+              ]
+            ],
+            "_name": "decision:1"
+          }
+        }
+      ],
+      "_name": "Init"
+    },
+    {
+      "type": "State",
+      "name": "Open",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "hasNext",
+          "arguments": [],
+          "returnType": {
+            "type": "Identifier",
+            "name": "Boolean"
+          },
+          "transition": {
+            "type": "DecisionState",
+            "transitions": [
+              [
+                {
+                  "type": "Identifier",
+                  "name": "TRUE"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "Read"
+                }
+              ],
+              [
+                {
+                  "type": "Identifier",
+                  "name": "FALSE"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "Close"
+                }
+              ]
+            ],
+            "_name": "decision:2"
+          }
+        },
+        {
+          "type": "Method",
+          "name": "close",
+          "arguments": [],
+          "returnType": {
+            "type": "Identifier",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "end"
+          }
+        }
+      ],
+      "_name": "Open"
+    },
+    {
+      "type": "State",
+      "name": "Read",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "read",
+          "arguments": [],
+          "returnType": {
+            "type": "Identifier",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "Open"
+          }
+        }
+      ],
+      "_name": "Read"
+    },
+    {
+      "type": "State",
+      "name": "Close",
+      "methods": [
+        {
+          "type": "Method",
+          "name": "close",
+          "arguments": [],
+          "returnType": {
+            "type": "Identifier",
+            "name": "void"
+          },
+          "transition": {
+            "type": "Identifier",
+            "name": "end"
+          }
+        }
+      ],
+      "_name": "Close"
+    }
+  ]
+}

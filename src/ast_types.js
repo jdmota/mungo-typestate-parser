@@ -7,13 +7,13 @@ export type Typestate = {
   +states: NamedState[]
 };
 
-type AbstractState = {
+export type AbstractState = {
   +type: "State",
   +methods: Method[],
   +_name: string
 };
 
-export type State = AbstractState & { +name: ?string };
+export type State = AbstractState & { +name?: ?string };
 
 export type NamedState = AbstractState & { +name: string };
 
