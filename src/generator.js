@@ -31,11 +31,11 @@ function generateMethod( method: Method ): string {
 }
 
 function generateUnnamedState( state: State ): string {
-  return `{\n${state.methods.map( generateMethod ).join( "\n" )}\n}`;
+  return `{\n${state.methods.map( generateMethod ).join( ",\n" )}\n}`;
 }
 
 function generateNamedState( state: NamedState ): string {
-  return `${state.name} = {\n${state.methods.map( generateMethod ).join( "\n" )}\n}`;
+  return `${state.name} = {\n${state.methods.map( generateMethod ).join( ",\n" )}\n}`;
 }
 
 export default function( ast: Typestate ): string {

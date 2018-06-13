@@ -69,6 +69,7 @@ function applyTransitions<T: AbstractState>( state: T, automaton: Automaton ): T
 function createUnnamedState( name: string, automaton: Automaton ): State {
   return applyTransitions( {
     type: "State",
+    name: null,
     methods: [],
     _name: name
   }, automaton );

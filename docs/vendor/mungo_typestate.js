@@ -304,10 +304,6 @@
         }
       }
 
-      if (methods.length === 0) {
-        _name = "end";
-      }
-
       this.expect("}");
       return {
         type: "State",

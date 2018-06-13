@@ -1,5 +1,7 @@
 import Parser from "../src/parser";
 import createAutomaton from "../src/automaton";
+import automatonToAst from "../src/automaton_to_ast";
+import generator from "../src/generator";
 
 const path = require( "path" );
 const fs = require( "fs-extra" );
@@ -31,9 +33,23 @@ it( "mungo examples", async() => {
 
       const ast = parser.parse();
       expect( ast ).toMatchSnapshot( `ast ${relative}` );
-      expect( createAutomaton( ast ) ).toMatchSnapshot( `automaton ${relative}` );
 
-    } )() );
+      const automaton = createAutomaton( ast );
+      expect( automaton ).toMatchSnapshot( `automaton ${relative}` );
+
+      const newAst = automatonToAst( ast.name, automaton );
+      expect( newAst ).toEqual( ast );
+
+      const newText = generator( newAst );
+      expect( newText ).toMatchSnapshot( `string ${relative}` );
+
+      const newAst2 = new Parser( newText ).parse();
+      expect( newAst2 ).toEqual( ast );
+
+    } )().then( null, err => {
+      console.error( file, err );
+      throw err;
+    } ) );
   }
 
   await Promise.all( promises );
@@ -57,7 +73,10 @@ it( "error examples", async() => {
         createAutomaton( ast );
       } ).toThrowErrorMatchingSnapshot( relative );
 
-    } )() );
+    } )().then( null, err => {
+      console.error( file, err );
+      throw err;
+    } ) );
   }
 
   await Promise.all( promises );

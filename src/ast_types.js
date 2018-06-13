@@ -13,7 +13,7 @@ export type AbstractState = {
   +_name: string
 };
 
-export type State = AbstractState & { +name?: ?string };
+export type State = AbstractState & { +name: ?string };
 
 export type NamedState = AbstractState & { +name: string };
 

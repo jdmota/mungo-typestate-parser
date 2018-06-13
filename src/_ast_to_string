@@ -3,7 +3,7 @@ Init = {
 Status open(): <OK: Open, ERROR: end>
 }
 Open = {
-Boolean hasNext(): <TRUE: Read, FALSE: Close>
+Boolean hasNext(): <TRUE: Read, FALSE: Close>,
 void close(): end
 }
 Read = {

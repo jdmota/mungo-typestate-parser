@@ -120,7 +120,7 @@ export default class Parser {
 
   parseState(): State {
 
-    let _name = `unknown:${this.unknownUuid++}`;
+    const _name = `unknown:${this.unknownUuid++}`;
     const methods = [];
 
     this.expect( "{" );
@@ -134,10 +134,6 @@ export default class Parser {
           break;
         }
       }
-    }
-
-    if ( methods.length === 0 ) {
-      _name = "end";
     }
 
     this.expect( "}" );

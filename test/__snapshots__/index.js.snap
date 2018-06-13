@@ -166,7 +166,7 @@ Object {
             "type": "Identifier",
           },
           "transition": Object {
-            "_name": "end",
+            "_name": "unknown:8",
             "methods": Array [],
             "name": null,
             "type": "State",
@@ -592,7 +592,7 @@ Object {
             "type": "Identifier",
           },
           "transition": Object {
-            "_name": "end",
+            "_name": "unknown:7",
             "methods": Array [],
             "name": null,
             "type": "State",
@@ -2362,6 +2362,7 @@ Object {
   "choices": Set {},
   "final": Set {
     "end",
+    "unknown:8",
   },
   "lTransitions": Array [],
   "labels": Array [],
@@ -2435,7 +2436,7 @@ Object {
     },
     Object {
       "from": "EndProtocol",
-      "to": "end",
+      "to": "unknown:8",
       "transition": Object {
         "arguments": Array [],
         "name": "endCommunication",
@@ -2499,6 +2500,7 @@ Object {
     "EndProtocol",
     "unknown:5",
     "unknown:6",
+    "unknown:8",
   },
 }
 `;
@@ -2771,6 +2773,7 @@ Object {
   "choices": Set {},
   "final": Set {
     "end",
+    "unknown:7",
   },
   "lTransitions": Array [],
   "labels": Array [],
@@ -2833,7 +2836,7 @@ Object {
     },
     Object {
       "from": "EndProtocol",
-      "to": "end",
+      "to": "unknown:7",
       "transition": Object {
         "arguments": Array [],
         "name": "endCommunication",
@@ -2889,6 +2892,7 @@ Object {
     "unknown:2",
     "unknown:4",
     "unknown:5",
+    "unknown:7",
   },
 }
 `;
@@ -4535,4 +4539,359 @@ Object {
     "State2",
   },
 }
+`;
+
+exports[`mungo examples: string test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
+"typestate BobProtocol {
+Connect = {
+void connect(): GreetAlice
+}
+GreetAlice = {
+void sendHelloToAlice(String): GreetCarol
+}
+GreetCarol = {
+void sendHelloToCarol(String): MakeChoice
+}
+MakeChoice = {
+void sendTimeChoiceToAlice(): {
+int recvTimeFromAlice(): EndProtocol
+},
+void sendTimeChoiceToCarol(): {
+int recvTimeFromCarol(): EndProtocol
+}
+}
+EndProtocol = {
+void endCommunication(): {
+
+}
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/ThreeParties/FriendProtocol.protocol 1`] = `
+"typestate FriendProtocol {
+Init = {
+void connect(): {
+String recvHelloFromBob(): ReceiveChoice
+}
+}
+ReceiveChoice = {
+BobChoice recvChoiceFromBob(): <TIME: SendTime, END: EndProtocol>
+}
+SendTime = {
+void sendTimeToBob(int): EndProtocol
+}
+EndProtocol = {
+void endCommunication(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/TwoParties/AliceProtocol.protocol 1`] = `
+"typestate AliceProtocol {
+Init = {
+void connect(): {
+String recvStringFromBob(): ReceiveChoice
+}
+}
+ReceiveChoice = {
+BobChoice choiceFromBob(): <TIME: SendTime, GREET: HowAreYou>
+}
+SendTime = {
+void sendTimeToBob(int): EndProtocol
+}
+HowAreYou = {
+void sendGreetToBob(String): EndProtocol
+}
+EndProtocol = {
+void endCommunication(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/TwoParties/BobProtocol.protocol 1`] = `
+"typestate BobProtocol {
+Init = {
+void connect(): {
+void sendStringToAlice(String): SendChoice
+}
+}
+SendChoice = {
+void sendTimeChoiceToAlice(): {
+int recvTimeFromAlice(): EndProtocol
+},
+void sendGreetingChoiceToAlice(): {
+String recvGreetingFromAlice(): EndProtocol
+}
+}
+EndProtocol = {
+void endCommunication(): {
+
+}
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/collection/CollectionProtocol.protocol 1`] = `
+"typestate CollectionProtocol {
+Init = {
+void initialise(int): Empty
+}
+Empty = {
+void put(Node): NonEmpty,
+void close(): end
+}
+NonEmpty = {
+void put(Node): NonEmpty,
+Node get(): Unknown
+}
+Unknown = {
+void put(Node): NonEmpty,
+BooleanChoice isEmpty(): <TRUE: Empty, FALSE: NonEmpty>
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/collection/StackUser/StackUserProtocol.protocol 1`] = `
+"typestate StackUserProtocol {
+Init = {
+Stack produce(Stack, int): Consume,
+Stack produce(Stack): Consume,
+void close(): end
+}
+Consume = {
+Stack produce(Stack, int): Consume,
+Stack produce(Stack): Consume,
+Stack consume(Stack): Init
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/collection/StackUser2/StackUserProtocol.protocol 1`] = `
+"typestate StackUserProtocol {
+Init = {
+void produce(int): Consume,
+void produce(): Consume,
+void close(): end
+}
+Consume = {
+void produce(int): Consume,
+void produce(): Consume,
+void consume(): Init
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/AProtocol.protocol 1`] = `
+"typestate AProtocol {
+State0 = {
+String receive_requestStringFromC(): State1
+}
+State1 = {
+void send_dataintToC(int): State2
+}
+State2 = {
+Choice1 receive_Choice1LabelFromB(): <APPROVE: State3, REFUSE: State5>
+}
+State3 = {
+Boolean receive_approveBooleanFromB(): State4
+}
+State4 = {
+void send_invoiceStringToBC(String): end
+}
+State5 = {
+Boolean receive_refuseBooleanFromB(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/BProtocol.protocol 1`] = `
+"typestate BProtocol {
+State0 = {
+int receive_paymentintFromC(): State1
+}
+State1 = {
+void send_APPROVEToCA(): State2,
+void send_REFUSEToCA(): State4
+}
+State2 = {
+void send_approveBooleanToCA(Boolean): State3
+}
+State3 = {
+String receive_invoiceStringFromA(): end
+}
+State4 = {
+void send_refuseBooleanToCA(Boolean): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/Bank.protocol 1`] = `
+"typestate BankProtocol {
+State0 = {
+Data receivePayment(): State1
+}
+State1 = {
+void sendApproval(boolean): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/CProtocol.protocol 1`] = `
+"typestate CProtocol {
+State0 = {
+void send_requestStringToA(String): State1
+}
+State1 = {
+int receive_dataintFromA(): State2
+}
+State2 = {
+void send_paymentintToB(int): State3
+}
+State3 = {
+Choice1 receive_Choice1LabelFromB(): <APPROVE: State4, REFUSE: State6>
+}
+State4 = {
+Boolean receive_approveBooleanFromB(): State5
+}
+State5 = {
+String receive_invoiceStringFromA(): end
+}
+State6 = {
+Boolean receive_refuseBooleanFromB(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/Client.protocol 1`] = `
+"typestate ClientProtocol {
+State0 = {
+void sendRequest(Travel): State1
+}
+State1 = {
+Data receiveData(): State2
+}
+State2 = {
+void payment(Data): State3
+}
+State3 = {
+boolean receiveApproval(): <true: State4, false: end>
+}
+State4 = {
+Invoice receiveInvoice(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/distributed-client-travelagency-bank/TravelAgency.protocol 1`] = `
+"typestate TravelAgencyProtocol {
+State0 = {
+Travel receiveRequest(): State1
+}
+State1 = {
+void sendData(Data): State2
+}
+State2 = {
+boolean receiveApproval(): <true: State3, false: end>
+}
+State3 = {
+void sendInvoice(Invoice): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/file.protocol 1`] = `
+"typestate FileProtocol {
+Init = {
+Status open(): <OK: Open, ERROR: end>
+}
+Open = {
+Boolean hasNext(): <TRUE: Read, FALSE: Close>,
+void close(): end
+}
+Read = {
+void read(): Open
+}
+Close = {
+void close(): end
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/infinite/BankProtocol.protocol 1`] = `
+"typestate BankProtocol {
+State0 = {
+void receivePayment(): State0
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/inner-state-in-decision.protocol 1`] = `
+"typestate InnerStateInDecision {
+Init = {
+void next(): Next
+}
+Next = {
+boolean next2(): <true: {
+void next3(): end
+}, false: end>
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/local-client-travelagency-bank/BankProtocol.protocol 1`] = `
+"typestate BankProtocol {
+State0 = {
+PaymentStatus receivePayment(String): State0
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/local-client-travelagency-bank/ClientProtocol.protocol 1`] = `
+"typestate ClientProtocol {
+State0 = {
+String receiveInfo(): State0,
+void sendRequest(String): State1
+}
+State1 = {
+PaymentStatus tryPayment(String): <OK: State2, KO: State0, TA: State1>
+}
+State2 = {
+String receiveInvoice(): State0
+}
+}
+"
+`;
+
+exports[`mungo examples: string test/fixtures/local-client-travelagency-bank/TravelAgencyProtocol.protocol 1`] = `
+"typestate TravelAgencyProtocol {
+State0 = {
+String getInfo(): State0,
+void receiveRequest(String): State1
+}
+State1 = {
+PaymentStatus tryPayment(String): <OK: State2, KO: State0, TA: State1>
+}
+State2 = {
+String getInvoice(): State0
+}
+}
+"
 `;
