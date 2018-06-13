@@ -2,6 +2,7 @@
 import Parser from "./parser";
 import createAutomaton from "./automaton";
 import automatonToAst from "./automaton_to_ast";
+import generator from "./generator";
 
 const fs = require( "fs" );
 const path = require( "path" );
@@ -30,4 +31,11 @@ const newAst = automatonToAst( "FileProtocol", automaton );
 fs.writeFileSync(
   path.join( __dirname, "_automaton_to_ast" ),
   JSON.stringify( newAst, null, 2 )
+);
+
+const newString = generator( newAst );
+
+fs.writeFileSync(
+  path.join( __dirname, "_ast_to_string" ),
+  newString
 );
