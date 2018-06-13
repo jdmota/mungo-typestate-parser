@@ -1,0 +1,7 @@
+typestate FinalCommaInMethod {
+
+  State0 = {
+    void abc( A, ): end
+  }
+
+}

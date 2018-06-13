@@ -10,6 +10,10 @@ exports[`error examples: test/fixtures-errors/duplicate-method.protocol 1`] = `"
 
 exports[`error examples: test/fixtures-errors/duplicate-state.protocol 1`] = `"Duplicated Init state"`;
 
+exports[`error examples: test/fixtures-errors/final-comma-in-decision.protocol 1`] = `"Unexpected token >, expected identifier at 72"`;
+
+exports[`error examples: test/fixtures-errors/final-comma-in-method.protocol 1`] = `"Unexpected token ), expected identifier at 63"`;
+
 exports[`error examples: test/fixtures-errors/not-defined.protocol 1`] = `"State not defined: Something"`;
 
 exports[`mungo examples: ast test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `

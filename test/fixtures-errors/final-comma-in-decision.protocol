@@ -1,0 +1,7 @@
+typestate FinalCommaInDecision {
+
+  State0 = {
+    void abc(): <A: end,>
+  }
+
+}
