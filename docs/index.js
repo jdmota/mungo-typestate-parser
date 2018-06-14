@@ -221,7 +221,7 @@
     void close(): end
   }
 
-}`;function fixAutomaton(b){return b.states=Array.from(b.states),b.choices=Array.from(b.choices),b.final=Array.from(b.final),b}function fixAutomaton2(b){return b.states=new Set(b.states),b.choices=new Set(b.choices),b.final=new Set(b.final),b}const transforms={view(a){return html$1`<automaton-viewer automaton="${createAutomaton(a)}"></automaton-viewer>`},parse(a){return html$1`<json-viewer json="${parse(a)}"></json-viewer>`},astToAutomaton(a){return html$1`<json-viewer json="${fixAutomaton(astToAutomaton(JSON.parse(a)))}"></json-viewer>`},automatonToAst(a){return html$1`<json-viewer json="${automatonToAst("NAME",fixAutomaton2(JSON.parse(a)))}"></json-viewer>`},generator(a){return html$1`<text-viewer text="${generator(JSON.parse(a))}"></text-viewer>`}},arrow=html$1`<span style="font-size: 18px; margin: 5px;">\u2192</span>`,items=["Preview",html$1`Text ${arrow} AST`,html$1`AST ${arrow} Automaton`,html$1`Automaton ${arrow} AST`,html$1`AST ${arrow} Text`],listItems=items.map(a=>html$1`<li class="mdc-list-item" role="menuitem" tabindex="0">${a}</li>`);class App extends LitElement$1{static get properties(){return {}}_firstRendered(){const a=this.shadowRoot.querySelector(".mdc-menu"),b=new MDCMenu(a),c=this.shadowRoot.querySelector("#menu-button");c.addEventListener("click",()=>{b.open=!b.open;}),a.addEventListener("MDCMenu:selected",a=>{this.shadowRoot.querySelectorAll("my-transformation")[a.detail.index].scrollIntoView();}),b.setAnchorMargin({top:10,left:10});}_render(){return html$1`
+}`;function fixAutomaton(b){return b.states=Array.from(b.states),b.choices=Array.from(b.choices),b.final=Array.from(b.final),b}function fixAutomaton2(b){return b.states=new Set(b.states),b.choices=new Set(b.choices),b.final=new Set(b.final),b}const transforms={view(a){return html$1`<automaton-viewer automaton="${createAutomaton(a)}"></automaton-viewer>`},parse(a){return html$1`<json-viewer json="${parse(a)}"></json-viewer>`},astToAutomaton(a){return html$1`<json-viewer json="${fixAutomaton(astToAutomaton(JSON.parse(a)))}"></json-viewer>`},automatonToAst(a){return html$1`<json-viewer json="${automatonToAst("NAME",fixAutomaton2(JSON.parse(a)))}"></json-viewer>`},generator(a){return html$1`<text-viewer text="${generator(JSON.parse(a))}"></text-viewer>`}},arrow=`→`,items=["Preview",`Text ${arrow} AST`,`AST ${arrow} Automaton`,`Automaton ${arrow} AST`,`AST ${arrow} Text`],listItems=items.map(a=>html$1`<li class="mdc-list-item" role="menuitem" tabindex="0">${a}</li>`);class App extends LitElement$1{static get properties(){return {}}_firstRendered(){const a=this.shadowRoot.querySelector(".mdc-menu"),b=new MDCMenu(a),c=this.shadowRoot.querySelector("#menu-button");c.addEventListener("click",()=>{b.open=!b.open;}),a.addEventListener("MDCMenu:selected",a=>{const b=this.shadowRoot.querySelectorAll("my-transformation");b[a.detail.index].scrollIntoView();}),b.setAnchorMargin({top:10,left:10});}_render(){return html$1`
       <style>${MDCElevationStyles+MDCThemeStyles+MDCTypographyStyles+MDCMenuStyles+MDCListStyles}</style>
       <style>
         .toolbar {
@@ -273,7 +273,10 @@
           margin: 0 20px;
         }
         my-transformation {
-          margin-bottom: 10px;
+          padding-top: 10px;
+        }
+        my-transformation:nth-last-child(1) {
+          padding-bottom: 20px;
         }
       </style>
       <div class="toolbar mdc-menu-anchor">

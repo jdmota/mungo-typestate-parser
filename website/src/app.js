@@ -70,8 +70,8 @@ const transforms = {
 
 };
 
-const arrow = html`<span style="font-size: 18px; margin: 5px;">\u2192</span>`;
-const items = [ "Preview", html`Text ${arrow} AST`, html`AST ${arrow} Automaton`, html`Automaton ${arrow} AST`, html`AST ${arrow} Text` ];
+const arrow = `→`;
+const items = [ "Preview", `Text ${arrow} AST`, `AST ${arrow} Automaton`, `Automaton ${arrow} AST`, `AST ${arrow} Text` ];
 const listItems = items.map( t => html`<li class="mdc-list-item" role="menuitem" tabindex="0">${t}</li>` );
 
 export class App extends LitElement {
@@ -91,7 +91,8 @@ export class App extends LitElement {
     } );
 
     menuEl.addEventListener( "MDCMenu:selected", evt => {
-      this.shadowRoot.querySelectorAll( "my-transformation" )[ evt.detail.index ].scrollIntoView();
+      const elems = this.shadowRoot.querySelectorAll( "my-transformation" );
+      elems[ evt.detail.index ].scrollIntoView();
     } );
 
     menu.setAnchorMargin( { top: 10, left: 10 } );
@@ -152,7 +153,10 @@ export class App extends LitElement {
           margin: 0 20px;
         }
         my-transformation {
-          margin-bottom: 10px;
+          padding-top: 10px;
+        }
+        my-transformation:nth-last-child(1) {
+          padding-bottom: 20px;
         }
       </style>
       <div class="toolbar mdc-menu-anchor">
