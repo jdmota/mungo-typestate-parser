@@ -149,7 +149,7 @@ export class AutomatonViewer extends LitElement {
           border: 1px solid lightgray;
         }
       </style>
-      <top-bar myTitle="" buttonText="Download" fn="${() => this.download()}"></top-bar>
+      <top-bar myTitle="" buttons="${[ [ "Download", () => this.download() ] ]}"></top-bar>
       ${this.container}
     `;
   }

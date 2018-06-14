@@ -7,12 +7,11 @@ export class TopBar extends LitElement {
   static get properties() {
     return {
       myTitle: String,
-      buttonText: String,
-      fn: Function
+      buttons: Array
     };
   }
 
-  _render( { myTitle, buttonText, fn } ) {
+  _render( { myTitle, buttons } ) {
     return html`
       <style>
         :host {
@@ -55,7 +54,7 @@ export class TopBar extends LitElement {
         }
       </style>
       ${myTitle ? html`<span>${myTitle}</span>` : ""}
-      ${fn && buttonText ? html`<button on-click="${fn}">${buttonText}</button>` : ""}
+      ${buttons.map( ( [ text, fn ] ) => html`<button on-click="${fn}">${text}</button>` )}
     `;
   }
 

@@ -1,7 +1,7 @@
 import { LitElement, html } from "./lit-element";
 import jsonEditorCss from "../vendor/jsoneditor.min.css";
 
-/* globals document, customElements, JSONEditor */
+/* globals window, document, customElements, JSONEditor */
 
 // Using https://github.com/josdejong/jsoneditor
 
@@ -28,6 +28,15 @@ export class JsonViewer extends LitElement {
     this.mode = !this.mode;
   }
 
+  select() {
+    const node = this.shadowRoot.querySelector( "pre" );
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents( node );
+    selection.removeAllRanges();
+    selection.addRange( range );
+  }
+
   _shouldRender( props ) {
     if ( !props.json ) {
       return false;
@@ -38,6 +47,16 @@ export class JsonViewer extends LitElement {
   }
 
   _render() {
+
+    const buttons = this.mode ?
+      [
+        [ "See raw text", () => this.toggleMode() ]
+      ] :
+      [
+        [ "Open JSON Viewer", () => this.toggleMode() ],
+        [ "Select all", () => this.select() ]
+      ];
+
     return html`
       <style>${jsonEditorCss}</style>
       <style>
@@ -47,10 +66,20 @@ export class JsonViewer extends LitElement {
         .visible {
           display: block;
         }
+        div.view {
+          width: 600px;
+        }
+        pre.view {
+          width: 600px;
+          height: 600px;
+          overflow: auto;
+          border: 1px solid lightgray;
+          margin: 0px;
+        }
       </style>
-      <top-bar myTitle="" buttonText="${this.mode ? "See raw text" : "Open JSON Viewer"}" fn="${() => this.toggleMode()}"></top-bar>
-      <div class$="${this.mode ? "visible" : "invisible"}" style="width: 600px">${this.container}</div>
-      <pre class$="${this.mode ? "invisible" : "visible"}" style="width: 600px">${this.rawText}</pre>
+      <top-bar myTitle="" buttons="${buttons}"></top-bar>
+      <div class$="view ${this.mode ? "visible" : "invisible"}">${this.container}</div>
+      <pre class$="view ${this.mode ? "invisible" : "visible"}">${this.rawText}</pre>
     `;
   }
 

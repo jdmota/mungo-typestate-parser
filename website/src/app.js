@@ -151,6 +151,9 @@ export class App extends LitElement {
         .container div {
           margin: 0 20px;
         }
+        my-transformation {
+          margin-bottom: 10px;
+        }
       </style>
       <div class="toolbar mdc-menu-anchor">
         <div id="menu-button"><div></div></div>

@@ -40,7 +40,7 @@ export class TransformationElement extends LitElement {
         }
         .side {
           float: left;
-          margin: 10px;
+          margin: 0 10px;
         }
         error-display {
           width: 600px;
@@ -55,7 +55,7 @@ export class TransformationElement extends LitElement {
         }
       </style>
       <div class$="side ${error ? "hasError" : ""}">
-        <top-bar myTitle="${myTitle}" buttonText="Do" fn="${() => this.onDo( fn )}"></top-bar>
+        <top-bar myTitle="${myTitle}" buttons="${[ [ "Do", () => this.onDo( fn ) ] ]}"></top-bar>
         <error-display text="${error}"></error-display>
         <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
       </div>

@@ -17,9 +17,16 @@ export class TextViewer extends LitElement {
   _render( { text } ) {
     return html`
       <style>
+        pre {
+          width: 600px;
+          height: 600px;
+          overflow: auto;
+          border: 1px solid lightgray;
+          margin: 0px;
+        }
       </style>
-      <top-bar myTitle="" buttonText="" fn="${() => {}}"></top-bar>
-      <pre style="width: 600px">${text}</pre>
+      <top-bar myTitle="" buttons="${[]}"></top-bar>
+      <pre>${text}</pre>
     `;
   }
 
