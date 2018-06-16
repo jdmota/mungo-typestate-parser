@@ -37,6 +37,11 @@ it( "mungo examples", async() => {
       const automaton = createAutomaton( ast );
       expect( automaton ).toMatchSnapshot( `automaton ${relative}` );
 
+      // Make sure transformation does not depend on the order of the states in the set
+      const shuffledStates = Array.from( automaton.states );
+      shuffledStates.push( shuffledStates.shift() );
+      automaton.states = new Set( shuffledStates );
+
       const newAst = automatonToAst( ast.name, automaton );
       expect( newAst ).toEqual( ast );
 

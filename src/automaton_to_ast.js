@@ -92,8 +92,13 @@ export default function( name: ?string, automaton: Automaton ): Typestate {
     states: []
   };
 
+  // Make sure the first state is the start
+  if ( automaton.start !== "end" ) {
+    ast.states.push( createNamedState( automaton.start, automaton ) );
+  }
+
   for ( const state of automaton.states ) {
-    if ( state !== "end" && !/:/.test( state ) ) {
+    if ( state !== "end" && state !== automaton.start && !/:/.test( state ) ) {
       ast.states.push( createNamedState( state, automaton ) );
     }
   }
