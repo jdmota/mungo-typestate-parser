@@ -1,6 +1,6 @@
 import { LitElement, html } from "@polymer/lit-element";
 
-/* globals customElements */
+/* globals window, customElements */
 
 export class TransformationElement extends LitElement {
 
@@ -28,10 +28,19 @@ export class TransformationElement extends LitElement {
       this.error = error.message;
       console.log( "Caught:", error );
     }
+
+    if ( this.myTitle === "Preview" ) {
+      window.__ERROR__ = this.error;
+    }
   }
 
   _firstRendered() {
     this.shadowRoot.querySelector( "textarea" ).value = this.defaultValue || "";
+
+    if ( this.myTitle === "Preview" ) {
+      window.__TEXTAREA__ = this.shadowRoot.querySelector( "textarea" );
+      window.__RENDER__ = this.onDo;
+    }
   }
 
   _render( { myTitle, result, error } ) {

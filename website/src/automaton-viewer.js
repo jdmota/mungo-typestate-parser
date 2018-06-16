@@ -1,6 +1,6 @@
 import { LitElement, html } from "@polymer/lit-element";
 
-/* globals document, customElements, vis */
+/* globals window, document, location, customElements, vis */
 
 function createDemo( automaton, container ) {
 
@@ -95,18 +95,20 @@ function createDemo( automaton, container ) {
 
   const network = new vis.Network( container, data, options );
 
-  // https://github.com/almende/vis/issues/2292
-  /* network.on( "beforeDrawing", ctx => {
-    // save current translate/zoom
-    ctx.save();
-    // reset transform to identity
-    ctx.setTransform( 1, 0, 0, 1, 0, 0 );
-    // fill background with solid white
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect( 0, 0, ctx.canvas.width, ctx.canvas.height );
-    // restore old transform
-    ctx.restore();
-  } );*/
+  if ( location.hash === "#forcewhite" ) {
+    // https://github.com/almende/vis/issues/2292
+    network.on( "beforeDrawing", ctx => {
+      // save current translate/zoom
+      ctx.save();
+      // reset transform to identity
+      ctx.setTransform( 1, 0, 0, 1, 0, 0 );
+      // fill background with solid white
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect( 0, 0, ctx.canvas.width, ctx.canvas.height );
+      // restore old transform
+      ctx.restore();
+    } );
+  }
 
   return network;
 }
@@ -132,6 +134,10 @@ export class AutomatonViewer extends LitElement {
     anchor.download = "automaton.png";
     anchor.href = this.shadowRoot.querySelector( "canvas" ).toDataURL( "image/png" );
     anchor.click();
+  }
+
+  _firstRendered() {
+    window.__CANVAS__ = () => this.shadowRoot.querySelector( "canvas" );
   }
 
   _shouldRender( props ) {

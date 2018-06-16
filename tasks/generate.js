@@ -26,6 +26,7 @@ async function run() {
   console.log( "Launching browser..." );
 
   const browser = await puppeteer.launch( {
+    // headless: false,
     executablePath: "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
   } );
 
@@ -35,11 +36,11 @@ async function run() {
 
   console.log( "Goto..." );
 
-  const loc = new URL( path.join( __dirname, "../docs/index.html" ), "file://" ).href;
+  const loc = new URL( path.join( __dirname, "../docs/index.html#forcewhite" ), "file://" ).href;
 
   console.log( loc );
 
-  await page.goto( loc, { waitUntil: "load" } );
+  await page.goto( loc, { waitUntil: [ "load" ] } );
 
   console.log( "Getting files..." );
 
@@ -60,32 +61,31 @@ async function run() {
     const result = await page.evaluate( text => {
 
       /* eslint-disable no-undef */
-      const doc = document;
+      const win = window;
       const FReader = FileReader;
       /* eslint-enable no-undef */
 
-      const textarea = doc.querySelector( "textarea" );
-      textarea.value = text;
+      win.__TEXTAREA__.value = text;
 
-      doc.querySelector( ".show" ).click();
+      win.__RENDER__();
 
       return new Promise( ( resolve, reject ) => {
         setTimeout( () => {
 
-          const error = doc.querySelector( "pre" ).innerText;
+          const error = win.__ERROR__;
 
           if ( error ) {
             resolve( { error } );
             return;
           }
 
-          doc.querySelector( "canvas" ).toBlob( blob => {
+          win.__CANVAS__().toBlob( blob => {
             const reader = new FReader();
             reader.onload = () => resolve( Array.from( new Uint8Array( reader.result ) ) );
             reader.onerror = reject;
             reader.readAsArrayBuffer( blob );
           } );
-        }, 500 );
+        }, 600 );
       } );
 
     }, text );
