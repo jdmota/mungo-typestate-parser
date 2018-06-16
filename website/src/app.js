@@ -1,3 +1,4 @@
+import { LitElement, html } from "@polymer/lit-element";
 import { MDCMenu } from "@material/menu";
 import MDCElevationStyles from "@material/elevation/dist/mdc.elevation.min.css";
 import MDCThemeStyles from "@material/theme/dist/mdc.theme.min.css";
@@ -5,7 +6,6 @@ import MDCTypographyStyles from "@material/typography/dist/mdc.typography.min.cs
 import MDCMenuStyles from "@material/menu/dist/mdc.menu.min.css";
 import MDCListStyles from "@material/list/dist/mdc.list.min.css";
 import createAutomaton, { parse, astToAutomaton, automatonToAst, generator } from "../../src/index";
-import { LitElement, html } from "./lit-element";
 
 /* globals customElements */
 

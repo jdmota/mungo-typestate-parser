@@ -1,4 +1,4 @@
-import { LitElement, html } from "./lit-element";
+import { LitElement, html } from "@polymer/lit-element";
 import jsonEditorCss from "../vendor/jsoneditor.min.css";
 
 /* globals window, document, customElements, JSONEditor */
@@ -22,6 +22,9 @@ export class JsonViewer extends LitElement {
     } );
     this.rawText = "";
     this.mode = true;
+
+    this.toggleMode = this.toggleMode.bind( this );
+    this.select = this.select.bind( this );
   }
 
   toggleMode() {
@@ -50,11 +53,11 @@ export class JsonViewer extends LitElement {
 
     const buttons = this.mode ?
       [
-        [ "See raw text", () => this.toggleMode() ]
+        [ "See raw text", this.toggleMode ]
       ] :
       [
-        [ "Open JSON Viewer", () => this.toggleMode() ],
-        [ "Select all", () => this.select() ]
+        [ "Open JSON Viewer", this.toggleMode ],
+        [ "Select all", this.select ]
       ];
 
     return html`

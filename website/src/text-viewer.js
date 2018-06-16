@@ -1,4 +1,4 @@
-import { LitElement, html } from "./lit-element";
+import { LitElement, html } from "@polymer/lit-element";
 
 /* globals document, customElements */
 

@@ -1,4 +1,4 @@
-import { LitElement, html } from "./lit-element";
+import { LitElement, html } from "@polymer/lit-element";
 
 /* globals customElements */
 
@@ -14,7 +14,13 @@ export class TransformationElement extends LitElement {
     };
   }
 
-  onDo( fn ) {
+  constructor() {
+    super();
+    this.onDo = this.onDo.bind( this );
+  }
+
+  onDo() {
+    const fn = this.fn;
     try {
       this.result = fn( this.shadowRoot.querySelector( "textarea" ).value );
       this.error = "";
@@ -28,7 +34,7 @@ export class TransformationElement extends LitElement {
     this.shadowRoot.querySelector( "textarea" ).value = this.defaultValue || "";
   }
 
-  _render( { myTitle, fn, result, error } ) {
+  _render( { myTitle, result, error } ) {
     return html`
       <style>
         :host {
@@ -55,7 +61,7 @@ export class TransformationElement extends LitElement {
         }
       </style>
       <div class$="side ${error ? "hasError" : ""}">
-        <top-bar myTitle="${myTitle}" buttons="${[ [ "Do", () => this.onDo( fn ) ] ]}"></top-bar>
+        <top-bar myTitle="${myTitle}" buttons="${[ [ "Do", this.onDo ] ]}"></top-bar>
         <error-display text="${error}"></error-display>
         <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
       </div>

@@ -1,4 +1,4 @@
-import { LitElement, html } from "./lit-element";
+import { LitElement, html } from "@polymer/lit-element";
 
 /* globals document, customElements, vis */
 
@@ -123,6 +123,8 @@ export class AutomatonViewer extends LitElement {
     super();
     this.container = document.createElement( "div" );
     this.container.className = "container";
+
+    this.download = this.download.bind( this );
   }
 
   download() {
@@ -149,7 +151,7 @@ export class AutomatonViewer extends LitElement {
           border: 1px solid lightgray;
         }
       </style>
-      <top-bar myTitle="" buttons="${[ [ "Download", () => this.download() ] ]}"></top-bar>
+      <top-bar myTitle="" buttons="${[ [ "Download", this.download ] ]}"></top-bar>
       ${this.container}
     `;
   }
