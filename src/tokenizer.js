@@ -1,5 +1,5 @@
 // @flow
-// Based on babel/babylon's tokenizer
+import { error } from "./utils";
 
 /* eslint default-case: 0, no-fallthrough: 0 */
 
@@ -66,10 +66,6 @@ export const FAKE_LOC = {
     column: 0
   }
 };
-
-export function positionToString( pos: Position ) {
-  return `${pos.line}:${pos.column}`;
-}
 
 export default class Tokenizer {
 
@@ -233,8 +229,9 @@ export default class Tokenizer {
       return this.readWord();
     }
 
-    throw new Error(
-      `Unexpected character '${this.charAt( this.pos )}' at ${positionToString( this.start )}`
+    throw error(
+      `Unexpected character '${this.charAt( this.pos )}'`,
+      this.start
     );
   }
 

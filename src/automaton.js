@@ -1,7 +1,7 @@
 // @flow
 import type { Typestate, State, DecisionState, Method } from "./ast_types";
 import type { Automaton } from "./automaton_types";
-import { positionToString } from "./tokenizer";
+import { error } from "./utils";
 
 function checkState( automaton, name, node ) {
   if ( /:/.test( name ) ) {
@@ -11,7 +11,7 @@ function checkState( automaton, name, node ) {
       automaton.states.add( name );
     }
   } else if ( !automaton.states.has( name ) ) {
-    throw new Error( `State not defined: ${name} (at ${positionToString( node.loc.start )})` );
+    throw error( `State not defined: ${name}`, node.loc.start );
   }
 }
 
@@ -105,9 +105,9 @@ function compileState( node: State, automaton: Automaton ) {
     const method = node.methods[ i ];
     for ( let j = 0; j < i; j++ ) {
       if ( equalSignature( method, node.methods[ j ] ) ) {
-        throw new Error(
-          `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})` +
-          ` (at ${positionToString( method.loc.start )})`
+        throw error(
+          `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})`,
+          method.loc.start
         );
       }
     }
@@ -128,8 +128,9 @@ function compileDecisionState( node: DecisionState, automaton: Automaton ) {
   for ( const [ label ] of node.transitions ) {
     const labelName = label.name;
     if ( set.has( labelName ) ) {
-      throw new Error(
-        `Duplicate case label: ${labelName} (at ${positionToString( label.loc.start )})`
+      throw error(
+        `Duplicate case label: ${labelName}`,
+        label.loc.start
       );
     }
     set.add( labelName );
@@ -157,7 +158,7 @@ export default function( ast: Typestate ): Automaton {
   // Get all named states
   for ( const state of ast.states ) {
     if ( automaton.states.has( state.name ) ) {
-      throw new Error( `Duplicated ${state.name} state (at ${positionToString( state.loc.start )})` );
+      throw error( `Duplicated ${state.name} state`, state.loc.start );
     }
     automaton.states.add( state.name );
   }

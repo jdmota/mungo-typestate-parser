@@ -2,7 +2,8 @@
 import type {
   Typestate, NamedState, State, Identifier, Method, DecisionState
 } from "./ast_types";
-import Tokenizer, { type Token, type Position, positionToString } from "./tokenizer";
+import Tokenizer, { type Token, type Position } from "./tokenizer";
+import { error } from "./utils";
 
 export default class Parser {
 
@@ -58,8 +59,9 @@ export default class Parser {
   expect( type: string, value: ?string ): Token {
     const token = this.eat( type, value );
     if ( token == null ) {
-      throw new Error(
-        `Unexpected token ${this.token.type}, expected ${type} at ${positionToString( this.token.loc.start )}`
+      throw error(
+        `Unexpected token ${this.token.type}, expected ${type}`,
+        this.token.loc.start
       );
     }
     return token;
@@ -131,9 +133,7 @@ export default class Parser {
     const name = this.expect( "identifier" ).value;
 
     if ( name === "end" ) {
-      throw new Error(
-        `You cannot have a state called 'end' (at ${positionToString( start )})`
-      );
+      throw error( `You cannot have a state called 'end'`, start );
     }
 
     this.expect( "=" );
@@ -195,9 +195,7 @@ export default class Parser {
     const args = [];
 
     if ( name === "end" ) {
-      throw new Error(
-        `Method cannot be called 'end' (at ${positionToString( start )})`
-      );
+      throw error( `Method cannot be called 'end'`, start );
     }
 
     this.expect( "(" );
