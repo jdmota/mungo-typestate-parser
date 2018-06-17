@@ -4,17 +4,17 @@ exports[`error examples: test/fixtures-errors/cannot-use-end.protocol 1`] = `"Yo
 
 exports[`error examples: test/fixtures-errors/decision-without-choices.protocol 1`] = `"Unexpected token >, expected identifier at 4:18"`;
 
-exports[`error examples: test/fixtures-errors/duplicate-label.protocol 1`] = `"Duplicate case label: OK"`;
+exports[`error examples: test/fixtures-errors/duplicate-label.protocol 1`] = `"Duplicate case label: OK (at 4:27)"`;
 
-exports[`error examples: test/fixtures-errors/duplicate-method.protocol 1`] = `"Duplicate method signature: close()"`;
+exports[`error examples: test/fixtures-errors/duplicate-method.protocol 1`] = `"Duplicate method signature: close() (at 11:4)"`;
 
-exports[`error examples: test/fixtures-errors/duplicate-state.protocol 1`] = `"Duplicated Init state"`;
+exports[`error examples: test/fixtures-errors/duplicate-state.protocol 1`] = `"Duplicated Init state (at 5:2)"`;
 
 exports[`error examples: test/fixtures-errors/final-comma-in-decision.protocol 1`] = `"Unexpected token >, expected identifier at 4:24"`;
 
 exports[`error examples: test/fixtures-errors/final-comma-in-method.protocol 1`] = `"Unexpected token ), expected identifier at 4:17"`;
 
-exports[`error examples: test/fixtures-errors/not-defined.protocol 1`] = `"State not defined: Something"`;
+exports[`error examples: test/fixtures-errors/not-defined.protocol 1`] = `"State not defined: Something (at 4:17)"`;
 
 exports[`mungo examples: ast test/fixtures/ThreeParties/BobProtocol.protocol 1`] = `
 Object {

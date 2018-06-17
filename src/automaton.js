@@ -1,8 +1,9 @@
 // @flow
 import type { Typestate, State, DecisionState, Method } from "./ast_types";
 import type { Automaton } from "./automaton_types";
+import { positionToString } from "./tokenizer";
 
-function checkState( automaton, name ) {
+function checkState( automaton, name, node ) {
   if ( /:/.test( name ) ) {
     if ( /^decision:/.test( name ) ) {
       automaton.choices.add( name );
@@ -10,7 +11,7 @@ function checkState( automaton, name ) {
       automaton.states.add( name );
     }
   } else if ( !automaton.states.has( name ) ) {
-    throw new Error( `State not defined: ${name}` );
+    throw new Error( `State not defined: ${name} (at ${positionToString( node.loc.start )})` );
   }
 }
 
@@ -43,7 +44,7 @@ function compileMethod( fromName: string, method: Method, automaton: Automaton )
     toName = transitionNode.name;
   }
 
-  checkState( automaton, toName );
+  checkState( automaton, toName, transitionNode );
 
   const m = {
     name: method.name,
@@ -73,7 +74,7 @@ function compileLabel( fromName: string, [ label, to ], automaton: Automaton ) {
     toName = to.name;
   }
 
-  checkState( automaton, toName );
+  checkState( automaton, toName, to );
 
   const l = {
     name: label.name
@@ -93,7 +94,7 @@ function compileLabel( fromName: string, [ label, to ], automaton: Automaton ) {
 function compileState( node: State, automaton: Automaton ) {
 
   const fromName = node._name;
-  checkState( automaton, fromName );
+  checkState( automaton, fromName, node );
 
   if ( node.methods.length === 0 ) {
     automaton.final.add( fromName );
@@ -105,7 +106,8 @@ function compileState( node: State, automaton: Automaton ) {
     for ( let j = 0; j < i; j++ ) {
       if ( equalSignature( method, node.methods[ j ] ) ) {
         throw new Error(
-          `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})`
+          `Duplicate method signature: ${method.name}(${method.arguments.map( a => a.name ).join( ", " )})` +
+          ` (at ${positionToString( method.loc.start )})`
         );
       }
     }
@@ -120,18 +122,23 @@ function compileState( node: State, automaton: Automaton ) {
 function compileDecisionState( node: DecisionState, automaton: Automaton ) {
 
   const fromName = node._name;
-  checkState( automaton, fromName );
+  checkState( automaton, fromName, node );
 
   const set = new Set();
   for ( const [ label ] of node.transitions ) {
     const labelName = label.name;
     if ( set.has( labelName ) ) {
-      throw new Error( `Duplicate case label: ${labelName}` );
+      throw new Error(
+        `Duplicate case label: ${labelName} (at ${positionToString( label.loc.start )})`
+      );
     }
     set.add( labelName );
   }
 
-  return node.transitions.reduce( ( automaton, transition ) => compileLabel( fromName, transition, automaton ), automaton );
+  return node.transitions.reduce(
+    ( automaton, transition ) => compileLabel( fromName, transition, automaton ),
+    automaton
+  );
 }
 
 export default function( ast: Typestate ): Automaton {
@@ -148,11 +155,11 @@ export default function( ast: Typestate ): Automaton {
   };
 
   // Get all named states
-  for ( const { name } of ast.states ) {
-    if ( automaton.states.has( name ) ) {
-      throw new Error( `Duplicated ${name} state` );
+  for ( const state of ast.states ) {
+    if ( automaton.states.has( state.name ) ) {
+      throw new Error( `Duplicated ${state.name} state (at ${positionToString( state.loc.start )})` );
     }
-    automaton.states.add( name );
+    automaton.states.add( state.name );
   }
 
   // Calculate first state
