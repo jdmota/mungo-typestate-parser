@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`error examples: test/fixtures-errors/cannot-use-end.protocol 1`] = `"You cannot have a state called 'end'"`;
+exports[`error examples: test/fixtures-errors/cannot-use-end-on-method.protocol 1`] = `"Method cannot be called 'end' (at 4:4)"`;
+
+exports[`error examples: test/fixtures-errors/cannot-use-end-on-state.protocol 1`] = `"You cannot have a state called 'end' (at 3:2)"`;
 
 exports[`error examples: test/fixtures-errors/decision-without-choices.protocol 1`] = `"Unexpected token >, expected identifier at 4:18"`;
 

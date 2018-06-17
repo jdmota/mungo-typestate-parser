@@ -131,7 +131,9 @@ export default class Parser {
     const name = this.expect( "identifier" ).value;
 
     if ( name === "end" ) {
-      throw new Error( "You cannot have a state called 'end'" );
+      throw new Error(
+        `You cannot have a state called 'end' (at ${positionToString( start )})`
+      );
     }
 
     this.expect( "=" );
@@ -193,7 +195,9 @@ export default class Parser {
     const args = [];
 
     if ( name === "end" ) {
-      throw new Error( "Method cannot be called 'end'" );
+      throw new Error(
+        `Method cannot be called 'end' (at ${positionToString( start )})`
+      );
     }
 
     this.expect( "(" );

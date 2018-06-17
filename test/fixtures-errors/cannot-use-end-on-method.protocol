@@ -1,0 +1,7 @@
+typestate CannotCreateMethodCalledEnd {
+
+  State = {
+    void end(): end
+  }
+
+}
