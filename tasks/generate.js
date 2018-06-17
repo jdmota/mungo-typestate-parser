@@ -101,7 +101,7 @@ async function run() {
       const buffer = Buffer.from( result );
 
       newPdf.image( buffer, {
-        scale: 0.8
+        scale: 0.7
       } );
 
     } else {
