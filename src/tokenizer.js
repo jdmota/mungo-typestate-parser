@@ -32,13 +32,43 @@ export function isReserved( word: string ) {
   return keywords.includes( word );
 }
 
+export type Position = {
+  pos: number,
+  line: number,
+  column: number
+};
+
+export type Location = {
+  start: Position,
+  end: Position
+};
+
 export class Token {
   +type: string;
   +value: string;
-  constructor( type: string, value: string ) {
+  +loc: Location;
+  constructor( type: string, value: string, loc: Location ) {
     this.type = type;
     this.value = value;
+    this.loc = loc;
   }
+}
+
+export const FAKE_LOC = {
+  start: {
+    pos: 0,
+    line: 0,
+    column: 0
+  },
+  end: {
+    pos: 0,
+    line: 0,
+    column: 0
+  }
+};
+
+export function positionToString( pos: Position ) {
+  return `${pos.line}:${pos.column}`;
 }
 
 export default class Tokenizer {
@@ -46,13 +76,35 @@ export default class Tokenizer {
   +input: string;
   +inputLen: number;
   pos: number;
+  lineStart: number;
+  curLine: number;
+  start: Position;
   lastToken: Token;
 
   constructor( input: string ) {
     this.input = input;
     this.inputLen = input.length;
     this.pos = 0;
-    this.lastToken = new Token( "", "" );
+    this.lineStart = 0;
+    this.curLine = 1;
+    this.start = this.curPosition();
+    this.lastToken = new Token( "", "", {
+      start: this.start,
+      end: this.start
+    } );
+  }
+
+  curPosition(): Position {
+    return {
+      pos: this.pos,
+      line: this.curLine,
+      column: this.pos - this.lineStart
+    };
+  }
+
+  nextLine( offset: ?number ) {
+    this.lineStart = this.pos;
+    this.curLine += offset == null ? 1 : offset;
   }
 
   codeAt( pos: number ) {
@@ -67,10 +119,18 @@ export default class Tokenizer {
     return this.lastToken;
   }
 
+  newToken( type: string, value: string ): Token {
+    return new Token( type, value, {
+      start: this.start,
+      end: this.curPosition()
+    } );
+  }
+
   nextToken(): Token {
     this.skipSpace();
+    this.start = this.curPosition();
     if ( this.pos >= this.inputLen ) {
-      this.lastToken = new Token( "eof", "" );
+      this.lastToken = this.newToken( "eof", "" );
     } else {
       this.lastToken = this.readToken( this.charAt( this.pos ) );
     }
@@ -81,10 +141,13 @@ export default class Tokenizer {
     while ( this.pos < this.inputLen ) {
       const ch = this.codeAt( this.pos );
       switch ( ch ) {
-        case 9: // horizontal tab
         case 10: // '\n' line feed
-        case 12: // form feed
         case 13: // '\r' carriage return
+          this.pos++;
+          this.nextLine();
+          break;
+        case 9: // horizontal tab
+        case 12: // form feed
         case 32: // space
           this.pos++;
           break;
@@ -120,11 +183,20 @@ export default class Tokenizer {
   }
 
   skipBlockComment(): void {
+    const start = this.pos;
     const end = this.input.indexOf( "*/", ( this.pos += 2 ) );
     if ( end === -1 ) {
-      throw new Error( `Unterminated comment` );
+      throw new Error( "Unterminated comment" );
     }
     this.pos = end + 2;
+
+    const comment = this.input.slice( start, this.pos );
+    for ( let i = 0; i < comment.length; i++ ) {
+      const code = comment.charCodeAt( i );
+      if ( code === 10 || code === 13 ) {
+        this.nextLine();
+      }
+    }
   }
 
   readWord(): Token {
@@ -137,7 +209,7 @@ export default class Tokenizer {
       }
     }
     const word = this.input.slice( start, this.pos );
-    return new Token( "identifier", word );
+    return this.newToken( "identifier", word );
   }
 
   readToken( char: string ): Token {
@@ -154,14 +226,16 @@ export default class Tokenizer {
       case ".":
       case ";":
         this.pos++;
-        return new Token( char, char );
+        return this.newToken( char, char );
     }
 
     if ( isIdentifierStart( char.charCodeAt( 0 ) ) ) {
       return this.readWord();
     }
 
-    throw new Error( `Unexpected character '${this.charAt( this.pos )}'` );
+    throw new Error(
+      `Unexpected character '${this.charAt( this.pos )}' at ${positionToString( this.start )}`
+    );
   }
 
 }

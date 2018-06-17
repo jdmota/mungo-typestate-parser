@@ -12,7 +12,19 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "Status"
+            "name": "Status",
+            "loc": {
+              "start": {
+                "pos": 0,
+                "line": 0,
+                "column": 0
+              },
+              "end": {
+                "pos": 0,
+                "line": 0,
+                "column": 0
+              }
+            }
           },
           "transition": {
             "type": "DecisionState",
@@ -20,29 +32,36 @@
               [
                 {
                   "type": "Identifier",
-                  "name": "OK"
+                  "name": "OK",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 },
                 {
                   "type": "Identifier",
-                  "name": "Open"
+                  "name": "Open",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 }
               ],
               [
                 {
                   "type": "Identifier",
-                  "name": "ERROR"
+                  "name": "ERROR",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 },
                 {
                   "type": "Identifier",
-                  "name": "end"
+                  "name": "end",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 }
               ]
             ],
-            "_name": "decision:1"
-          }
+            "_name": "decision:1",
+            "loc": "~states~0~methods~0~returnType~loc"
+          },
+          "loc": "~states~0~methods~0~returnType~loc"
         }
       ],
-      "_name": "Init"
+      "_name": "Init",
+      "loc": "~states~0~methods~0~returnType~loc"
     },
     {
       "type": "State",
@@ -54,7 +73,8 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "Boolean"
+            "name": "Boolean",
+            "loc": "~states~0~methods~0~returnType~loc"
           },
           "transition": {
             "type": "DecisionState",
@@ -62,26 +82,32 @@
               [
                 {
                   "type": "Identifier",
-                  "name": "TRUE"
+                  "name": "TRUE",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 },
                 {
                   "type": "Identifier",
-                  "name": "Read"
+                  "name": "Read",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 }
               ],
               [
                 {
                   "type": "Identifier",
-                  "name": "FALSE"
+                  "name": "FALSE",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 },
                 {
                   "type": "Identifier",
-                  "name": "Close"
+                  "name": "Close",
+                  "loc": "~states~0~methods~0~returnType~loc"
                 }
               ]
             ],
-            "_name": "decision:2"
-          }
+            "_name": "decision:2",
+            "loc": "~states~0~methods~0~returnType~loc"
+          },
+          "loc": "~states~0~methods~0~returnType~loc"
         },
         {
           "type": "Method",
@@ -89,15 +115,19 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": "~states~0~methods~0~returnType~loc"
           },
           "transition": {
             "type": "Identifier",
-            "name": "end"
-          }
+            "name": "end",
+            "loc": "~states~0~methods~0~returnType~loc"
+          },
+          "loc": "~states~0~methods~0~returnType~loc"
         }
       ],
-      "_name": "Open"
+      "_name": "Open",
+      "loc": "~states~0~methods~0~returnType~loc"
     },
     {
       "type": "State",
@@ -109,15 +139,19 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": "~states~0~methods~0~returnType~loc"
           },
           "transition": {
             "type": "Identifier",
-            "name": "Open"
-          }
+            "name": "Open",
+            "loc": "~states~0~methods~0~returnType~loc"
+          },
+          "loc": "~states~0~methods~0~returnType~loc"
         }
       ],
-      "_name": "Read"
+      "_name": "Read",
+      "loc": "~states~0~methods~0~returnType~loc"
     },
     {
       "type": "State",
@@ -129,15 +163,20 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": "~states~0~methods~0~returnType~loc"
           },
           "transition": {
             "type": "Identifier",
-            "name": "end"
-          }
+            "name": "end",
+            "loc": "~states~0~methods~0~returnType~loc"
+          },
+          "loc": "~states~0~methods~0~returnType~loc"
         }
       ],
-      "_name": "Close"
+      "_name": "Close",
+      "loc": "~states~0~methods~0~returnType~loc"
     }
-  ]
+  ],
+  "loc": "~states~0~methods~0~returnType~loc"
 }

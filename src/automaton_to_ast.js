@@ -1,11 +1,13 @@
 // @flow
 import type { Typestate, Identifier, AbstractState, State, DecisionState, NamedState } from "./ast_types";
 import type { Automaton } from "./automaton_types";
+import { FAKE_LOC } from "./tokenizer";
 
 function createIdentifier( name: string ): Identifier {
   return {
     type: "Identifier",
-    name
+    name,
+    loc: FAKE_LOC
   };
 }
 
@@ -36,7 +38,8 @@ function createDecisionState( name: string, automaton: Automaton ): DecisionStat
   const state = {
     type: "DecisionState",
     transitions: [],
-    _name: name
+    _name: name,
+    loc: FAKE_LOC
   };
 
   for ( const transition of automaton.lTransitions ) {
@@ -59,7 +62,8 @@ function applyTransitions<T: AbstractState>( state: T, automaton: Automaton ): T
         name: transition.transition.name,
         arguments: transition.transition.arguments.map( createIdentifier ),
         returnType: createIdentifier( transition.transition.returnType ),
-        transition: createMethodTransition( transition.to, automaton )
+        transition: createMethodTransition( transition.to, automaton ),
+        loc: FAKE_LOC
       } );
     }
   }
@@ -71,7 +75,8 @@ function createUnnamedState( name: string, automaton: Automaton ): State {
     type: "State",
     name: null,
     methods: [],
-    _name: name
+    _name: name,
+    loc: FAKE_LOC
   }, automaton );
 }
 
@@ -80,7 +85,8 @@ function createNamedState( name: string, automaton: Automaton ): NamedState {
     type: "State",
     name,
     methods: [],
-    _name: name
+    _name: name,
+    loc: FAKE_LOC
   }, automaton );
 }
 
@@ -89,7 +95,8 @@ export default function( name: ?string, automaton: Automaton ): Typestate {
   const ast = {
     type: "Typestate",
     name: name || "NO_NAME",
-    states: []
+    states: [],
+    loc: FAKE_LOC
   };
 
   // Make sure the first state is the start

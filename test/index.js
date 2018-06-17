@@ -19,6 +19,16 @@ function glob( p ) {
   } );
 }
 
+function removeLocations( obj ) {
+  if ( obj != null && typeof obj === "object" ) {
+    delete obj.loc;
+    for ( const key in obj ) {
+      removeLocations( obj[ key ] );
+    }
+  }
+  return obj;
+}
+
 it( "mungo examples", async() => {
 
   const files = await glob( "test/fixtures/**/*.protocol" );
@@ -42,14 +52,16 @@ it( "mungo examples", async() => {
       shuffledStates.push( shuffledStates.shift() );
       automaton.states = new Set( shuffledStates );
 
+      removeLocations( ast );
+
       const newAst = automatonToAst( ast.name, automaton );
-      expect( newAst ).toEqual( ast );
+      expect( removeLocations( newAst ) ).toEqual( ast );
 
       const newText = generator( newAst );
       expect( newText ).toMatchSnapshot( `string ${relative}` );
 
       const newAst2 = new Parser( newText ).parse();
-      expect( newAst2 ).toEqual( ast );
+      expect( removeLocations( newAst2 ) ).toEqual( ast );
 
     } )().then( null, err => {
       console.error( file, err );

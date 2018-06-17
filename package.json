@@ -3,7 +3,7 @@
   "name": "mungo-typestate-grammar",
   "main": "src/parser.js",
   "scripts": {
-    "start": "babel-node src/example.js",
+    "example": "babel-node src/example.js",
     "lint": "eslint **/*.js",
     "test": "jest",
     "flow": "flow",

@@ -12,7 +12,19 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "Status"
+            "name": "Status",
+            "loc": {
+              "start": {
+                "pos": 41,
+                "line": 4,
+                "column": 4
+              },
+              "end": {
+                "pos": 47,
+                "line": 4,
+                "column": 10
+              }
+            }
           },
           "transition": {
             "type": "DecisionState",
@@ -20,29 +32,105 @@
               [
                 {
                   "type": "Identifier",
-                  "name": "OK"
+                  "name": "OK",
+                  "loc": {
+                    "start": {
+                      "pos": 57,
+                      "line": 4,
+                      "column": 20
+                    },
+                    "end": {
+                      "pos": 59,
+                      "line": 4,
+                      "column": 22
+                    }
+                  }
                 },
                 {
                   "type": "Identifier",
-                  "name": "Open"
+                  "name": "Open",
+                  "loc": {
+                    "start": {
+                      "pos": 61,
+                      "line": 4,
+                      "column": 24
+                    },
+                    "end": {
+                      "pos": 65,
+                      "line": 4,
+                      "column": 28
+                    }
+                  }
                 }
               ],
               [
                 {
                   "type": "Identifier",
-                  "name": "ERROR"
+                  "name": "ERROR",
+                  "loc": {
+                    "start": {
+                      "pos": 67,
+                      "line": 4,
+                      "column": 30
+                    },
+                    "end": {
+                      "pos": 72,
+                      "line": 4,
+                      "column": 35
+                    }
+                  }
                 },
                 {
                   "type": "Identifier",
-                  "name": "end"
+                  "name": "end",
+                  "loc": {
+                    "start": {
+                      "pos": 74,
+                      "line": 4,
+                      "column": 37
+                    },
+                    "end": {
+                      "pos": 77,
+                      "line": 4,
+                      "column": 40
+                    }
+                  }
                 }
               ]
             ],
-            "_name": "decision:1"
+            "_name": "decision:1",
+            "loc": {
+              "start": {
+                "pos": 56,
+                "line": 4,
+                "column": 19
+              },
+              "end": {
+                "pos": 78,
+                "line": 4,
+                "column": 41
+              }
+            }
+          },
+          "loc": {
+            "start": "~states~0~methods~0~returnType~loc~start",
+            "end": "~states~0~methods~0~transition~loc~end"
           }
         }
       ],
-      "_name": "Init"
+      "_name": "Init",
+      "loc": {
+        "start": {
+          "pos": 28,
+          "line": 3,
+          "column": 2
+        },
+        "end": {
+          "pos": 82,
+          "line": 5,
+          "column": 3
+        }
+      }
     },
     {
       "type": "State",
@@ -54,7 +142,19 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "Boolean"
+            "name": "Boolean",
+            "loc": {
+              "start": {
+                "pos": 99,
+                "line": 8,
+                "column": 4
+              },
+              "end": {
+                "pos": 106,
+                "line": 8,
+                "column": 11
+              }
+            }
           },
           "transition": {
             "type": "DecisionState",
@@ -62,25 +162,89 @@
               [
                 {
                   "type": "Identifier",
-                  "name": "TRUE"
+                  "name": "TRUE",
+                  "loc": {
+                    "start": {
+                      "pos": 119,
+                      "line": 8,
+                      "column": 24
+                    },
+                    "end": {
+                      "pos": 123,
+                      "line": 8,
+                      "column": 28
+                    }
+                  }
                 },
                 {
                   "type": "Identifier",
-                  "name": "Read"
+                  "name": "Read",
+                  "loc": {
+                    "start": {
+                      "pos": 125,
+                      "line": 8,
+                      "column": 30
+                    },
+                    "end": {
+                      "pos": 129,
+                      "line": 8,
+                      "column": 34
+                    }
+                  }
                 }
               ],
               [
                 {
                   "type": "Identifier",
-                  "name": "FALSE"
+                  "name": "FALSE",
+                  "loc": {
+                    "start": {
+                      "pos": 131,
+                      "line": 8,
+                      "column": 36
+                    },
+                    "end": {
+                      "pos": 136,
+                      "line": 8,
+                      "column": 41
+                    }
+                  }
                 },
                 {
                   "type": "Identifier",
-                  "name": "Close"
+                  "name": "Close",
+                  "loc": {
+                    "start": {
+                      "pos": 138,
+                      "line": 8,
+                      "column": 43
+                    },
+                    "end": {
+                      "pos": 143,
+                      "line": 8,
+                      "column": 48
+                    }
+                  }
                 }
               ]
             ],
-            "_name": "decision:2"
+            "_name": "decision:2",
+            "loc": {
+              "start": {
+                "pos": 118,
+                "line": 8,
+                "column": 23
+              },
+              "end": {
+                "pos": 144,
+                "line": 8,
+                "column": 49
+              }
+            }
+          },
+          "loc": {
+            "start": "~states~1~methods~0~returnType~loc~start",
+            "end": "~states~1~methods~0~transition~loc~end"
           }
         },
         {
@@ -89,15 +253,55 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": {
+              "start": {
+                "pos": 150,
+                "line": 9,
+                "column": 4
+              },
+              "end": {
+                "pos": 154,
+                "line": 9,
+                "column": 8
+              }
+            }
           },
           "transition": {
             "type": "Identifier",
-            "name": "end"
+            "name": "end",
+            "loc": {
+              "start": {
+                "pos": 164,
+                "line": 9,
+                "column": 18
+              },
+              "end": {
+                "pos": 167,
+                "line": 9,
+                "column": 21
+              }
+            }
+          },
+          "loc": {
+            "start": "~states~1~methods~1~returnType~loc~start",
+            "end": "~states~1~methods~1~transition~loc~end"
           }
         }
       ],
-      "_name": "Open"
+      "_name": "Open",
+      "loc": {
+        "start": {
+          "pos": 86,
+          "line": 7,
+          "column": 2
+        },
+        "end": {
+          "pos": 171,
+          "line": 10,
+          "column": 3
+        }
+      }
     },
     {
       "type": "State",
@@ -109,15 +313,55 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": {
+              "start": {
+                "pos": 188,
+                "line": 13,
+                "column": 4
+              },
+              "end": {
+                "pos": 192,
+                "line": 13,
+                "column": 8
+              }
+            }
           },
           "transition": {
             "type": "Identifier",
-            "name": "Open"
+            "name": "Open",
+            "loc": {
+              "start": {
+                "pos": 201,
+                "line": 13,
+                "column": 17
+              },
+              "end": {
+                "pos": 205,
+                "line": 13,
+                "column": 21
+              }
+            }
+          },
+          "loc": {
+            "start": "~states~2~methods~0~returnType~loc~start",
+            "end": "~states~2~methods~0~transition~loc~end"
           }
         }
       ],
-      "_name": "Read"
+      "_name": "Read",
+      "loc": {
+        "start": {
+          "pos": 175,
+          "line": 12,
+          "column": 2
+        },
+        "end": {
+          "pos": 209,
+          "line": 14,
+          "column": 3
+        }
+      }
     },
     {
       "type": "State",
@@ -129,15 +373,67 @@
           "arguments": [],
           "returnType": {
             "type": "Identifier",
-            "name": "void"
+            "name": "void",
+            "loc": {
+              "start": {
+                "pos": 227,
+                "line": 17,
+                "column": 4
+              },
+              "end": {
+                "pos": 231,
+                "line": 17,
+                "column": 8
+              }
+            }
           },
           "transition": {
             "type": "Identifier",
-            "name": "end"
+            "name": "end",
+            "loc": {
+              "start": {
+                "pos": 241,
+                "line": 17,
+                "column": 18
+              },
+              "end": {
+                "pos": 244,
+                "line": 17,
+                "column": 21
+              }
+            }
+          },
+          "loc": {
+            "start": "~states~3~methods~0~returnType~loc~start",
+            "end": "~states~3~methods~0~transition~loc~end"
           }
         }
       ],
-      "_name": "Close"
+      "_name": "Close",
+      "loc": {
+        "start": {
+          "pos": 213,
+          "line": 16,
+          "column": 2
+        },
+        "end": {
+          "pos": 248,
+          "line": 18,
+          "column": 3
+        }
+      }
     }
-  ]
+  ],
+  "loc": {
+    "start": {
+      "pos": 0,
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "pos": 252,
+      "line": 21,
+      "column": 0
+    }
+  }
 }

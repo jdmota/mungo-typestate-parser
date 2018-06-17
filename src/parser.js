@@ -2,26 +2,39 @@
 import type {
   Typestate, NamedState, State, Identifier, Method, DecisionState
 } from "./ast_types";
-import Tokenizer, { type Token } from "./tokenizer";
+import Tokenizer, { type Token, type Position, positionToString } from "./tokenizer";
 
 export default class Parser {
 
   +input: string;
   +tokenizer: Tokenizer;
   token: Token;
+  start: Position;
+  lastTokenEnd: Position;
   decisionUuid: number;
   unknownUuid: number;
 
   constructor( input: string ) {
     this.input = input;
     this.tokenizer = new Tokenizer( input );
-    this.token = this.next();
+    this.start = { pos: 0, line: 0, column: 0 };
+    this.lastTokenEnd = this.start;
+    this.token = this.tokenizer.nextToken();
     this.decisionUuid = 1;
     this.unknownUuid = 1;
   }
 
+  startNode(): Position {
+    return this.token.loc.start;
+  }
+
+  endNode(): Position {
+    return this.lastTokenEnd;
+  }
+
   // Returns the next current token
   next(): Token {
+    this.lastTokenEnd = this.token.loc.end;
     this.token = this.tokenizer.nextToken();
     return this.token;
   }
@@ -43,15 +56,19 @@ export default class Parser {
 
   // Tries to consume a token with a specific type, and if it can't, it throws an error
   expect( type: string, value: ?string ): Token {
-    let node = this.eat( type, value );
-    if ( node == null ) {
-      throw new Error( `Unexpected token ${this.token.type}, expected ${type} at ${this.tokenizer.pos}` ); // FIXME location
+    const token = this.eat( type, value );
+    if ( token == null ) {
+      throw new Error(
+        `Unexpected token ${this.token.type}, expected ${type} at ${positionToString( this.token.loc.start )}`
+      );
     }
-    return node;
+    return token;
   }
 
   // Parsing starts here
   parse(): Typestate {
+
+    const start = this.startNode();
 
     // FIXME save package
     if ( this.eat( "identifier", "package" ) ) {
@@ -87,18 +104,29 @@ export default class Parser {
     return {
       type: "Typestate",
       name,
-      states
+      states,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
   parseIdentifier(): Identifier {
+    const start = this.startNode();
     return {
       type: "Identifier",
-      name: this.expect( "identifier" ).value
+      name: this.expect( "identifier" ).value,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
   parseStateDefName(): NamedState {
+
+    const start = this.startNode();
 
     const name = this.expect( "identifier" ).value;
 
@@ -114,11 +142,17 @@ export default class Parser {
       type,
       name,
       methods,
-      _name: name
+      _name: name,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
   parseState(): State {
+
+    const start = this.startNode();
 
     const _name = `unknown:${this.unknownUuid++}`;
     const methods = [];
@@ -142,11 +176,17 @@ export default class Parser {
       type: "State",
       name: null,
       methods,
-      _name
+      _name,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
   parseMethod(): Method {
+
+    const start = this.startNode();
 
     const returnType = this.parseIdentifier();
     const name = this.expect( "identifier" ).value;
@@ -178,10 +218,7 @@ export default class Parser {
     } else if ( this.match( "{" ) ) {
       transition = this.parseState();
     } else {
-      transition = {
-        type: "Identifier",
-        name: this.expect( "identifier" ).value
-      };
+      transition = this.parseIdentifier();
     }
 
     return {
@@ -189,11 +226,18 @@ export default class Parser {
       name,
       arguments: args,
       returnType,
-      transition
+      transition,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
   parseLabels(): DecisionState {
+
+    const start = this.startNode();
+
     const transitions = [];
     const _name = `decision:${this.decisionUuid++}`;
 
@@ -221,7 +265,11 @@ export default class Parser {
     return {
       type: "DecisionState",
       transitions,
-      _name
+      _name,
+      loc: {
+        start,
+        end: this.endNode()
+      }
     };
   }
 
