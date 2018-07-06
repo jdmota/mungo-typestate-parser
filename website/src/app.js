@@ -71,7 +71,7 @@ const transforms = {
 };
 
 const arrow = `→`;
-const items = [ "Preview", `Text ${arrow} AST`, `AST ${arrow} Automaton`, `Automaton ${arrow} AST`, `AST ${arrow} Text` ];
+const items = [ "Preview", `Typestate ${arrow} AST`, `AST ${arrow} Automaton`, `Automaton ${arrow} AST`, `AST ${arrow} Typestate` ];
 const listItems = items.map( t => html`<li class="mdc-list-item" role="menuitem" tabindex="0">${t}</li>` );
 
 export class App extends LitElement {
