@@ -10,7 +10,8 @@ export class TransformationElement extends LitElement {
       myTitle: String,
       fn: Function,
       result: Object,
-      error: String
+      error: String,
+      textareaStyle: String
     };
   }
 
@@ -43,7 +44,7 @@ export class TransformationElement extends LitElement {
     }
   }
 
-  _render( { myTitle, result, error } ) {
+  _render( { myTitle, result, error, textareaStyle } ) {
     return html`
       <style>
         :host {
@@ -72,7 +73,7 @@ export class TransformationElement extends LitElement {
       <div class$="side ${error ? "hasError" : ""}">
         <top-bar myTitle="${myTitle}" buttons="${[ [ "Do", this.onDo ] ]}"></top-bar>
         <error-display text="${error}"></error-display>
-        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style$="${textareaStyle}"></textarea>
       </div>
       <div class="side">${result}</div>
       <div style="clear: both"></div>

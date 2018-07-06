@@ -132,7 +132,7 @@
       ${b.map(([a,b])=>html$1`<button on-click="${b}">${a}</button>`)}
     `}}customElements.define("top-bar",TopBar);
 
-  class TransformationElement extends LitElement{static get properties(){return {defaultValue:String,myTitle:String,fn:Function,result:Object,error:String}}constructor(){super(),this.onDo=this.onDo.bind(this);}onDo(){const a=this.fn;try{this.result=a(this.shadowRoot.querySelector("textarea").value),this.error="";}catch(a){this.error=a.message,console.log("Caught:",a);}"Preview"===this.myTitle&&(window.__ERROR__=this.error);}_firstRendered(){this.shadowRoot.querySelector("textarea").value=this.defaultValue||"","Preview"===this.myTitle&&(window.__TEXTAREA__=this.shadowRoot.querySelector("textarea"),window.__RENDER__=this.onDo);}_render({myTitle:a,result:b,error:c}){return html$1`
+  class TransformationElement extends LitElement{static get properties(){return {defaultValue:String,myTitle:String,fn:Function,result:Object,error:String,textareaStyle:String}}constructor(){super(),this.onDo=this.onDo.bind(this);}onDo(){const a=this.fn;try{this.result=a(this.shadowRoot.querySelector("textarea").value),this.error="";}catch(a){this.error=a.message,console.log("Caught:",a);}"Preview"===this.myTitle&&(window.__ERROR__=this.error);}_firstRendered(){this.shadowRoot.querySelector("textarea").value=this.defaultValue||"","Preview"===this.myTitle&&(window.__TEXTAREA__=this.shadowRoot.querySelector("textarea"),window.__RENDER__=this.onDo);}_render({myTitle:a,result:b,error:c,textareaStyle:d}){return html$1`
       <style>
         :host {
           display: block;
@@ -160,7 +160,7 @@
       <div class$="side ${c?"hasError":""}">
         <top-bar myTitle="${a}" buttons="${[["Do",this.onDo]]}"></top-bar>
         <error-display text="${c}"></error-display>
-        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style$="${d}"></textarea>
       </div>
       <div class="side">${b}</div>
       <div style="clear: both"></div>
@@ -291,10 +291,10 @@
       <div class="container">
         <div>
           <my-transformation defaultValue="${DEFAULT_TYPESTATE}" myTitle="${items[0]}" fn="${transforms.view}"></my-transformation>
-          <my-transformation myTitle="${items[1]}" fn="${transforms.parse}"></my-transformation>
-          <my-transformation myTitle="${items[2]}" fn="${transforms.astToAutomaton}"></my-transformation>
-          <my-transformation myTitle="${items[3]}" fn="${transforms.automatonToAst}"></my-transformation>
-          <my-transformation myTitle="${items[4]}" fn="${transforms.generator}"></my-transformation>
+          <my-transformation myTitle="${items[1]}" fn="${transforms.parse}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[2]}" fn="${transforms.astToAutomaton}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[3]}" fn="${transforms.automatonToAst}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[4]}" fn="${transforms.generator}" textareaStyle="height: 200px;"></my-transformation>
         </div>
       </div>
     `}}customElements.define("my-app",App);

@@ -171,10 +171,10 @@ export class App extends LitElement {
       <div class="container">
         <div>
           <my-transformation defaultValue="${DEFAULT_TYPESTATE}" myTitle="${items[ 0 ]}" fn="${transforms.view}"></my-transformation>
-          <my-transformation myTitle="${items[ 1 ]}" fn="${transforms.parse}"></my-transformation>
-          <my-transformation myTitle="${items[ 2 ]}" fn="${transforms.astToAutomaton}"></my-transformation>
-          <my-transformation myTitle="${items[ 3 ]}" fn="${transforms.automatonToAst}"></my-transformation>
-          <my-transformation myTitle="${items[ 4 ]}" fn="${transforms.generator}"></my-transformation>
+          <my-transformation myTitle="${items[ 1 ]}" fn="${transforms.parse}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[ 2 ]}" fn="${transforms.astToAutomaton}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[ 3 ]}" fn="${transforms.automatonToAst}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation myTitle="${items[ 4 ]}" fn="${transforms.generator}" textareaStyle="height: 200px;"></my-transformation>
         </div>
       </div>
     `;
