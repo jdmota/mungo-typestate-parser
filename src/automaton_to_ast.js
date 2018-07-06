@@ -3,6 +3,19 @@ import type { Typestate, Identifier, AbstractState, State, DecisionState, NamedS
 import type { Automaton } from "./automaton_types";
 import { FAKE_LOC } from "./tokenizer";
 
+function check( name: string, automaton: Automaton ) {
+  if ( /decision:/.test( name ) ) {
+    if ( automaton.choices.has( name ) ) {
+      return;
+    }
+    throw new Error( `${name} is not in choices set` );
+  }
+  if ( automaton.states.has( name ) ) {
+    return;
+  }
+  throw new Error( `${name} is not in states set` );
+}
+
 function createIdentifier( name: string ): Identifier {
   return {
     type: "Identifier",
@@ -12,15 +25,21 @@ function createIdentifier( name: string ): Identifier {
 }
 
 function createLabelTransition( name: string, automaton: Automaton ): Identifier | State {
+  check( name, automaton );
 
   if ( /unknown:/.test( name ) ) {
     return createUnnamedState( name, automaton );
+  }
+
+  if ( /decision:/.test( name ) ) {
+    throw new Error( `Cannot have a transition from a decision state to ${name}` );
   }
 
   return createIdentifier( name );
 }
 
 function createMethodTransition( name: string, automaton: Automaton ): Identifier | State | DecisionState {
+  check( name, automaton );
 
   if ( /unknown:/.test( name ) ) {
     return createUnnamedState( name, automaton );
