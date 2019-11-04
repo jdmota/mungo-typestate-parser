@@ -1,5 +1,7 @@
 *.txt
 *.log
+.cache
+.yarn
 __dev__
 node_modules
 tasks/*.pdf

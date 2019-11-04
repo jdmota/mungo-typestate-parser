@@ -1,4 +1,4 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css, unsafeCSS } from "lit-element";
 import jsonEditorCss from "../vendor/jsoneditor.min.css";
 
 /* globals window, document, customElements, JSONEditor */
@@ -9,8 +9,8 @@ export class JsonViewer extends LitElement {
 
   static get properties() {
     return {
-      json: Object,
-      mode: Boolean
+      json: { reflect: false },
+      mode: { type: Boolean, reflect: false }
     };
   }
 
@@ -40,16 +40,34 @@ export class JsonViewer extends LitElement {
     selection.addRange( range );
   }
 
-  _shouldRender( props ) {
-    if ( !props.json ) {
-      return false;
+  updated() {
+    if ( this.json ) {
+      this.editor.set( this.json );
+      this.rawText = JSON.stringify( this.json, null, 2 );
     }
-    this.editor.set( props.json );
-    this.rawText = JSON.stringify( props.json, null, 2 );
-    return true;
   }
 
-  _render() {
+  static styles = css`
+  ${unsafeCSS(jsonEditorCss)}
+  .invisible {
+    display: none;
+  }
+  .visible {
+    display: block;
+  }
+  div.view {
+    width: 600px;
+  }
+  pre.view {
+    width: 600px;
+    height: 600px;
+    overflow: auto;
+    border: 1px solid lightgray;
+    margin: 0px;
+  }
+  `;
+
+  render() {
 
     const buttons = this.mode ?
       [
@@ -61,28 +79,9 @@ export class JsonViewer extends LitElement {
       ];
 
     return html`
-      <style>${jsonEditorCss}</style>
-      <style>
-        .invisible {
-          display: none;
-        }
-        .visible {
-          display: block;
-        }
-        div.view {
-          width: 600px;
-        }
-        pre.view {
-          width: 600px;
-          height: 600px;
-          overflow: auto;
-          border: 1px solid lightgray;
-          margin: 0px;
-        }
-      </style>
-      <top-bar myTitle="" buttons="${buttons}"></top-bar>
-      <div class$="view ${this.mode ? "visible" : "invisible"}">${this.container}</div>
-      <pre class$="view ${this.mode ? "invisible" : "visible"}">${this.rawText}</pre>
+      <top-bar .myTitle="" .buttons="${buttons}"></top-bar>
+      <div class="view ${this.mode ? "visible" : "invisible"}">${this.container}</div>
+      <pre class="view ${this.mode ? "invisible" : "visible"}">${this.rawText}</pre>
     `;
   }
 

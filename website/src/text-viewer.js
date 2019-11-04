@@ -1,4 +1,4 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 
 /* globals document, customElements */
 
@@ -6,27 +6,24 @@ export class TextViewer extends LitElement {
 
   static get properties() {
     return {
-      text: String
+      text: { type: String, reflect: false }
     };
   }
 
-  _shouldRender( props ) {
-    return !!props.text;
+  static styles = css`
+  pre {
+    width: 600px;
+    height: 600px;
+    overflow: auto;
+    border: 1px solid lightgray;
+    margin: 0px;
   }
+  `;
 
-  _render( { text } ) {
+  render() {
     return html`
-      <style>
-        pre {
-          width: 600px;
-          height: 600px;
-          overflow: auto;
-          border: 1px solid lightgray;
-          margin: 0px;
-        }
-      </style>
-      <top-bar myTitle="" buttons="${[]}"></top-bar>
-      <pre>${text}</pre>
+      <top-bar .myTitle="" .buttons="${[]}"></top-bar>
+      <pre>${this.text || ""}</pre>
     `;
   }
 

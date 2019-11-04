@@ -1,4 +1,4 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 
 /* globals document, customElements */
 
@@ -6,23 +6,22 @@ export class ErrorDisplay extends LitElement {
 
   static get properties() {
     return {
-      text: String
+      text: { type: String, reflect: false }
     };
   }
 
-  _render( { text } ) {
-    return html`
-      <style>
-        :host {
-          display: block;
-        }
-        pre {
-          color: red;
-          white-space: pre-wrap;
-        }
-      </style>
-      <pre>${text || ""}</pre>
-    `;
+  static styles = css`
+  :host {
+    display: block;
+  }
+  pre {
+    color: red;
+    white-space: pre-wrap;
+  }
+  `;
+
+  render() {
+    return html`<pre>${this.text || ""}</pre>`;
   }
 
 }

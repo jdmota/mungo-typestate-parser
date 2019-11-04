@@ -1,9 +1,10 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css, unsafeCSS } from "lit-element";
 import { MDCMenu } from "@material/menu";
 import MDCElevationStyles from "@material/elevation/dist/mdc.elevation.min.css";
 import MDCThemeStyles from "@material/theme/dist/mdc.theme.min.css";
 import MDCTypographyStyles from "@material/typography/dist/mdc.typography.min.css";
 import MDCMenuStyles from "@material/menu/dist/mdc.menu.min.css";
+import MDCMenuSurfaceStyles from "@material/menu-surface/dist/mdc.menu-surface.min.css";
 import MDCListStyles from "@material/list/dist/mdc.list.min.css";
 import createAutomaton, { parse, astToAutomaton, automatonToAst, generator } from "../../src/index";
 
@@ -49,30 +50,32 @@ function fixAutomaton2( a ) {
 const transforms = {
 
   view( text ) {
-    return html`<automaton-viewer automaton="${createAutomaton( text )}"></automaton-viewer>`;
+    return html`<automaton-viewer .automaton="${createAutomaton( text )}"></automaton-viewer>`;
   },
 
   parse( text ) {
-    return html`<json-viewer json="${parse( text )}"></json-viewer>`;
+    return html`<json-viewer .json="${parse( text )}"></json-viewer>`;
   },
 
   astToAutomaton( ast ) {
-    return html`<json-viewer json="${fixAutomaton( astToAutomaton( JSON.parse( ast ) ) )}"></json-viewer>`;
+    return html`<json-viewer .json="${fixAutomaton( astToAutomaton( JSON.parse( ast ) ) )}"></json-viewer>`;
   },
 
   automatonToAst( automaton ) {
-    return html`<json-viewer json="${automatonToAst( "NAME", fixAutomaton2( JSON.parse( automaton ) ) )}"></json-viewer>`;
+    return html`<json-viewer .json="${automatonToAst( "NAME", fixAutomaton2( JSON.parse( automaton ) ) )}"></json-viewer>`;
   },
 
   generator( ast ) {
-    return html`<text-viewer text="${generator( JSON.parse( ast ) )}"></text-viewer>`;
+    return html`<text-viewer .text="${generator( JSON.parse( ast ) )}"></text-viewer>`;
   }
 
 };
 
 const arrow = `→`;
 const items = [ "Preview", `Typestate ${arrow} AST`, `AST ${arrow} Automaton`, `Automaton ${arrow} AST`, `AST ${arrow} Typestate` ];
-const listItems = items.map( t => html`<li class="mdc-list-item" role="menuitem" tabindex="0">${t}</li>` );
+const listItems = items.map(
+  t => html`<li class="mdc-list-item" role="menuitem" tabindex="0"><span class="mdc-list-item__text">${t}</span></li>`
+);
 
 export class App extends LitElement {
 
@@ -80,7 +83,7 @@ export class App extends LitElement {
     return {};
   }
 
-  _firstRendered() {
+  firstUpdated() {
 
     const menuEl = this.shadowRoot.querySelector( ".mdc-menu" );
     const menu = new MDCMenu( menuEl );
@@ -100,69 +103,75 @@ export class App extends LitElement {
     // menu.quickOpen = true;
   }
 
-  _render() {
+  static styles = css`
+  ${unsafeCSS(MDCElevationStyles)}
+  ${unsafeCSS(MDCThemeStyles)}
+  ${unsafeCSS(MDCTypographyStyles)}
+  ${unsafeCSS(MDCMenuStyles)}
+  ${unsafeCSS(MDCMenuSurfaceStyles)}
+  ${unsafeCSS(MDCListStyles)}
+  .toolbar {
+    width: 100%;
+    height: 64px;
+    background: #01579b; /* #336fb7; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .toolbar .title {
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 64px;
+    float: left;
+  }
+  #menu-button {
+    margin-left: 5px;
+    background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 style=%22fill:white%22 viewBox=%220 0 24 24%22%3E%3Cg%3E%3Cpath d=%22M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z%22%3E%3C/path%3E%3C/g%3E%3C/svg%3E');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 64px;
+    height: 64px;
+    float: left;
+    cursor: pointer;
+  }
+  #menu-button div {
+    width: 34px;
+    height: 34px;
+    margin: 15px;
+  }
+  #menu-button:hover div {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+  }
+  .container {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+  }
+  .container div {
+    margin: 0 20px;
+  }
+  my-transformation {
+    padding-top: 10px;
+  }
+  my-transformation:nth-last-child(1) {
+    padding-bottom: 20px;
+  }
+  `;
+
+  render() {
     return html`
-      <style>${MDCElevationStyles + MDCThemeStyles + MDCTypographyStyles + MDCMenuStyles + MDCListStyles}</style>
-      <style>
-        .toolbar {
-          width: 100%;
-          height: 64px;
-          background: #01579b; /* #336fb7; */
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-        }
-        .toolbar .title {
-          margin-left: 5px;
-          color: white;
-          font-weight: bold;
-          font-size: 16px;
-          line-height: 64px;
-          float: left;
-        }
-        #menu-button {
-          margin-left: 5px;
-          background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 style=%22fill:white%22 viewBox=%220 0 24 24%22%3E%3Cg%3E%3Cpath d=%22M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z%22%3E%3C/path%3E%3C/g%3E%3C/svg%3E');
-          background-size: 24px 24px;
-          background-repeat: no-repeat;
-          background-position: center;
-          width: 64px;
-          height: 64px;
-          float: left;
-          cursor: pointer;
-        }
-        #menu-button div {
-          width: 34px;
-          height: 34px;
-          margin: 15px;
-        }
-        #menu-button:hover div {
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-        }
-        .container {
-          position: absolute;
-          top: 64px;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow: auto;
-        }
-        .container div {
-          margin: 0 20px;
-        }
-        my-transformation {
-          padding-top: 10px;
-        }
-        my-transformation:nth-last-child(1) {
-          padding-bottom: 20px;
-        }
-      </style>
       <div class="toolbar mdc-menu-anchor">
         <div id="menu-button"><div></div></div>
-        <div class="mdc-menu" tabindex="-1">
-          <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+        <div class="mdc-menu mdc-menu-surface">
+          <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
             ${listItems}
           </ul>
         </div>
@@ -170,11 +179,11 @@ export class App extends LitElement {
       </div>
       <div class="container">
         <div>
-          <my-transformation defaultValue="${DEFAULT_TYPESTATE}" myTitle="${items[ 0 ]}" fn="${transforms.view}"></my-transformation>
-          <my-transformation myTitle="${items[ 1 ]}" fn="${transforms.parse}" textareaStyle="height: 200px;"></my-transformation>
-          <my-transformation myTitle="${items[ 2 ]}" fn="${transforms.astToAutomaton}" textareaStyle="height: 200px;"></my-transformation>
-          <my-transformation myTitle="${items[ 3 ]}" fn="${transforms.automatonToAst}" textareaStyle="height: 200px;"></my-transformation>
-          <my-transformation myTitle="${items[ 4 ]}" fn="${transforms.generator}" textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation .defaultValue="${DEFAULT_TYPESTATE}" .myTitle="${items[ 0 ]}" .fn="${transforms.view}"></my-transformation>
+          <my-transformation .myTitle="${items[ 1 ]}" .fn="${transforms.parse}" .textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation .myTitle="${items[ 2 ]}" .fn="${transforms.astToAutomaton}" .textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation .myTitle="${items[ 3 ]}" .fn="${transforms.automatonToAst}" .textareaStyle="height: 200px;"></my-transformation>
+          <my-transformation .myTitle="${items[ 4 ]}" .fn="${transforms.generator}" .textareaStyle="height: 200px;"></my-transformation>
         </div>
       </div>
     `;

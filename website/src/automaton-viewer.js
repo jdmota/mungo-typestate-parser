@@ -1,8 +1,9 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 
 /* globals window, document, location, customElements, vis */
 
 function createDemo( automaton, container ) {
+  console.log(automaton);
 
   const invisible = ":invisible:";
 
@@ -117,7 +118,7 @@ export class AutomatonViewer extends LitElement {
 
   static get properties() {
     return {
-      automaton: Object
+      automaton: { reflect: false }
     };
   }
 
@@ -136,28 +137,27 @@ export class AutomatonViewer extends LitElement {
     anchor.click();
   }
 
-  _firstRendered() {
+  firstUpdated() {
     window.__CANVAS__ = () => this.shadowRoot.querySelector( "canvas" );
   }
 
-  _shouldRender( props ) {
-    if ( !props.automaton ) {
-      return false;
+  updated() {
+    if ( this.automaton ) {
+      createDemo( this.automaton, this.container );
     }
-    createDemo( props.automaton, this.container );
-    return true;
   }
 
-  _render() {
+  static styles = css`
+  .container {
+    width: 650px;
+    height: 550px;
+    border: 1px solid lightgray;
+  }
+  `;
+
+  render() {
     return html`
-      <style>
-        .container {
-          width: 650px;
-          height: 550px;
-          border: 1px solid lightgray;
-        }
-      </style>
-      <top-bar myTitle="" buttons="${[ [ "Download", this.download ] ]}"></top-bar>
+      <top-bar .myTitle="" .buttons="${[ [ "Download", this.download ] ]}"></top-bar>
       ${this.container}
     `;
   }

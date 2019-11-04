@@ -1,6 +1,6 @@
 import resolve from "rollup-plugin-node-resolve";
 import babel from "rollup-plugin-babel";
-import string from "rollup-plugin-string";
+import { string } from "rollup-plugin-string";
 
 const path = require( "path" );
 const fs = require( "fs-extra" );
@@ -27,10 +27,10 @@ export default {
     format: "iife"
   },
   plugins: [
-    resolve(),
     string( {
-      include: "**/*.css"
+      include: /\.css$/
     } ),
+    resolve(),
     babel( {
       babelrc: false,
       sourceType: "module",

@@ -1,4 +1,4 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 
 /* globals window, customElements */
 
@@ -6,12 +6,12 @@ export class TransformationElement extends LitElement {
 
   static get properties() {
     return {
-      defaultValue: String,
-      myTitle: String,
-      fn: Function,
-      result: Object,
-      error: String,
-      textareaStyle: String
+      defaultValue: { type: String, reflect: false },
+      myTitle: { type: String, reflect: false },
+      fn: { reflect: false },
+      result: { reflect: false },
+      error: { type: String, reflect: false },
+      textareaStyle: { type: String, reflect: false }
     };
   }
 
@@ -22,6 +22,7 @@ export class TransformationElement extends LitElement {
 
   onDo() {
     const fn = this.fn;
+    if ( !fn ) return;
     try {
       this.result = fn( this.shadowRoot.querySelector( "textarea" ).value );
       this.error = "";
@@ -35,7 +36,7 @@ export class TransformationElement extends LitElement {
     }
   }
 
-  _firstRendered() {
+  firstUpdated() {
     this.shadowRoot.querySelector( "textarea" ).value = this.defaultValue || "";
 
     if ( this.myTitle === "Preview" ) {
@@ -44,38 +45,40 @@ export class TransformationElement extends LitElement {
     }
   }
 
-  _render( { myTitle, result, error, textareaStyle } ) {
+  static styles = css`
+  :host {
+    display: block;
+  }
+  textarea {
+    width: 500px;
+    height: 600px;
+  }
+  .side {
+    float: left;
+    margin: 0 10px;
+  }
+  error-display {
+    width: 600px;
+    height: 35px;
+    display: none;
+  }
+  .hasError error-display {
+    display: block;
+  }
+  .hasError textarea {
+    height: 615px;
+  }
+  `;
+
+  render() {
+    const { myTitle, result, error, textareaStyle } = this;
     return html`
-      <style>
-        :host {
-          display: block;
-        }
-        textarea {
-          width: 500px;
-          height: 600px;
-        }
-        .side {
-          float: left;
-          margin: 0 10px;
-        }
-        error-display {
-          width: 600px;
-          height: 35px;
-          display: none;
-        }
-        .hasError error-display {
-          display: block;
-        }
-        .hasError textarea {
-          height: 615px;
-        }
-      </style>
-      <div class$="side ${error ? "hasError" : ""}">
-        <top-bar myTitle="${myTitle}" buttons="${[ [ "Do", this.onDo ] ]}"></top-bar>
-        <error-display text="${error}"></error-display>
-        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style$="${textareaStyle}"></textarea>
+      <div class="side${error ? " hasError" : ""}">
+        <top-bar .myTitle="${myTitle}" .buttons="${[ [ "Do", this.onDo ] ]}"></top-bar>
+        <error-display .text="${error}"></error-display>
+        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="${textareaStyle || ""}"></textarea>
       </div>
-      <div class="side">${result}</div>
+      <div class="side">${result || ""}</div>
       <div style="clear: both"></div>
     `;
   }
