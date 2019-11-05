@@ -1,0 +1,7 @@
+{
+  "baseUrl": "https://jdmota.github.io/mungo-typestate-parser/examples/",
+  "ext": ".protocol",
+  "list": [
+    "FileProtocol"
+  ]
+}

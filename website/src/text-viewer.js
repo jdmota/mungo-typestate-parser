@@ -10,15 +10,17 @@ export class TextViewer extends LitElement {
     };
   }
 
-  static styles = css`
-  pre {
-    width: 600px;
-    height: 600px;
-    overflow: auto;
-    border: 1px solid lightgray;
-    margin: 0px;
+  static get styles() {
+    return css`
+    pre {
+      width: 600px;
+      height: 600px;
+      overflow: auto;
+      border: 1px solid lightgray;
+      margin: 0px;
+    }
+    `;
   }
-  `;
 
   render() {
     return html`

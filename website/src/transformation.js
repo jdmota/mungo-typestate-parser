@@ -37,7 +37,9 @@ export class TransformationElement extends LitElement {
   }
 
   firstUpdated() {
-    this.shadowRoot.querySelector( "textarea" ).value = this.defaultValue || "";
+    if ( this.defaultValue ) {
+      this.shadowRoot.querySelector( "textarea" ).value = this.defaultValue;
+    }
 
     if ( this.myTitle === "Preview" ) {
       window.__TEXTAREA__ = this.shadowRoot.querySelector( "textarea" );
@@ -45,30 +47,32 @@ export class TransformationElement extends LitElement {
     }
   }
 
-  static styles = css`
-  :host {
-    display: block;
-  }
-  textarea {
-    width: 500px;
-    height: 600px;
-  }
-  .side {
-    float: left;
-    margin: 0 10px;
-  }
-  error-display {
-    width: 600px;
-    height: 35px;
-    display: none;
-  }
-  .hasError error-display {
-    display: block;
-  }
-  .hasError textarea {
-    height: 615px;
-  }
-  `;
+  static get styles() {
+    return css`
+    :host {
+      display: block;
+    }
+    textarea {
+      width: 500px;
+      height: 600px;
+    }
+    .side {
+      float: left;
+      margin: 0 10px;
+    }
+    error-display {
+      width: 600px;
+      height: 35px;
+      display: none;
+    }
+    .hasError error-display {
+      display: block;
+    }
+    .hasError textarea {
+      height: 615px;
+    }
+    `;
+  };
 
   render() {
     const { myTitle, result, error, textareaStyle } = this;

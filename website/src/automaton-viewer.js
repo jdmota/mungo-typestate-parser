@@ -147,13 +147,15 @@ export class AutomatonViewer extends LitElement {
     }
   }
 
-  static styles = css`
-  .container {
-    width: 650px;
-    height: 550px;
-    border: 1px solid lightgray;
+  static get styles() {
+    return css`
+    .container {
+      width: 650px;
+      height: 550px;
+      border: 1px solid lightgray;
+    }
+    `;
   }
-  `;
 
   render() {
     return html`

@@ -47,25 +47,29 @@ export class JsonViewer extends LitElement {
     }
   }
 
-  static styles = css`
-  ${unsafeCSS(jsonEditorCss)}
-  .invisible {
-    display: none;
+  static get styles() {
+    return [
+      unsafeCSS(jsonEditorCss),
+      css`
+      .invisible {
+        display: none;
+      }
+      .visible {
+        display: block;
+      }
+      div.view {
+        width: 600px;
+      }
+      pre.view {
+        width: 600px;
+        height: 600px;
+        overflow: auto;
+        border: 1px solid lightgray;
+        margin: 0px;
+      }
+      `
+    ];
   }
-  .visible {
-    display: block;
-  }
-  div.view {
-    width: 600px;
-  }
-  pre.view {
-    width: 600px;
-    height: 600px;
-    overflow: auto;
-    border: 1px solid lightgray;
-    margin: 0px;
-  }
-  `;
 
   render() {
 

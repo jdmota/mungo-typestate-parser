@@ -1,9 +1,11 @@
 import resolve from "rollup-plugin-node-resolve";
 import babel from "rollup-plugin-babel";
 import { string } from "rollup-plugin-string";
+import json from "rollup-plugin-json";
 
 const path = require( "path" );
 const fs = require( "fs-extra" );
+const cpy = require( "cpy" );
 
 function copy( options = {} ) {
   let { input, output, assets } = options;
@@ -11,11 +13,8 @@ function copy( options = {} ) {
   output = path.resolve( output );
   return {
     name: "copy-assets",
-    generateBundle() {
-      return Promise.all( assets.map( asset => fs.copy(
-        path.resolve( input, asset ),
-        path.resolve( output, asset )
-      ) ) );
+    async generateBundle() {
+      await cpy( assets, output, { cwd: input, parents: true } );
     }
   };
 }
@@ -29,6 +28,10 @@ export default {
   plugins: [
     string( {
       include: /\.css$/
+    } ),
+    json( {
+      compact: true,
+      namedExports: false
     } ),
     resolve(),
     babel( {
@@ -53,10 +56,9 @@ export default {
       input: "website",
       output: "docs",
       assets: [
-        "img/jsoneditor-icons.svg",
-        "vendor/jsoneditor-minimalist.min.js",
-        "vendor/vis.min.js",
-        "vendor/webcomponents-sd-ce.js",
+        "examples/**",
+        "img/**",
+        "vendor/**",
         "index.html",
         ".nojekyll",
       ]

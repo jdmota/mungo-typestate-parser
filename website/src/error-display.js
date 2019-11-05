@@ -10,15 +10,17 @@ export class ErrorDisplay extends LitElement {
     };
   }
 
-  static styles = css`
-  :host {
-    display: block;
+  static get styles() {
+    return css`
+    :host {
+      display: block;
+    }
+    pre {
+      color: red;
+      white-space: pre-wrap;
+    }
+    `;
   }
-  pre {
-    color: red;
-    white-space: pre-wrap;
-  }
-  `;
 
   render() {
     return html`<pre>${this.text || ""}</pre>`;
