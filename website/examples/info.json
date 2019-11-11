@@ -2,6 +2,13 @@
   "baseUrl": "https://jdmota.github.io/mungo-typestate-parser/examples/",
   "ext": ".protocol",
   "list": [
-    "FileProtocol"
+    "Alice",
+    "Bob",
+    "Collection",
+    "CProtocol",
+    "File",
+    "Iterator",
+    "NodeA",
+    "NodeB"
   ]
 }
