@@ -1,38 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Mungo Typestate Automaton Visualizer</title>
-  <meta charset="utf8">
-  <link rel="preload" as="script" href="./vendor/jsoneditor-minimalist.min.js">
-  <link rel="preload" as="script" href="./vendor/vis.min.js">
-  <link rel="preload" as="script" href="./index.js">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f6f6f6;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  <my-app></my-app>
-  <script>
-    function i(url) {
-      let s = document.createElement("script");
-      s.src = url;
-      s.async = true;
-      document.body.appendChild(s);
-      return new Promise((resolve,reject)=>{
-        s.onload = () => resolve();
-        s.onerror = e => reject(e);
-      });
-    }
-    Promise.all([
-      ("customElements" in window && "content" in document.createElement( "template" )) || i("./vendor/webcomponents-sd-ce.js"),
-      i("./vendor/jsoneditor-minimalist.min.js"),
-      i("./vendor/vis.min.js")
-    ]).then(()=>i("./index.js"));
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Mungo Typestate Editor</title>
+    <link rel="canonical" href="https://typestate-editor.github.io/">
+    <script>location.replace("https://typestate-editor.github.io/");</script>
+  </head>
+  <body>
+    <a href="https://typestate-editor.github.io/">The tool is now available here: typestate-editor.github.io</a>
+  </body>
 </html>
